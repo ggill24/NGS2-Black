@@ -1,0 +1,32 @@
+[ENABLE]
+{$lua}
+if syntaxcheck then return end
+if timer then timer.destroy() end
+timer = createTimer()
+timer.Interval = 1000
+timer.enabled = true
+timer.OnTimer = function()
+local story = readByte("NINJA GAIDEN SIGMA2.EXE+211E604")
+local cc = readByte("NINJA GAIDEN SIGMA2.EXE+211E5CE")
+if (story == 04 or cc == 01) then
+writeBytes("NINJA GAIDEN SIGMA2.EXE+211E5CD",01)
+else
+writeBytes("NINJA GAIDEN SIGMA2.EXE+211E5CD",00)
+  end
+end
+{$asm}
+NINJA GAIDEN SIGMA2.exe+13B0D62:
+db 90 90 90 90 90 90 90 90 90 90 90 90 90
+NINJA GAIDEN SIGMA2.exe+1627F7E:
+db EB 40
+[DISABLE]
+{$lua}
+if syntaxcheck then return end
+if timer then timer.destroy()
+writeBytes("NINJA GAIDEN SIGMA2.EXE+211E5CD",00)
+end
+{$asm}
+NINJA GAIDEN SIGMA2.exe+13B0D62:
+db 80 3D 64 D8 D6 00 01 0F 84 0E 02 00 00
+NINJA GAIDEN SIGMA2.exe+1627F7E:
+db 75 40
