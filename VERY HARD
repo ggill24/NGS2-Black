@@ -1,0 +1,8883 @@
+{ Game   : NINJA GAIDEN SIGMA2.exe
+  Version:
+  Date   : 2021-11-21
+  Author : Gary
+}
+
+[ENABLE]
+
+//FRAME FREEZE/JUDDER
+NINJA GAIDEN SIGMA2.exe+102A267:
+db EB 58
+{NINJA GAIDEN SIGMA2.exe+160B226:
+db C7 44 83 20 0E 00 00 00}
+NINJA GAIDEN SIGMA2.exe+13B4AEB:
+db C6 40 38 04
+NINJA GAIDEN SIGMA2.exe+13B4AD0:
+db C6 40 38 04
+NINJA GAIDEN SIGMA2.exe+13B4AB5:
+db C6 40 38 04
+NINJA GAIDEN SIGMA2.exe+13B4B06:
+db C6 40 38 04
+NINJA GAIDEN SIGMA2.exe+13D0CC2:
+db 31 DB 90 90 90 90 90
+{NINJA GAIDEN SIGMA2.exe+13F22F3:
+db 90 90 90 90 90 90 90 90 90 90 90 90 90 90}
+
+aobscanmodule(DELIMB1,NINJA GAIDEN SIGMA2.exe,81 FA A0 00 00 00 73 5E)
+alloc(newmem,$1000,DELIMB1)
+label(code)
+label(return)
+alloc(enableAIdodge,1)
+registersymbol(enableAIdodge)
+alloc(canincreasetimer,1)
+registersymbol(canincreasetimer)
+alloc(enthitadd,8)
+registersymbol(enthitadd)
+alloc(enthitadd2,8)
+registersymbol(enthitadd2)
+alloc(onstart,2)
+registersymbol(onstart)
+alloc(ent,2)
+alloc(delimbp,2)
+alloc(canaggro,2)
+alloc(ryusuffered,2)
+alloc(disableai,2)
+alloc(disabledelimb,2)
+alloc(disablecustommoves,2)
+alloc(disablehpreduction,2)
+alloc(disabledamagereduction,2)
+alloc(disablespawns,2)
+alloc(phitent,1)
+registersymbol(phitent)
+registersymbol(disableai)
+registersymbol(disabledelimb)
+registersymbol(disablecustommoves)
+registersymbol(disablehpreduction)
+registersymbol(disabledamagereduction)
+registersymbol(disablespawns)
+registersymbol(ryusuffered)
+registersymbol(canaggro)
+registersymbol(ent)
+registersymbol(delimbp)
+alloc(nindance,1)
+registersymbol(nindance)
+alloc(L1Y,1)
+registersymbol(L1Y)
+alloc(SUT,1)
+registersymbol(SUT)
+alloc(SKick,1)
+registersymbol(SKick)
+alloc(SUT2,1)
+registersymbol(SUT2)
+alloc(FLUTEND,1)
+registersymbol(FLUTEND)
+alloc(S1FLUT,1)
+registersymbol(S1FLUT)
+alloc(LUNUT,1)
+registersymbol(LUNUT)
+alloc(S1DSike,1)
+registersymbol(S1DSike)
+alloc(isUnlocked,1)
+registersymbol(isUnlocked)
+alloc(DualSXXYY,1)
+registersymbol(DualSXXYY)
+alloc(DualSUDropFailUT,1)
+registersymbol(DualSUDropFailUT)
+alloc(DualSUDropFail360,1)
+registersymbol(DualSUDropFail360)
+alloc(LXFX,1)
+registersymbol(LXFX)
+alloc(LXFY,1)
+registersymbol(LXFY)
+alloc(TFXY,1)
+registersymbol(TFXY)
+alloc(NG2AI,1)
+registersymbol(NG2AI)
+alloc(weakAlexi,1)
+registersymbol(weakAlexi)
+alloc(canClip,1)
+registersymbol(canClip)
+alloc(wDOT,1)
+registersymbol(wDOT)
+alloc(canDelay,1)
+registersymbol(canDelay)
+alloc(delayThreshold,1)
+registersymbol(delayThreshold)
+alloc(triggerAddress,8)
+registersymbol(triggerAddress)
+alloc(sWave,1)
+registersymbol(sWave)
+
+
+newmem:
+  mov byte ptr [phitent],00
+  mov qword ptr [enthitadd],FFFFFFFFFFFFFFFF
+  mov byte ptr [ent],FF
+  cmp bx,5300
+  je code
+  mov byte ptr [phitent],01
+  cmp byte ptr [disabledelimb],01
+  jae code
+  mov [enthitadd],rbx
+  mov [enthitadd2],rbx
+  mov [ent],cx
+setdelimbpercent:
+ push rax
+ push rbx
+ push rcx
+ push rdx
+ push rsi
+ push rdi
+ push rbp
+ push r8
+ push r9
+ push r10
+ push r11
+ push r12
+ push r13
+ push r14
+ push r15
+ call rand
+ xor rdx,rdx
+ mov rcx, #100
+ div rcx
+ mov [delimbp],dx
+ pop r15
+ pop r14
+ pop r13
+ pop r12
+ pop r11
+ pop r10
+ pop r9
+ pop r8
+ pop rbp
+ pop rdi
+ pop rsi
+ pop rdx
+ pop rcx
+ pop rbx
+ pop rax
+ {cmp r15w,68
+ jne code
+ mov qword ptr [enthitadd2],FFFFFFFFFFFFFFFF}
+code:
+  cmp edx,000000A0
+  jmp return
+DELIMB1:
+  jmp newmem
+  nop
+return:
+registersymbol(DELIMB1)
+
+aobscanmodule(DELIMB2,NINJA GAIDEN SIGMA2.exe,66 89 3C 02 44 8B 1D 4B 6F 02 01)
+alloc(newmem2,$4000,DELIMB2)
+
+label(code2)
+label(return2)
+alloc(state,2)
+alloc(floorcutcry,2)
+alloc(floorcutcryleg,2)
+alloc(rightarm,2)
+alloc(leftarm,2)
+alloc(rightleg,2)
+alloc(rightlegquick,2)
+alloc(head,2)
+alloc(halfcut,2)
+alloc(rightarmair,2)
+alloc(leftarmair,2)
+alloc(rightlegair,2)
+alloc(headair,2)
+alloc(limbc,2)
+alloc(eanim,4)
+alloc(enothit,2)
+alloc(legvariant,2)
+alloc(entleggroundanim,2)
+alloc(dcounter,2)
+alloc(cankill,2)
+alloc(ninpodance,1)
+alloc(plranim,1)
+registersymbol(floorcutcry)
+registersymbol(floorcutcryleg)
+registersymbol(ninpodance)
+registersymbol(cankill)
+registersymbol(dcounter)
+registersymbol(entleggroundanim)
+registersymbol(legvariant)
+registersymbol(halfcut)
+registersymbol(eanim)
+registersymbol(limbc)
+registersymbol(state)
+registersymbol(rightarm)
+registersymbol(leftarm)
+registersymbol(rightleg)
+registersymbol(rightlegquick)
+registersymbol(head)
+registersymbol(rightarmair)
+registersymbol(leftarmair)
+registersymbol(rightlegair)
+registersymbol(headair)
+registersymbol(enothit)
+registersymbol(plranim)
+newmem2:
+  push r9
+  cmp byte ptr [disabledelimb],01
+  jae code2
+  cmp ax,7100
+  je isPlayer
+  cmp byte ptr [rax+5B30+015D],#16
+  je leggroundcheck
+  cmp qword ptr [enthitadd],rbx
+  je start
+  push rax
+  movzx rax, byte ptr [rbx+18]
+  mov [enothit],al
+  pop rax
+  jmp code2
+isPlayer:
+  mov [plranim],di
+  {cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2DBCB50],01
+  je sufferRyu
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2E29F94],01
+  je sufferRyu
+  cmp byte ptr [nindance],01
+  je sufferRyu
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2DBCB50],02
+  je ryuWake
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2E29F94],02
+  je ryuWake
+  cmp byte ptr [nindance],02
+  je ryuWake}
+  jmp code2
+sufferRyu:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#19
+ je ryuFall
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#16
+ je ryuFall
+ jmp code2
+ryuFall:
+ mov cx,FF
+ mov di,A82
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CD04],01
+ je setRyuFall
+ mov di,AFE
+setRyuFall:
+ mov byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2DBCB50],02
+ mov byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2E29F94],02
+ mov byte ptr [nindance],02
+ mov ["NINJA GAIDEN SIGMA2.EXE"+319CBDA],0
+ jmp code2
+ryuWake:
+ cmp di,4D
+ jne code2
+ mov cx,FF
+ mov di,A75
+ mov byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2DBCB50],03
+ mov byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2E29F94],03
+ mov byte ptr [nindance],00
+ jmp code2
+leggroundcheck:
+  mov word ptr [entleggroundanim],03D7
+  cmp byte ptr [rbx+18],09D
+  je setlegground
+  mov word ptr [entleggroundanim],03D7
+  cmp byte ptr [rbx+18],038
+  je setlegground
+  mov word ptr [entleggroundanim],0301
+  cmp byte ptr [rbx+18],02F
+  je setlegground
+  mov word ptr [entleggroundanim],02ED
+  cmp byte ptr [rbx+18],09C
+  je setlegground
+  mov word ptr [entleggroundanim],0303
+  cmp byte ptr [rbx+18],070
+  je setlegground
+  {mov word ptr [entleggroundanim],0093
+  cmp byte ptr [rbx+18],00C
+  je setlegground}
+  mov word ptr [entleggroundanim],0000
+  jmp code2
+setlegground:
+  cmp di,6D
+  jl fixleggronudanim
+  cmp qword ptr [enthitadd],rbx
+  je start
+  jmp code2
+fixleggronudanim:
+  mov di,word ptr [entleggroundanim]
+  mov cx,9A
+  jmp code2
+start:
+ mov [state],cx
+ cmp byte ptr [ent],09D //GREY NINJA
+ je setGreyNinja
+ cmp byte ptr[ent],02F //GREYNINJAFIEND
+ je setgreyninjafiend
+ cmp byte ptr [ent],09C //GREY NINJA
+ je setISNinja
+ cmp byte ptr[ent],070 //ISNINJAFIEND
+ je setisninjafiend
+ cmp byte ptr[ent],038 //TACNINJA
+ je settacninja
+ cmp byte ptr[ent],003 //VANGELF PURPLE/BLACK
+ je setvangelf
+ cmp byte ptr[ent],0A7 //VANGELF GOLF
+ je setvangelfGOLD
+ cmp byte ptr[ent],006 //WOLF GREY
+ je setwolf
+ cmp byte ptr[ent],0B1 //WOLF RED
+ je setwolf
+ cmp byte ptr[ent],09E //RED GAJA
+ je setgaja
+ cmp byte ptr[ent],032 //PURPLE GAJA
+ je setgaja
+ cmp byte ptr[ent],0A1 //MAGE
+ je setmage
+ cmp byte ptr[ent],07C //MAGEFIEND
+ je setmage
+ {cmp byte ptr[ent],0F1 //IMPS
+ je setimps}
+ cmp byte ptr[ent],00C //Chainsaw zombie
+ je setzombie
+ cmp byte ptr[ent],0F9 //Buddah Statue (second form)
+ je buddahKill
+ jmp code2
+buddahKill:
+  cmp cx,00
+  je code2
+  mov di,055
+  jmp code2
+setzombie:
+ mov word ptr [rightarm],04E
+ mov word ptr [rightarmair],04E
+ mov word ptr [leftarm],04D
+ mov word ptr [leftarmair],04D
+ mov word ptr [rightleg],097
+ mov word ptr [rightlegquick],097
+ mov word ptr [rightlegair],097
+ mov word ptr [head],04F
+ mov word ptr [headair],04F
+ mov word ptr [halfcut],04F
+ mov word ptr [floorcutcry],000
+ mov word ptr [floorcutcryleg],000
+ jmp eweapon
+setimps:
+ mov word ptr [rightarm],198
+ mov word ptr [rightarmair],21A
+ mov word ptr [leftarm],196
+ mov word ptr [leftarmair],21B
+ mov word ptr [rightleg],196
+ mov word ptr [rightlegquick],198
+ mov word ptr [rightlegair],21A
+ mov word ptr [head],19A
+ mov word ptr [headair],216
+ mov word ptr [halfcut],154
+ mov word ptr [floorcutcry],000
+ mov word ptr [floorcutcryleg],000
+ jmp eweapon
+setgreyninjafiend:
+ mov byte ptr [cankill],01
+ mov word ptr [rightarm],1EF
+ mov word ptr [rightarmair],273
+ mov word ptr [leftarm],1EE
+ mov word ptr [leftarmair],272
+ mov word ptr [rightleg],35B
+ mov word ptr [rightlegquick],035B
+ mov word ptr [rightlegair],270
+ mov word ptr [head],1F1
+ mov word ptr [headair],272 //CANT TOO LAZY lol
+ mov word ptr [halfcut],1AB
+ mov word ptr [floorcutcry],34B
+ mov word ptr [floorcutcryleg],34A
+ jmp eweapon
+setisninjafiend:
+ mov byte ptr [cankill],01
+ mov word ptr [rightarm],1E9
+ mov word ptr [rightarmair],269
+ mov word ptr [leftarm],1EC
+ mov word ptr [leftarmair],268
+ mov word ptr [rightleg],34E
+ mov word ptr [rightlegquick],034E
+ mov word ptr [rightlegair],265
+ mov word ptr [head],1ED
+ mov word ptr [headair],264
+ mov word ptr [halfcut],1A7
+ mov word ptr [floorcutcry],33E
+ mov word ptr [floorcutcryleg],33C
+ jmp eweapon
+setGreyNinja:
+ mov byte ptr [cankill],01
+ mov word ptr [rightarm],2B8
+ mov word ptr [rightarmair],339
+ mov word ptr [leftarm],2B9
+ mov word ptr [leftarmair],339
+ mov word ptr [rightleg],440
+ mov word ptr [rightlegquick],441
+ mov word ptr [rightlegair],337
+ mov word ptr [head],2BA
+ mov word ptr [headair],336
+ mov word ptr [halfcut],272
+ mov word ptr [floorcutcry],431
+ mov word ptr [floorcutcryleg],437
+ jmp eweapon
+setISNinja:
+ mov byte ptr [cankill],01
+ mov word ptr [rightarm],1E3
+ mov word ptr [rightarmair],25D
+ mov word ptr [leftarm],1E4
+ mov word ptr [leftarmair],25E
+ mov word ptr [rightleg],343
+ mov word ptr [rightlegquick],344
+ mov word ptr [rightlegair],25B
+ mov word ptr [head],1E5
+ mov word ptr [headair],25A
+ mov word ptr [halfcut],19F
+ mov word ptr [floorcutcry],334
+ mov word ptr [floorcutcryleg],332
+ jmp eweapon
+settacninja:
+ mov byte ptr [cankill],01
+ mov word ptr [rightarm],2B8
+ mov word ptr [rightarmair],339
+ mov word ptr [leftarm],2B9
+ mov word ptr [leftarmair],339
+ mov word ptr [rightleg],440
+ mov word ptr [rightlegquick],441
+ mov word ptr [rightlegair],337
+ mov word ptr [head],2BA
+ mov word ptr [headair],336
+ mov word ptr [halfcut],272
+ mov word ptr [floorcutcry],431
+ mov word ptr [floorcutcryleg],437
+ jmp eweapon
+setmage:
+ mov byte ptr [cankill],01
+ mov word ptr [rightarm],192
+ mov word ptr [rightarmair],20E
+ mov word ptr [leftarm],193
+ mov word ptr [leftarmair],20D
+ mov word ptr [rightleg],193
+ mov word ptr [rightlegquick],193
+ mov word ptr [rightlegair],20B
+ mov word ptr [head],194
+ mov word ptr [headair],20E
+ mov word ptr [halfcut],14E
+ mov word ptr [floorcutcry],2D9
+ mov word ptr [floorcutcryleg],2D9
+ jmp eweapon
+setvangelf:
+ mov word ptr [rightarm],088
+ mov word ptr [rightarmair],088
+ mov word ptr [leftarm],087
+ mov word ptr [leftarmair],087
+ mov word ptr [rightleg],087
+ mov word ptr [rightlegquick],087
+ mov word ptr [rightlegair],087
+ mov word ptr [head],089
+ mov word ptr [headair],089
+ mov word ptr [halfcut],089
+ mov word ptr [floorcutcry],000
+ mov word ptr [floorcutcryleg],000
+ jmp eweapon
+setvangelfGOLD:
+ mov word ptr [rightarm],079
+ mov word ptr [rightarmair],079
+ mov word ptr [leftarm],078
+ mov word ptr [leftarmair],078
+ mov word ptr [rightleg],079
+ mov word ptr [rightlegquick],079
+ mov word ptr [rightlegair],079
+ mov word ptr [head],077
+ mov word ptr [headair],077
+ mov word ptr [halfcut],077
+ mov word ptr [floorcutcry],000
+ mov word ptr [floorcutcryleg],000
+ jmp eweapon
+setwolf:
+ mov word ptr [rightarm],04C
+ mov word ptr [rightarmair],04C
+ mov word ptr [leftarm],04B
+ mov word ptr [leftarmair],04B
+ mov word ptr [rightleg],04C
+ mov word ptr [rightlegquick],04C
+ mov word ptr [rightlegair],04C
+ mov word ptr [head],04D
+ mov word ptr [headair],04D
+ mov word ptr [halfcut],04D
+ mov word ptr [floorcutcry],000
+ mov word ptr [floorcutcryleg],000
+ jmp eweapon
+setgaja:
+ mov word ptr [rightarm],066
+ mov word ptr [rightarmair],066
+ mov word ptr [leftarm],065
+ mov word ptr [leftarmair],065
+ mov word ptr [rightleg],066
+ mov word ptr [rightlegquick],066
+ mov word ptr [rightlegair],066
+ mov word ptr [head],067
+ mov word ptr [headair],067
+ mov word ptr [halfcut],067
+ mov word ptr [floorcutcry],000
+ mov word ptr [floorcutcryleg],000
+ jmp eweapon
+eweapon:
+ cmp cx,69 //GUIL THROW
+ je guilthrow
+ cmp di,322//GREY/TAC FS HIT IN AIR
+ je fs
+ cmp di,231//GREY/TAC FS HIT FLOOR
+ je fsfloor
+ cmp di,1E3//HIT FLOOR
+ je fsfloor
+ cmp di,246//IS FS HIT IN AIR
+ je fs
+ cmp di,110//IS FS HIT ON FlOOR
+ je fsfloor
+ cmp di,15E//IS FS HIT ON FlOOR
+ je fsfloor
+ cmp di,250//IS FIEND FS HIT IN AIR
+ je fs
+ cmp di,118//IS FIEND FS HIT ON FLOOR
+ je fsfloor
+ cmp di,25A//Grey Fiend FS HIT IN AIR
+ je fs
+ cmp di,11C//Grey Fiend FS HIT Floor
+ je fsfloor
+ cmp di,1F5//Grey Mage FS HIT IN AIR
+ je fs
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],007
+ je tds
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],001
+ je ds
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],00C
+ je flail
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],018
+ je lunar
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],012
+ je scythe
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],015
+ je claws
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],021
+ je efang
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],014
+ je kg
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],0CC
+ je bota
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],013
+ je bota
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],011
+ je tonfa
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],04D
+ je momiji
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],046
+ je rachel
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],04A
+ je ayane
+ jmp code2
+{
+LOW = 1
+MED = 2
+GUARANTEED = 3
+RIGHT LEG = 04
+RIGHT ARM = 05
+LEFT ARM = 06
+HEAD = 07
+LOW RIGHT LEG = 08
+LOW RIGHT ARM = 09
+LOW LEFT ARM = 10
+LOW HEAD = 11
+MED RIGHT LEG = 12
+MEDIUM RIGHT ARM = 13
+MEDIUM LEFT ARM = 14
+MEDIUM HEAD = 15
+BODY SPLIT HALF = 16
+HIGH RIGHT LEG = 26
+HIGH RIGHT ARM = 27
+HIGH LEFT ARM = 28
+HIGH HEAD = 29
+RIGHT LEG CRY = 30
+RIGHT LEG CRY LOW = 31
+RIGHT LEG CRY MED = 32
+RIGHT LEG CRY HIGH = 33
+FLOOR CUT CRY HEAD = 34
+RIGHT LEG GUARANTEED = 17 (no delimb checks)
+RIGHT ARM GUARANTEED = 18 (no delimb checks)
+LEFT ARM GUARANTEED = 19 (no delimb checks)
+HEAD GUARANTEED = 20 (no delimb checks)
+RIGHT LEG AIR GUARANTEED = 21 (no delimbchecks)
+RIGHT ARM AIR GUARANTEED = 22 (no delimbhcecks)
+LEFT ARM AIR  GUARANTEED = 23 (no delimbhcecks)
+HEAD AIR GUARANTEED = 24 (no delimbhcecks)
+RIGHT LEG VERY HIGH = 35
+HEAD VERY HIGH = 36
+LEG VARIANT
+1 = Staggered leg delimb drop
+0 = Quick leg delimb drop
+}
+
+
+tds:
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0C7A//FS
+ je fs
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0C7C//FS
+ je fs
+ mov byte ptr [legvariant],00
+ mov byte ptr [limbc],04
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],094E //XXY->Y
+ je delimbconditions
+ mov byte ptr [limbc],28
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0417 //->X
+ je delimbconditions
+ mov byte ptr [limbc],31
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0405 //OL X
+ je delimbconditions
+ cmp byte ptr [rax+5C05],0 //0 = NEUTRAL STATE 1 = ATTACK MODE 2 = HIT
+ je code2
+ mov byte ptr [limbc],15
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0944 //YYY
+ je delimbconditions
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0945 //YYY
+ je delimbconditions
+ mov byte ptr [limbc],05
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03FD //XXY
+ je delimbconditions
+ mov byte ptr [limbc],05
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03FE//XXY (Delay)
+ je delimbconditions
+ mov byte ptr [limbc],04
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],094A //Counter S
+ je delimbconditions
+ mov byte ptr [limbc],09
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0941 //Y
+ je delimbconditions
+ mov byte ptr [limbc],11
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0D23 //WALL JUMP X
+ je delimbconditions
+ mov byte ptr [limbc],07
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0497 //XXXY
+ je delimbconditions
+ mov byte ptr [limbc],08
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0447 //360Y
+ je delimbconditions
+ mov byte ptr [limbc],25
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],045D//S1UT
+ je delimbconditions
+ mov byte ptr [limbc],28
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0936//XX->XX
+ je delimbconditions
+ mov byte ptr [limbc],04
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0942 //YY
+ je delimbconditions
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0943 //YY
+ je delimbconditions
+ {mov byte ptr [limbc],27
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0422 //Running X
+ je delimbconditions}
+ jmp code2
+ds:
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0C7A//FS
+ je fs
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0C7C//FS
+ je fs
+ mov byte ptr [legvariant],00
+ mov byte ptr [limbc],04
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],094E //XXY->Y
+ je delimbconditions
+ mov byte ptr [limbc],28
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0417 //->X
+ je delimbconditions
+ mov byte ptr [limbc],31
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0405 //OL X
+ je delimbconditions
+ cmp byte ptr [rax+5C05],0 //0 = NEUTRAL STATE 1 = ATTACK MODE 2 = HIT
+ je code2
+ mov byte ptr [limbc],15
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0944 //YYY
+ je delimbconditions
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0945 //YYY
+ je delimbconditions
+ mov byte ptr [limbc],05
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03FD //XXY
+ je delimbconditions
+ mov byte ptr [limbc],05
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03FE//XXY (Delay)
+ je delimbconditions
+ mov byte ptr [limbc],04
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],094A //Counter S
+ je delimbconditions
+ mov byte ptr [limbc],09
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0941 //Y
+ je delimbconditions
+ mov byte ptr [limbc],11
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0D23 //WALL JUMP X
+ je delimbconditions
+ mov byte ptr [limbc],07
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0497 //XXXY
+ je delimbconditions
+ mov byte ptr [limbc],08
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0447 //360Y
+ je delimbconditions
+ mov byte ptr [limbc],25
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],045D//S1UT
+ je delimbconditions
+ mov byte ptr [limbc],28
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0936//XX->XX
+ je delimbconditions
+ mov byte ptr [limbc],04
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0942 //YY
+ je delimbconditions
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0943 //YY
+ je delimbconditions
+{mov byte ptr [limbc],27
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0422 //Running X
+ je delimbconditions}
+ jmp code2
+flail:
+  mov byte ptr [limbc],15
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0CD2//RUNNING ->X
+  je delimbconditions
+  mov byte ptr [legvariant],00
+  mov byte ptr [limbc],12
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],064C//->X
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0655//->Y
+  je delimbconditions
+  cmp byte ptr [rax+5C05],0 //0 = NEUTRAL STATE 1 = ATTACK MODE 2 = HIT
+  je code2
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],065D//360Y
+  je delimbconditions
+  mov byte ptr [limbc],01
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0629//XXX(X) mash
+  je delimbconditions
+  mov byte ptr [legvariant],01
+  {mov byte ptr [limbc],21
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0CCD//JUMP INTO YY
+  je delimbconditions}
+  {mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0CCE//JUMP INTO YYY
+  je delimbconditions
+  mov byte ptr [limbc],15
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0CCF//JUMP INTO YYYY
+  je delimbconditions}
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0626//XXY
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0685//XXYY
+  je delimbconditions
+  mov byte ptr [limbc],14
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],064E//->XX
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],064F//->XXX
+  je delimbconditions
+  mov byte ptr [limbc],08
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],063F//Y
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0641//YY
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],065C//Counter S
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],062A//->XXXXX
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0635//OL Y KICK SMASH
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],062E//XXXXXX
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],065F//XXXY
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0640//YY
+  je delimbconditions
+  jmp code2
+lunar:
+  mov byte ptr [legvariant],00
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08E7//XXY
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08E8//XXY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08F3//OL Y
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08E5//XXXX
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08FB//Lunar Counter S
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08EE//YY
+  je delimbconditions
+  mov byte ptr [limbc],09
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0903//->X
+  je delimbconditions
+  mov byte ptr [limbc],13
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0904//->XX
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0905//->XXXX
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0911//YYYYYYY
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0926//360T
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],090F//XXXY
+  je delimbconditions
+  mov byte ptr [limbc],10
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08D3//XX
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08D4//XXX
+  je delimbconditions
+   cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08D1//XXX
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],090F//XXXXY
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08DE//X->YXX(X)
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08D5//XXXXY
+  je delimbconditions
+  mov byte ptr [limbc],10
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08D9//X->X
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0906//X->XX
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0907//X->XX
+  je delimbconditions
+  mov byte ptr [limbc],13
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08DF//Running X
+  je delimbconditions
+  mov byte ptr [limbc],06
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08E0//Running XX
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],090E//XXXXXX
+  je delimbconditions
+  mov byte ptr [limbc],27
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],08F9//WALL JUMP X(X)
+  je delimbconditions
+  jmp code2
+scythe:
+  mov byte ptr [legvariant],00
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0D33//Wall Jump Y
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0D27//AIR Y
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0736//->XXXX
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0726//YYY
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],070F//XXXYYY
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0728//Counter S
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],074C//360Y
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0731//XYY
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0732//XXY
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0734//Running X
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0722//->YY(FAIL)
+  je delimbconditions
+  cmp byte ptr [rax+5C05],0 //0 = NEUTRAL STATE 1 = ATTACK MODE 2 = HIT
+  je code2
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0729//Counter Y
+  je delimbconditions
+  jmp code2
+claws:
+  mov byte ptr [legvariant],01
+  mov byte ptr [limbc],06
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0845//Counter S
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0834//->Y
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0831//360Y
+  je delimbconditions
+  mov byte ptr [limbc],13
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0826//XXY
+  je delimbconditions
+  mov byte ptr [limbc],14
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0821//Running X
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],081C//Running YYY
+  je delimbconditions
+  mov byte ptr [limbc],09
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0803//XXX
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0805//XXXXX
+  je delimbconditions
+  mov byte ptr [limbc],14
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0838//XXXY
+  je delimbconditions
+  mov byte ptr [limbc],11
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],083A//XXXYY
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],083B//XXXYYY
+  je delimbconditions
+  mov byte ptr [limbc],11
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],082A//Y
+  je delimbconditions
+  mov byte ptr [limbc],28
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],082B//YY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],082D//YYY
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0822//XX->Y
+  je delimbconditions
+  mov byte ptr [limbc],13
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],081A//RUN YY
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0DAB //Wall Stick X
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0DAC//Wall Stick X
+  je delimbconditions
+  mov byte ptr [limbc],34
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0833//Grounded (Flat) Enemy Y
+  je delimbconditions
+  jmp code2
+efang:
+  mov byte ptr [legvariant],00
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],06A1//YYY
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],06A2//YYY(delay)
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],06C9//360Y
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0CEE//Wall Jump X/Y
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],06E4//Wall Jump X/Y
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],069C//Counter S
+  je delimbconditions
+  mov byte ptr [limbc],15
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],06BF//OL Y
+  je delimbconditions
+  cmp byte ptr [rax+5C05],0 //0 = NEUTRAL STATE 1 = ATTACK MODE 2 = HIT
+  je code2
+  mov byte ptr [limbc],13
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],063B//XXY
+  je delimbconditions
+  mov byte ptr [limbc],06
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],063C//XXYY
+  je delimbconditions
+  mov byte ptr [limbc],09
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],069E//Y
+  je delimbconditions
+  mov byte ptr [limbc],14
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],06A0//YY
+  je delimbconditions
+  mov byte ptr [limbc],09
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],06AC//XX
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],06B0//XXXX
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],06A9//Running Y
+  je delimbconditions
+  mov byte ptr [limbc],14
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],06AD//XXX
+  je delimbconditions
+  jmp code2
+kg:
+  mov byte ptr [legvariant],00
+  mov byte ptr [limbc],35
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0881//XXXY->(Y)
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0888//Running X
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],089A//YYYYY
+  je delimbconditions
+  mov byte ptr [limbc],27
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],087B//->XX
+  je delimbconditions
+  mov byte ptr [limbc],28
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0878//XXXYY(Y)Y
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],087A//->X
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0879//XXXYYY(Y)
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0DC1//AIR YX
+  je delimbconditions
+  mov byte ptr [limbc],13
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0895//YY
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0870//AIR YXY
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0885//XXYY
+  je delimbconditions
+  cmp byte ptr [rax+5C05],0 //0 = NEUTRAL STATE 1 = ATTACK MODE 2 = HIT
+  je code2
+  mov byte ptr [limbc],36
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0886//Running Y
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0890//Counter S
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],088F//Counter Y
+  je delimbconditions
+  {mov byte ptr [limbc],11
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0DC0//AIR Y
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0DC1//AIR YX
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0870//AIR YXY
+  je delimbconditions
+  mov byte ptr [limbc],12
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0862//XX
+  je delimbconditions
+  mov byte ptr [limbc],10
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0863//XXX
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0883//XXY
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0885//XXYY
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0890//Counter S
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0895//YY
+  je delimbconditions
+  mov byte ptr [limbc],14
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0896//YYY
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0898//YYYY
+  je delimbconditions
+  mov byte ptr [limbc],08
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],087B//->X
+  je delimbconditions
+  mov byte ptr [limbc],15
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],087C//->XXX
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0DC3//->XXXX
+  je delimbconditions
+  mov byte ptr [limbc],11
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],088A//360Y
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0886//Running Y
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0888//Running X
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0878//XXXYY
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0878//XXXYYY
+  je delimbconditions}
+  jmp code2
+bota:
+  mov byte ptr [legvariant],00
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07AF//->XY
+  je delimbconditions
+  mov byte ptr [limbc],30
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07E0//OL YY
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07CD//360Y
+  je delimbconditions
+  cmp byte ptr [rax+5C05],0 //0 = NEUTRAL STATE 1 = ATTACK MODE 2 = HIT
+  je code2
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07B3//->Y
+  je delimbconditions
+  mov byte ptr [limbc],10
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07ED//Y
+  je delimbconditions
+  mov byte ptr [limbc],09
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07D3//YY
+  je delimbconditions
+  mov byte ptr [limbc],14
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07D4//YYY
+  je delimbconditions
+  mov byte ptr [limbc],14
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07D4//YYY(delay)
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07D6//YYYY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07D7//YYYY(delay)
+  je delimbconditions
+  mov byte ptr [limbc],14
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07A6//XX
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07C1//XXYY
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07FF//XX->Y
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07DA//No look both way slash wing
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07B4//No look both way slash wing
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07E1//S Counter
+  je delimbconditions
+  jmp code2
+tonfa:
+  mov byte ptr [legvariant],01
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0760//Running X
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0761//Running Y
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],076D//OL Y
+  je delimbconditions
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0785//XXYYY
+  je delimbconditions
+  mov byte ptr [limbc],32
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],076C//360Y
+  je delimbconditions
+  cmp byte ptr [rax+5C05],0 //0 = NEUTRAL STATE 1 = ATTACK MODE 2 = HIT
+  je code2
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],077E//Counter S
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],077F//Counter SS
+  je delimbconditions
+  mov byte ptr [limbc],06
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0782//XXY
+  je delimbconditions
+  mov byte ptr [limbc],13
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0759//Y
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0765//YYXY
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0766//->X
+  je delimbconditions
+  mov byte ptr [limbc],06
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0789//YYY
+  je delimbconditions
+  jmp code2
+momiji:
+  mov byte ptr [legvariant],00
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0147//Counter S
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],011B//360Y
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],011D//Running XX
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],011F//Running Y
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0153//Forward Jump Y
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],035F//AXY(spin)
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0119//XXXX
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0149//CY
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0150//->Y
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0124//XXY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0127//XXXXY
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0126//XXXY
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],013F//YY
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0140//YY(Delay)
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0141//YYY
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0142//YYY(Delay)
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],014F//->XXY
+  je delimbconditions
+  jmp code2
+rachel:
+  mov byte ptr [legvariant],00
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03A5//JJY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0152//JJY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0138//YYY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0139//YYY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0144//XXXXY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],014C//360
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03B7//JB
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03B8//JB
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03B9//JB
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03B5//JB
+  je delimbconditions
+  mov byte ptr [limbc],14
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0125//XX
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0148//FXXX
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0136//YY
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0126//XXX
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0127//XXXX
+  je delimbconditions
+  mov byte ptr [limbc],11
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0170//BH
+  je delimbconditions
+  mov byte ptr [limbc],11
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0177//BH
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],039D//JY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],013D//JY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0131//HY
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0141//XXY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],014D//XXYY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],013F//RXX
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0140//RY
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],014A//CX
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],014B//CY
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],016F//B
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],015C//B
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],015E//B
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0133//ET
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0134//UT
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],01D8//NINPO
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0153//FY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03A9//FY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03AA//FY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0153//FY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],03D7//FY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],01B5//FY
+  je delimbconditions
+  jmp code2
+ayane:
+  mov byte ptr [legvariant],00
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],016E//360Y
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0115//AY
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0121//ET
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0158//YY
+  je delimbconditions
+  mov byte ptr [limbc],07
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],015A//YYY
+  je delimbconditions
+  mov byte ptr [limbc],30
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],017E//--XX
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0169//Running Y
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],016B//Running X
+  je delimbconditions
+  mov byte ptr [limbc],06
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],016D//Running XX
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0171//XXY
+  je delimbconditions
+  mov byte ptr [limbc],02
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0172//XXY
+  je delimbconditions
+  mov byte ptr [limbc],06
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0173//XXYY
+  je delimbconditions
+  mov byte ptr [limbc],06
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0174//XXYY
+  je delimbconditions
+  mov byte ptr [limbc],06
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0107//XXXX
+  je delimbconditions
+  mov byte ptr [limbc],05
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0109//XXXXXX
+  je delimbconditions
+  mov byte ptr [limbc],04
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0175//XXXY
+  je delimbconditions
+  mov byte ptr [limbc],30
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0191//XX->X
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0192//XX->XX
+  je delimbconditions
+  mov byte ptr [limbc],03
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],018F//Counter X
+  je delimbconditions
+  jmp code2
+delimbconditions:
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],09AC //AIR BOW
+ je code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CD05],01
+ jne code2
+ cmp byte ptr [state],67 //GROUNDED
+ je delimbrandlimb
+ cmp byte ptr [state],72
+ je delimbrandlimb
+ cmp byte ptr [state],6A //AIRBORNE
+ je delimbrandlimb
+ cmp byte ptr [state],6C
+ je delimbrandlimb
+ jmp code2
+fs:
+ cmp qword ptr [enthitadd2],rbx
+ jne code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],00C
+ je flail
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],018
+ je lunar
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],012
+ je scythe
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],015
+ je claws
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],021
+ je efang
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],014
+ je kg
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],011
+ je tonfa
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],04D
+ je momiji
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],046
+ je rachel
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],04A
+ je ayane
+ {some terrible hotfix going on here}
+ cmp di,309
+ je code2
+ cmp di,406
+ je code2
+ cmp di,320
+ je code2
+ cmp di,313
+ je code2
+ {end of terrible hotfix}
+ cmp byte ptr [rax+5C03],03
+ je fsfloor
+ cmp byte ptr [rax+5B30+015D],#16
+ je fsfloor
+ cmp cx,6A
+ je fshalfcutentcheck
+ cmp di,139
+ je greyHalf
+ cmp di,8B
+ je isHalf
+ cmp di,9C
+ je isHalf
+ jmp code2
+isHalf:
+ cmp byte ptr [ent],09C
+ je fshalfcutentcheck
+ jmp code2
+greyHalf:
+ cmp byte ptr [ent],09D
+ jne code2
+fshalfcutentcheck:
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0CA0
+ je code2
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0D92
+ je code2
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0D93
+ je code2
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],07CD
+ je code2
+ cmp byte ptr [ent],09D
+ je fshalfcut
+ cmp byte ptr [ent],038
+ je fshalfcut
+ cmp byte ptr [ent],09C
+ je fshalfcut
+ cmp byte ptr [ent],070
+ je fshalfcut
+ cmp byte ptr [ent],02F
+ je fshalfcut
+ cmp byte ptr [ent],0A1
+ je fshalfcut
+ cmp byte ptr [ent],07C
+ je fshalfcut
+ {cmp byte ptr [ent],0F1
+ je fshalfcut}
+ jmp code2
+fshalfcut:
+ cmp qword ptr [enthitadd2],rbx
+ jne code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],00C
+ je code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],018
+ je code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],012
+ je code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],015
+ je code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],021
+ je code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],014
+ je code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],011
+ je code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],04D
+ je code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],046
+ je code2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],04A
+ je code2
+ cmp word ptr [halfcut],0000
+ je code2
+ mov cx,6B
+ mov di,word ptr [halfcut]
+ jmp code2
+fsfloor:
+ mov byte ptr [limbc],01
+ mov byte ptr [limbc],04
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],094A //Counter S
+ je delimbconditions
+ cmp qword ptr [enthitadd2],rbx
+ jne code2
+ cmp byte ptr [rax+5C03],01
+ je fshalfcut
+ cmp byte ptr [rax+5C03],03
+ jne code2
+ {cmp byte ptr [rax+5B30+015D],#16
+ jne code2}
+ cmp byte ptr [ent],09D
+ je fsfloorcut
+ cmp byte ptr [ent],038
+ je fsfloorcut
+ cmp byte ptr [ent],09C
+ je fsfloorcut
+ cmp byte ptr [ent],070
+ je fsfloorcut
+ cmp byte ptr [ent],02F
+ je fsfloorcut
+ cmp byte ptr [ent],0A1
+ je fsfloorcut
+ cmp byte ptr [ent],07C
+ je fsfloorcut
+ jmp code2
+fsfloorcut:
+ xor r9,r9
+ mov r9,rdi
+ xor rdi,rdi
+ mov di,word ptr [floorcutcry]
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0C7C//TDS FS
+ je code2
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0C7A//TDS FS
+ je code2
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0CA8//TDS FS
+ je code2
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0D6E//BoTA FS
+ je code2
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0D66//BoTA FS
+ je code2
+ mov rdi,r9
+ jmp code2
+delimbrandlimb:
+  cmp byte ptr [limbc],07
+  je delimbhead
+  cmp byte ptr [limbc],11
+  je delimbheadmed
+  cmp byte ptr [limbc],15
+  je delimbheadlow
+  cmp byte ptr [limbc],17
+  je delimbrightleg
+  cmp byte ptr [limbc],18
+  je delimbrightarm
+  cmp byte ptr [limbc],19
+  je delimbleftarm
+  cmp byte ptr [limbc],20
+  je delimbhead
+  cmp byte ptr [limbc],21
+  je delimbrightlegairg
+  cmp byte ptr [limbc],22
+  je delimbrightarmairg
+  cmp byte ptr [limbc],23
+  je delimbleftarmairg
+  cmp byte ptr [limbc],24
+  je delimbheadairg
+  cmp byte ptr [limbc],25
+  je delimbs1ut
+  cmp byte ptr [limbc],26
+  je delimbrightleghigh
+  cmp byte ptr [limbc],27
+  je delimbrightarmhigh
+  cmp byte ptr [limbc],28
+  je delimbleftarmhigh
+  cmp byte ptr [limbc],29
+  je delimbheadhigh
+  cmp byte ptr [limbc],35
+  je delimbrightlegveryhigh
+  cmp byte ptr [limbc],36
+  je delimbheadveryhigh
+  cmp byte ptr [rax+5B30+015D],0
+  jne code2
+  cmp byte ptr [limbc],01
+  je delimbrandlimblow
+  cmp byte ptr [limbc],02
+  je delimbrandlimbmed
+  cmp byte ptr [limbc],04
+  je delimbrightleg
+  cmp byte ptr [limbc],05
+  je delimbrightarm
+  cmp byte ptr [limbc],06
+  je delimbleftarm
+  cmp byte ptr [limbc],08
+  je delimbrightleglow
+  cmp byte ptr [limbc],09
+  je delimbrightarmlow
+  cmp byte ptr [limbc],10
+  je delimbleftarmlow
+  cmp byte ptr [limbc],12
+  je delimbrightlegmed
+  cmp byte ptr [limbc],13
+  je delimbrightarmmed
+  cmp byte ptr [limbc],14
+  je delimbleftarmmed
+  cmp byte ptr [limbc],16
+  je fs
+  cmp byte ptr [limbc],30
+  je delimbrightlegcry
+  cmp byte ptr [limbc],31
+  je delimbrightlegcrylow
+  cmp byte ptr [limbc],32
+  je delimbrightlegcrymed
+  cmp byte ptr [limbc],33
+  je delimbrightlegcryhigh
+  cmp byte ptr [limbc],34
+  je floorcutcryhead
+  cmp byte ptr [delimbp],#5
+  jle delimbhead
+  cmp byte ptr [delimbp],#15
+  jle delimbrightleg
+  cmp byte ptr [delimbp],#45
+  jle delimbleftarm
+  jmp delimbrightarm
+delimbrandlimblow:
+  cmp byte ptr [rax+5B30+015D],00
+  jne code2
+  cmp byte ptr [delimbp],#2
+  jle delimbhead
+  cmp byte ptr [delimbp],#5
+  jle delimbrightleg
+  cmp byte ptr [delimbp],#8
+  jle delimbleftarm
+  cmp byte ptr [delimbp],#12
+  jle delimbrightarm
+  jmp code2
+delimbrightlegcrylow:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#15
+  jle delimbrightlegcry
+  jmp code2
+delimbrightleglow:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#15
+  jle delimbrightleg
+  jmp code2
+delimbrightarmlow:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#20
+  jle delimbrightarm
+  jmp code2
+delimbleftarmlow:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#20
+  jle delimbleftarm
+  jmp code2
+delimbheadlow:
+  cmp byte ptr [rax+5B30+015D],#16
+  je code2
+  cmp byte ptr [delimbp],#20
+  jle delimbhead
+  jmp code2
+delimbrandlimbmed:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#5
+  jle delimbhead
+  cmp byte ptr [delimbp],#15
+  jle delimbrightleg
+  cmp byte ptr [delimbp],#30
+  jle delimbleftarm
+  cmp byte ptr [delimbp],#35
+  jle delimbrightarm
+  jmp code2
+delimbrightlegcrymed:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#20
+  jle delimbrightlegcry
+  jmp code2
+delimbrightlegmed:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#20
+  jle delimbrightleg
+  jmp code2
+delimbrightarmmed:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#30
+  jle delimbrightarm
+  jmp code2
+delimbleftarmmed:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#30
+  jle delimbleftarm
+  jmp code2
+delimbheadmed:
+  cmp byte ptr [rax+5B30+015D],#16
+  je code2
+  cmp byte ptr [delimbp],#15
+  jle delimbhead
+  jmp code2
+delimbrandlimbhigh:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#8
+  jle delimbhead
+  cmp byte ptr [delimbp],#20
+  jle delimbrightleg
+  cmp byte ptr [delimbp],#35
+  jle delimbleftarm
+  cmp byte ptr [delimbp],#40
+  jle delimbrightarm
+  jmp code2
+delimbrightlegcryhigh:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#30
+  jle delimbrightlegcry
+  jmp code2
+delimbrightleghigh:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#30
+  jle delimbrightleg
+  jmp code2
+delimbrightlegveryhigh:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#50
+  jle delimbrightleg
+  jmp code2
+delimbrightarmhigh:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#40
+  jle delimbrightarm
+  jmp code2
+delimbleftarmhigh:
+  cmp byte ptr [rax+5B30+015D],01
+  jae code2
+  cmp byte ptr [delimbp],#40
+  jle delimbleftarm
+  jmp code2
+delimbheadhigh:
+  cmp byte ptr [rax+5B30+015D],#16
+  je code2
+  cmp byte ptr [delimbp],#25
+  jle delimbhead
+  jmp code2
+delimbheadveryhigh:
+  cmp byte ptr [rax+5B30+015D],#16
+  je code2
+  cmp byte ptr [delimbp],#40
+  jle delimbhead
+  jmp code2
+delimbrightarm:
+  cmp byte ptr [rax+5B30+015D],#04
+  je code2
+  cmp cx,9A
+  je code2
+  cmp byte ptr [rbx+18],09E
+  je bigentrightarmaircheck
+  cmp byte ptr [rbx+18],0A7
+  je bigentrightarmaircheck
+  cmp byte ptr [rbx+18],003
+  je bigentrightarmaircheck
+  cmp byte ptr [rbx+18],00C
+  je bigentrightarmaircheck
+  mov di, word ptr,[rightarmair]
+  cmp byte ptr [state],6A
+  je code2
+  mov di, word ptr [floorcutcryleg]
+  cmp byte ptr [rax+5C03],03
+  je code2
+  mov di, word ptr,[rightarm]
+  jmp code2
+delimbleftarm:
+  cmp byte ptr [rax+5B30+015D],#02
+  je code2
+  cmp cx,9A
+  je code2
+  cmp byte ptr [rbx+18],09E
+  je bigentleftarmaircheck
+  cmp byte ptr [rbx+18],0A7
+  je bigentleftarmaircheck
+  cmp byte ptr [rbx+18],003
+  je bigentleftarmaircheck
+  cmp byte ptr [rbx+18],00C
+  je bigentleftarmaircheck
+  mov di, word ptr [leftarmair]
+  cmp byte ptr [state],6A
+  je code2
+  mov di, word ptr [floorcutcryleg]
+  cmp byte ptr [rax+5C03],03
+  je code2
+  mov di, word ptr [leftarm]
+  jmp code2
+delimbhead:
+  cmp byte ptr [rax+5B30+015D],#16
+  je code2
+  cmp cx,6C
+  je code2
+  cmp cx,9A
+  je code2
+  cmp byte ptr [rbx+18],09E
+  je bigentairheadcheck
+  cmp byte ptr [rbx+18],0A7
+  je bigentairheadcheck
+  cmp byte ptr [rbx+18],003
+  je bigentairheadcheck
+  cmp byte ptr [rbx+18],00C
+  je bigentairheadcheck
+  mov di, word ptr [headair]
+  cmp byte ptr [state],6A
+  je code2
+  mov di, word ptr [floorcutcry]
+  cmp byte ptr [rax+5C03],03
+  je code2
+  mov cx,6B
+  mov di, word ptr [head]
+  jmp code2
+floorcutcryhead:
+  cmp byte ptr [rax+5B30+015D],#16
+  je code2
+  cmp byte ptr [rax+5C03],03
+  jne code2
+  cmp byte ptr [rbx+18],09E
+  je bigentairheadcheck
+  cmp byte ptr [rbx+18],0A7
+  je bigentairheadcheck
+  cmp byte ptr [rbx+18],003
+  je bigentairheadcheck
+  cmp byte ptr [rbx+18],00C
+  je bigentairheadcheck
+  mov cx,FF
+  mov di, word ptr [floorcutcry]
+  jmp code2
+delimbs1ut:
+  cmp cx,6C
+  jne code2
+  mov di, word ptr [headair]
+  cmp byte ptr [state],6A
+  je code2
+  mov di, word ptr [head]
+  jmp code2
+delimbrightlegairg:
+  cmp cx,6A
+  jne code2
+  cmp byte ptr [rbx+18],09E
+  je bigentrightlegaircheck
+  cmp byte ptr [rbx+18],0A7
+  je bigentrightlegaircheck
+  cmp byte ptr [rbx+18],003
+  je bigentrightlegaircheck
+  cmp byte ptr [rbx+18],00C
+  je bigentrightlegaircheck
+  mov di,[rightlegair]
+  jmp code2
+delimbrightarmairg:
+ cmp cx,6A
+ jne code2
+ cmp byte ptr [rbx+18],09E
+ je bigentrightarmaircheck
+ cmp byte ptr [rbx+18],0A7
+ je bigentrightarmaircheck
+ cmp byte ptr [rbx+18],003
+ je bigentrightarmaircheck
+ cmp byte ptr [rbx+18],00C
+ je bigentrightarmaircheck
+ mov di,[rightarmair]
+ jmp code2
+delimbleftarmairg:
+ cmp cx,6A
+ jne code2
+ cmp byte ptr [rbx+18],09E
+ je bigentleftarmaircheck
+ cmp byte ptr [rbx+18],0A7
+ je bigentleftarmaircheck
+ cmp byte ptr [rbx+18],003
+ je bigentleftarmaircheck
+ cmp byte ptr [rbx+18],00C
+ je bigentleftarmaircheck
+ mov di,[leftarmair]
+ jmp code2
+delimbheadairg:
+ cmp cx,6A
+ jne code2
+ cmp byte ptr [rbx+18],09E
+ je bigentairheadcheck
+ cmp byte ptr [rbx+18],0A7
+ je bigentairheadcheck
+ cmp byte ptr [rbx+18],003
+ je bigentairheadcheck
+ cmp byte ptr [rbx+18],00C
+ je bigentairheadcheck
+ mov di,[headair]
+ jmp code2
+delimbrightleg:
+  cmp byte ptr [rax+5C03],01
+  je code2
+  cmp byte ptr [rax+5B30+015D],#16
+  je code2
+  cmp byte ptr [rbx+18],09E
+  je bigentrightlegaircheck
+  cmp byte ptr [rbx+18],0A7
+  je bigentrightlegaircheck
+  cmp byte ptr [rbx+18],003
+  je bigentrightlegaircheck
+  cmp byte ptr [rbx+18],00C
+  je bigentrightlegaircheck
+  mov cx,9A
+  mov di, word ptr [rightleg]
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],094A
+  je code2
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0419
+  je code2
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],069C
+  je code2
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0728
+  je code2
+  mov cx,6A
+  mov di, word ptr [rightlegair]
+  cmp byte ptr [state],6A
+  je code2
+  mov cx,9A
+  mov di, word ptr [rightleg]
+  cmp byte ptr [legvariant],01
+  je code2
+  mov di, word ptr [floorcutcryleg]
+  cmp byte ptr [rax+5C03],03
+  je code2
+  mov di, word ptr [rightlegquick]
+  jmp code2
+delimbrightlegcry:
+  cmp word ptr [floorcutcryleg],000
+  je code2
+  cmp byte ptr [rax+5C03],01
+  je code2
+  cmp byte ptr [rax+5B30+015D],#16
+  je code2
+  cmp byte ptr [rbx+18],09E
+  je bigentrightlegaircheck
+  cmp byte ptr [rbx+18],0A7
+  je bigentrightlegaircheck
+  cmp byte ptr [rbx+18],003
+  je bigentrightlegaircheck
+  cmp byte ptr [rbx+18],00C
+  je bigentrightlegaircheck
+  mov cx,9A
+  mov di, word ptr [rightleg]
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],094A
+  je code2
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0419
+  je code2
+  mov cx,6A
+  mov di, word ptr [rightlegair]
+  cmp byte ptr [state],6A
+  je code2
+  mov cx,9A
+  mov di, word ptr [floorcutcryleg]
+  jmp code2
+bigentairheadcheck:
+  cmp byte ptr [state],6A
+  je code2
+  mov di, word ptr [head]
+  jmp code2
+bigentleftarmaircheck:
+  cmp byte ptr [state],6A
+  je code2
+  mov di, word ptr [leftarm]
+  jmp code2
+bigentrightarmaircheck:
+  cmp byte ptr [state],6A
+  je code2
+  mov di, word ptr [rightarm]
+  jmp code2
+bigentrightlegaircheck:
+  cmp byte ptr [state],6A
+  je code2
+  mov di, word ptr [rightleg]
+  jmp code2
+guilthrow:
+ mov word ptr [eanim],0000
+ cmp byte ptr [rax+5B30+015D],01
+ jae code2
+ mov byte ptr [eanim],E0
+ cmp byte ptr [ent],0F1
+ je guilkill
+ mov word ptr [eanim],0137
+ cmp byte ptr [ent],02F
+ je guilkill
+ mov word ptr [eanim],01FE
+ cmp byte ptr [ent],09D
+ je guilkill
+ mov word ptr [eanim],01FE
+ cmp byte ptr [ent],038
+ je guilkill
+ mov word ptr [eanim],00DA
+ cmp byte ptr [ent],0A1
+ je guilkill
+ mov word ptr [eanim],00DA
+ cmp byte ptr [ent],07C
+ je guilkill
+ mov word ptr [eanim],012B
+ cmp byte ptr [ent],09C
+ je guilkill
+ mov word ptr [eanim],0133
+ cmp byte ptr [ent],070
+ je guilkill
+ mov word ptr [eanim],0000
+ jmp code2
+guilinstantkill:
+ mov word ptr [eanim],00E1
+ cmp byte ptr [ent],0F1
+ je guilkill
+ mov word ptr [eanim],0138
+ cmp byte ptr [ent],02F
+ je guilkill
+ mov word ptr [eanim],01FF
+ cmp byte ptr [ent],09D
+ je guilkill
+ mov word ptr [eanim],01FF
+ cmp byte ptr [ent],038
+ je guilkill
+ mov word ptr [eanim],00DB
+ cmp byte ptr [ent],0A1
+ je guilkill
+ mov word ptr [eanim],00DB
+ cmp byte ptr [ent],07C
+ je guilkill
+ mov word ptr [eanim],012B
+ cmp byte ptr [ent],09C
+ je guilkill
+ mov word ptr [eanim],0133
+ cmp byte ptr [ent],070
+ je guilkill
+ mov word ptr [eanim],0000
+ jmp code2
+guilkill:
+  mov di,word ptr [eanim]
+code2:
+  mov byte ptr [legvariant],01
+  mov byte ptr [limbc],00
+  mov [rdx+rax],di
+  mov r11d,["NINJA GAIDEN SIGMA2.exe"+1FB0F04]
+  pop r9
+  jmp return2
+
+DELIMB2:
+  jmp newmem2
+  nop 6
+return2:
+registersymbol(DELIMB2)
+
+
+aobscanmodule(AIDODGE,NINJA GAIDEN SIGMA2.exe,E9 27 02 00 00 40)
+alloc(newmem3,$100,AIDODGE)
+
+label(code3)
+label(return3)
+alloc(entDodgeTable,20)
+registersymbol(entDodgeTable)
+alloc(canDodge,1)
+registersymbol(canDodge)
+
+entDodgeTable:
+db 07F
+db 09D
+db 09C
+db 070
+db 038
+db 02F
+db 006
+db 0B1
+db 09E
+db 0F1
+
+newmem3:
+ push rax
+ push rbx
+ push rcx
+ push rdx
+ cmp byte ptr [enableAIdodge],01
+ je code3
+ mov byte ptr [canDodge],00
+ lea rbx,["NINJA GAIDEN SIGMA2.EXE"+2F78B10]//PLAYER
+ cmp rax,rbx
+ je code3
+ lea rax,[entDodgeTable]
+ xor rcx,rcx
+AIDodgeStart:
+ mov byte ptr [canDodge],01
+ movzx rbx, byte ptr [rax+rcx]
+ cmp bx,[ent]
+ je code3
+ inc rcx
+ mov byte ptr [canDodge],00
+ cmp byte ptr [rax+rcx],00
+ jnz AIDodgeStart
+code3:
+  pop rdx
+  pop rcx
+  pop rbx
+  pop rax
+  cmp byte ptr [canDodge],01
+  je return3
+  mov byte ptr [canDodge],00
+  jmp "NINJA GAIDEN SIGMA2.exe"+F48E59
+AIDODGE:
+  jmp newmem3
+return3:
+registersymbol(AIDODGE)
+
+
+aobscanmodule(AIGGRO2,NINJA GAIDEN SIGMA2.exe,8B EB 0F 1F 40 00 66)
+alloc(newmem24,$1000,AIGGRO2)
+
+label(code24)
+label(return24)
+alloc(aient,2)
+registersymbol(aient)
+newmem24:
+  push rax
+  xor rax,rax
+  lea rax,["NINJA GAIDEN SIGMA2.EXE"]
+  cmp r10,rax
+  jl code24
+  xor rax,rax
+  movzx rax, byte ptr [r10+18]
+  mov [aient],rax
+code24:
+ pop rax
+ mov ebp,ebx
+ nop dword ptr [rax+00]
+ jmp return24
+AIGGRO2:
+  jmp newmem24
+  nop
+return24:
+registersymbol(AIGGRO2)
+
+aobscanmodule(AIGGRO3,NINJA GAIDEN SIGMA2.exe,B9 A0 00 00 00 66 3B C8 76 53)
+alloc(newmem25,$1000,AIGGRO3)
+
+label(code25)
+label(return25)
+alloc(aggrotimer,8)
+registersymbol(aggrotimer)
+alloc(decv,2)
+registersymbol(decv)
+
+newmem25:
+  cmp byte ptr [disableai],01
+  jae code25
+  cmp [aggrotimer],(float)0.00
+  ja timer
+  {cmp byte ptr [aient],006
+  je entchecked
+  cmp byte ptr [aient],0B1
+  je entchecked
+  {cmp byte ptr [aient],0A1
+  je entchecked}
+  cmp byte ptr [aient],07F
+  je entchecked
+  cmp byte ptr [aient],09D
+  je entchecked
+  {cmp byte ptr [aient],07C
+  je entchecked}
+  cmp byte ptr [aient],02F
+  je entchecked
+  cmp byte ptr [aient],09E
+  je entchecked
+  cmp byte ptr [aient],0F1
+  je entchecked
+  cmp byte ptr [aient],038
+  je entchecked
+  {cmp byte ptr [aient],0BB
+  je entchecked}
+  {cmp byte ptr [NG2AI],01
+  jae ignoreai}
+  cmp byte ptr [aient],070
+  je entchecked
+  cmp byte ptr [aient],09C
+  je entchecked
+  mov byte ptr [aient],00
+  jmp resetai
+entchecked:
+  //AGGRO TIMER IS IN EFFECT
+  cmp [aggrotimer],(float)0.00
+  ja timer
+  //PLAYER IN AIR
+  mov [aggrotimer],(float)2000.00
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CD04],01
+  je setcooldown
+  //PLAYER HIT
+  mov [aggrotimer],(float)1200.00
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CD05],02
+  je setcooldown
+  //PLAYER IN AN IFRAME STATE (UT,OT,NINPO ETC..)
+  mov [aggrotimer],(float)900.00
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC58],01
+  je setcooldown
+  //PLAYER Not in Attack/Attacking/Hit State
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CD05],00
+  je aggression
+  //PLAYER HIT ENEMY
+  mov [aggrotimer],(float)2700.00
+  cmp byte ptr [phitent],01
+  je setcooldown
+aggression:
+ mov byte ptr [canaggro],01
+ mov [aggrotimer], (float)0.00
+ xor rax,rax
+ jmp return25
+setcooldown:
+  mov byte ptr [canaggro],00
+  push rbx
+  xor rbx,rbx
+  movzx rax,byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168]
+  cvtsi2ss xmm0,rax
+  movss xmm1,[aggrotimer]
+  mulss xmm1,xmm0
+  movss [aggrotimer],xmm1
+  xorps xmm0,xmm0
+  xorps xmm1,xmm1
+  pop rbx
+timer:
+  mov [decv],(float)1.00
+  movss xmm0,[decv]
+  movss xmm1,[aggrotimer]
+  subss xmm1,xmm0
+  movss [aggrotimer],xmm1
+  cmp [aggrotimer],(float)0.00
+  jle aggression
+  jmp code25
+resetai:
+ mov [aggrotimer],(float)0.00
+code25:
+  mov byte ptr [canaggro],00
+  mov byte ptr [aient],00
+  mov ecx,000000A0
+  jmp return25
+AIGGRO3:
+  jmp newmem25
+return25:
+registersymbol(AIGGRO3)
+
+aobscanmodule(IDROP,NINJA GAIDEN SIGMA2.exe,66 41 89 80 B6 5A 00 00 C3)
+alloc(newmem5,$100,IDROP)
+
+label(code5)
+label(return5)
+alloc(ifcount,2)
+registersymbol(ifcount)
+alloc(izunaTable,22)
+registersymbol(izunaTable)
+
+izunaTable:
+//RYU
+dd 09A5
+dd 09A7
+dd 07FE
+dd 077D
+dd 0876
+//MOMIJI
+dd 014C
+dd 0111
+//AYANE
+dd 0180
+dd 0181
+dd 014F
+dd 0156
+dd 0161
+dd 00FE
+
+newmem5:
+ push rcx
+ push rdx
+ push rsi
+ push rdi
+ cmp byte ptr [disablehpreduction],01
+ jae code5
+ cmp bx,5300
+ je code5
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],09A5//RYU
+ je iGuilThrow
+ cmp byte ptr [rbx+18],026//GENSHIN - REMOVE IF YOU WANT IZUNA TO 1 SHOT
+ je code5
+ lea rdx, [izunaTable]
+ xor rcx,rcx
+iDropStart:
+ mov rsi,[rdx+rcx*4]
+ mov rdi, ["NINJA GAIDEN SIGMA2.EXE"+319CC30]
+ cmp di,si
+ je iKill
+ inc rcx
+ cmp [rdx+rcx*4],00
+ jnz iDropStart
+ jmp code5
+iGuilThrow:
+ cmp byte ptr [r8+5AB6+01D7],01
+ jl code5
+iKill:
+  xor rax,rax
+code5:
+  pop rdi
+  pop rsi
+  pop rdx
+  pop rcx
+  mov [r8+00005AB6],ax
+  jmp return5
+IDROP:
+  jmp newmem5
+  nop 3
+return5:
+registersymbol(IDROP)
+
+aobscanmodule(HPMOD,NINJA GAIDEN SIGMA2.exe,F8 74 0D 66 89 86 B6 5A 00 00)
+alloc(newmem6,$1000,HPMOD)
+
+label(code6)
+label(return6)
+alloc(hpKillEntTable,24)
+registersymbol(hpKillEntTable)
+alloc(hpKillMoveTable,10)
+registersymbol(hpKillMoveTable)
+alloc(hpKill,1)
+registersymbol(hpKill)
+
+hpKillEntTable:
+db 09C
+db 070
+db 038
+db 09D
+db 07C
+db 02F
+db 0A1
+db 003
+db 0A7
+db 0B1
+db 006
+db 09E
+db 00C
+db 07F
+db 01C
+db 07A
+db 0F1
+
+hpKillMoveTable:
+dd 0DC7//KG DOWNWARD FLYING SWALLOW
+dd 01BA//AYANE RUN IS
+dd 01A6//AYANE STAND IS
+
+newmem6:
+   push rax//ENT ARRAY
+   push rcx//ENT COUNTER
+   push rdx//MOVE COUNTER
+   push rsi//ENT
+   push rdi//MOVE
+   push rbp//PLAYER CURRENT MOVE / ENT HIT
+   push r9 //MOVE ARRAY
+   cmp byte ptr [disablehpreduction],01
+   jae code6
+   cmp qword ptr [enthitadd],rbx
+   jne code6
+   mov byte ptr [hpKill],00
+   cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0C7C//DS FS
+   je hpfs
+   cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0C73//DONT REMEMBER L
+   je hpfs
+   cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],0D6E//BoTA FS
+   je hpfs
+   lea rax,[hpKillEntTable]
+   lea r9,[hpKillMoveTable]
+   xor rcx,rcx
+   xor rdx,rdx
+hpKillMoveStart:
+   mov rdi,[r9+rdx*4]
+   mov rbp,["NINJA GAIDEN SIGMA2.EXE"+319CC30]
+   cmp bp,di
+   je hpKillEntStart
+   inc rdx
+   cmp word ptr [r9+rdx*4],00
+   jnz hpKillMoveStart
+   jmp code6//NO POINT IN LOOPING ENT LIST IF PLAYER MOVE IS NOT IN MOVE TABLE
+hpKillEntStart:
+   movzx rsi, byte ptr [rax+rcx]
+   movzx rbp, byte ptr [rbx+18]
+   mov byte ptr [hpKill],01
+   cmp si,bp
+   je code6
+   mov byte ptr [hpKill],00
+   inc rcx
+   cmp byte ptr [rax+rcx],00
+   jnz hpKillEntStart
+   jmp code6
+hpfs:
+  mov byte ptr [hpKill],00
+  cmp byte ptr [rsi+5B30+015D],#16
+  jne code6
+  mov byte ptr [hpKill],01
+  jmp code6
+code6:
+  pop r9
+  pop rbp
+  pop rdi
+  pop rsi
+  pop rdx
+  pop rcx
+  pop rax
+  cmp byte ptr [hpKill],01
+  jne hpEnd
+  mov byte ptr [hpKill],00
+  {cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],04A
+  je hpAyane}
+  xor ax,ax
+  jmp hpEnd
+hpAyane:
+  xor ax,ax
+  add ax,0A
+hpEnd:
+  mov [rsi+00005AB6],ax
+  jmp return6
+
+HPMOD+03:
+  jmp newmem6
+  nop 2
+return6:
+registersymbol(HPMOD)
+
+aobscanmodule(REHP,NINJA GAIDEN SIGMA2.exe,B9 FF FF 00 00 66 0F 6E)
+alloc(newmem7,$1000,REHP)
+
+label(code7)
+label(return7)
+alloc(hpmulp,4)
+registersymbol(hpmulp)
+alloc(reHPEnt,52)
+registersymbol(reHPEnt)
+alloc(reHPEntMulp,52)
+registersymbol(reHPEntMulp)
+
+reHPEnt:
+db 09C
+db 070
+db 038
+db 09D
+db 07C
+db 0A5
+{db 023}
+db 02F
+db 0A1
+db 003
+db 0A7
+db 0B1
+db 006
+db 09E
+db 00C
+db 07F
+{db 00B}
+db 01C
+db 07A
+db 086
+db 0E6
+db 039
+db 072
+db 01D
+db 0F1
+db 020
+db 032
+db 030
+reHPEntMulp:
+dd (float)1.60//IS
+dd (float)1.70//FIEND IS
+dd (float)1.50//TAC
+dd (float)1.50//GREY
+dd (float)1.35//FIEND MAGE
+dd (float)1.25//RASETSU BLUE
+{dd (float)1.25//RASETSU BLUE}
+dd (float)1.60//FIEND GREY
+dd (float)1.35//MAGE
+dd (float)1.40//VANGELF
+dd (float)1.40//VANGELF GOLD
+dd (float)0.85//WOLF RED
+dd (float)0.85//WOLF
+dd (float)0.85//GAJA RED
+dd (float)0.80//ZOMBIE
+dd (float)1.30//DOGS
+{dd (float)1.80//RED DRAGON}
+dd (float)0.60//RED ROBOT
+dd (float)0.60//WHITE ROCK CRABS
+dd (float)0.95//SKELETON BOSS CHP7
+dd (float)0.95//BLACK DRAGON
+dd (float)0.60//WATER DRAGON
+dd (float)0.80//HORNS
+dd (float)0.85//ROBOT VANGELF
+dd (float)0.85//IMPS
+dd (float)1.20//ALEXI (WEAKENED FORM CHP4 LIBERTY SECTION ONLY)
+dd (float)0.70
+dd (float)0.60//GIGADEATH
+
+newmem7:
+ push rcx
+ push rdx
+ push r9
+ push r8
+ cmp byte ptr [disablehpreduction],01
+ je code7
+ xor rcx,rcx
+ lea rdx,[reHPEnt]
+reHPStart:
+ movzx r8,byte ptr [rsi+18]
+ cmp r8w,020
+ je alexiHPCheck
+ movzx r9, byte ptr [rdx+rcx]
+ cmp r8w,r9w
+ je reduceHP
+ inc rcx
+ cmp byte ptr [rdx+rcx],00
+ jnz reHPStart
+ jmp code7
+alexiHPCheck:
+ cmp byte ptr [weakAlexi],01
+ jne code7
+ mov [hpmulp],(float)1.20
+ movss xmm2,[hpmulp]
+ jmp applyHP
+reduceHP:
+ lea rdx,[reHPEntMulp]
+ movss xmm2,[rdx+rcx*4]
+applyHP:
+ movss xmm0,xmm2
+ cmp r8w,09D
+ jne code7
+ mov [hpmulp],(float)100.00
+ movss xmm1,[hpmulp]
+ mov eax,44C
+ mov [rbp+00005AB6],ax
+ mov [rdi+10],ax
+ mov [rdi],ax
+code7:
+  pop r9
+  pop r8
+  pop rdx
+  pop rcx
+  mov ecx,0000FFFF
+  jmp return7
+REHP:
+  jmp newmem7
+return7:
+registersymbol(REHP)
+
+aobscanmodule(EnemyDamageReduction,NINJA GAIDEN SIGMA2.exe,66 0F 6E E0 41 0F B7 81 B4 5A 00 00)
+alloc(newmem8,$1000,EnemyDamageReduction)
+alloc(damage,4)
+
+label(code8)
+label(return8)
+
+newmem8:
+ cmp byte ptr [disabledamagereduction],01
+ jae code8
+ {movss [damage],xmm1
+ movss xmm5,[damage]}
+ {movss xmm5,xmm1
+ mov [damage],(float)5.00
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+211E5CD],01
+ je setreduction
+ mov [damage],(float)3.10}
+ movss xmm5,xmm1
+ cmp [damage],(float)0.00
+ ja setreduction
+ mov [damage],(float)3.75
+setreduction:
+ movss xmm8,[damage]
+ divss xmm5,xmm8
+ movss xmm1,xmm5
+ movss xmm2,xmm1
+ xorps xmm5,xmm5
+ xorps xmm8,xmm8
+code8:
+  movd xmm4,eax
+  movzx eax,word ptr [r9+00005AB4]
+  jmp return8
+
+EnemyDamageReduction:
+  jmp newmem8
+  nop 7
+
+return8:
+registersymbol(EnemyDamageReduction)
+registersymbol(damage)
+
+aobscanmodule(CORPSE,NINJA GAIDEN SIGMA2.exe,48 8D 1D 6F C0 FD 04)
+alloc(newmem9,$1000,CORPSE)
+
+label(code9)
+label(return9)
+alloc(corpsetimer,8)
+registersymbol(corpsetimer)
+alloc(cBypassTime,8)
+registersymbol(cBypassTime)
+alloc(cDecv,1)
+registersymbol(cDecv)
+
+newmem9:
+ mov [corpsetimer],(float)0.00
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],09BC
+ je setBTime
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],09C5
+ je setBTime
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],09B8
+ je setBTime
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],09C3
+ je setBTime
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],09BA
+ je setBTime
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CC30],09C4
+ je setBTime
+ cmp [cBypassTime],(float)0.00
+ ja decTime
+ mov [cBypassTime],(float)0.00
+ mov [corpsetimer],(float)1500.00
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#10
+ je setTime
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#11
+ je setTime
+ mov [corpsetimer],(float)+inf
+ jmp setTime
+setBTime:
+ mov [cBypassTime],(float)3000.00
+setTime:
+ movss xmm8,[corpsetimer]
+ cmp [cBypassTime],(float)0.00
+ jna code9
+decTime:
+ mov [cDecv],(float)1.00
+ xorps xmm9,xmm9
+ xorps xmm10,xmm10
+ movss xmm9,[cBypassTime]
+ movss xmm10,[cDecv]
+ subss xmm9,xmm10
+ movss [cBypassTime],xmm9
+ xorps xmm9,xmm9
+ xorps xmm10,xmm10
+code9:
+  lea rbx,["NINJA GAIDEN SIGMA2.exe"+643B4D8]
+  jmp return9
+CORPSE:
+  jmp newmem9
+  nop 2
+return9:
+registersymbol(CORPSE)
+
+aobscanmodule(OPENSHOP,NINJA GAIDEN SIGMA2.exe,E8 62 AA DE FF)
+alloc(newmem10,$100,OPENSHOP)
+
+label(code10)
+label(return10)
+alloc(canupgrade,1)
+registersymbol(canupgrade)
+alloc(esscost,4)
+registersymbol(esscost)
+
+newmem10:
+ mov r9w,01 //01 == ALLOWS BLACKSMITH
+code10:
+  call "NINJA GAIDEN SIGMA2.exe"+13D3E90
+  jmp return10
+
+OPENSHOP:
+  jmp newmem10
+return10:
+registersymbol(OPENSHOP)
+
+aobscanmodule(WEAPONUPGRADE,NINJA GAIDEN SIGMA2.exe,0F 8E A5 01 00 00 FF)
+alloc(newmem11,$100,WEAPONUPGRADE)
+
+label(code11)
+label(return11)
+
+newmem11:
+  mov byte ptr [canupgrade],#0
+  mov dword [esscost],#15000
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C4218],#01 //ACOLYTE
+  je reqcheck
+  mov dword [esscost],#20000
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C4218],#02 //WARRIOR
+  je reqcheck
+  mov dword [esscost],#25000
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C4218],#03 //MENTOR
+  je reqcheck
+  mov dword [esscost],#30000
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C4218],#04 //MASTER NINJA
+  je reqcheck
+  mov dword [esscost],#30000//DEFAULT
+reqcheck:
+  push rax
+  mov rax, dword ptr [esscost]
+  cmp ["NINJA GAIDEN SIGMA2.exe"+6795B80],rax
+  jae allowupgrade
+  pop rax
+  mov byte ptr [canupgrade],#0
+  jl "NINJA GAIDEN SIGMA2.exe"+13D2DAD
+  jmp return11
+allowupgrade:
+ pop rax
+ mov byte ptr [canupgrade],#1
+ jmp return11
+code11:
+  jng "NINJA GAIDEN SIGMA2.exe"+13D2DAD
+  jmp return11
+
+WEAPONUPGRADE:
+  jmp newmem11
+  nop
+return11:
+registersymbol(WEAPONUPGRADE)
+
+aobscanmodule(ESSREMOVAL,NINJA GAIDEN SIGMA2.exe,C7 05 2A 91 D8 00 05 00 00 00)
+alloc(newmem12,$100,ESSREMOVAL)
+
+label(code12)
+label(return12)
+
+newmem12:
+  cmp byte ptr [canupgrade],#0
+  je code12
+  push rax
+  mov rax,[esscost]
+  sub ["NINJA GAIDEN SIGMA2.EXE"+35C3C90],rax
+  //mov rax,["NINJA GAIDEN SIGMA2.EXE"+35C3C90]
+  mov byte ptr [canupgrade],#0
+  pop rax
+code12:
+  mov ["NINJA GAIDEN SIGMA2.exe"+215BB94],00000005
+  jmp return12
+
+ESSREMOVAL:
+  jmp newmem12
+  nop 5
+return12:
+registersymbol(ESSREMOVAL)
+
+aobscanmodule(pMove,NINJA GAIDEN SIGMA2.exe,E8 7B E0 00 00)
+alloc(newmem13,$1000,pMove)
+
+label(code13)
+label(return13)
+alloc(animp,2)
+alloc(isNG1C,2)
+registersymbol(isNG1C)
+registersymbol(animp)
+alloc(animpcounter,2)
+registersymbol(animpcounter)
+{alloc(pAddr,8)
+registersymbol(pAddr)
+alloc(pAddr1,8)
+registersymbol(pAddr1)}
+alloc(enableIS,1)
+registersymbol(enableIS)
+
+newmem13:
+  cmp byte ptr [disablecustommoves],01
+  jae code13
+  cmp bx,5300
+  je isP
+  {cmp byte ptr [rbx+18],025
+  je setanimpercent}
+  cmp rax,65535
+  jae code13
+setanimpercent:
+ push rax
+ push rbx
+ push rcx
+ push rdx
+ push rsi
+ push rdi
+ push rbp
+ push r8
+ push r9
+ push r10
+ push r11
+ push r12
+ push r13
+ push r14
+ push r15
+ call rand
+ xor rdx,rdx
+ mov rcx, #100
+ div rcx
+ mov [animp],dx
+ pop r15
+ pop r14
+ pop r13
+ pop r12
+ pop r11
+ pop r10
+ pop r9
+ pop r8
+ pop rbp
+ pop rdi
+ pop rsi
+ pop rdx
+ pop rcx
+ pop rbx
+ pop rax
+ cmp byte ptr [rbx+18],09D
+ je greyNinja
+ cmp byte ptr [rbx+18],09C
+ je isNinja
+ cmp byte ptr [rbx+18],038
+ je tacNinja
+ cmp byte ptr [rbx+18],020
+ je alexi
+ cmp byte ptr [rbx+18],0B0
+ je alexi
+ cmp byte ptr [rbx+18],025
+ je volf
+ cmp byte ptr [rbx+18],024
+ je zed
+ cmp byte ptr [rbx+18],070
+ je fiendisp
+ cmp byte ptr [rbx+18],02F
+ je fiendgreyp
+ cmp byte ptr [rbx+18],027
+ je fiendGenshin
+ cmp byte ptr [rbx+18],012
+ je liz
+ cmp byte ptr [rbx+18],023
+ je pRas
+ cmp byte ptr [rbx+18],0A5
+ je pRas
+ cmp byte ptr [rbx+18],039
+ je waterDragon
+ jmp code13
+waterDragon:
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+31957B0+D0B6],028A
+ jle waterDragonOT
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CD03],04//RYU SURFACE WATER
+ jnae code13
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CD03],05//RYU SUBMERGED
+ ja code13
+ mov dx,04//MOVE AROUND
+ cmp r8w,12//FAKE OUT
+ je waterDragonSwim
+ {cmp r8w,10//SCREAM
+ je waterDragonSwim}
+ mov dx,1D//UNDER WATER GRAB
+ cmp r8w,0F//Call for the homies
+ je waterDragonGrab
+ mov dx,1D//UNDER WATER GRAB
+ cmp r8w,10//YELL
+ je waterDragonGrab
+ mov dx,1E//WATER SPLASH
+ cmp r8w,014//WHIPLASH
+ je waterDragonSplash
+ mov dx,1E//WATER SPLASH
+ cmp r8w,016//Spikes
+ je waterDragonSplash
+ mov dx,1E//WATER SPLASH
+ cmp r8w,023//YELL
+ je waterDragonSplash
+ mov dx,r8w
+ jmp code13
+waterDragonOT:
+  cmp byte ptr [wDOT],01
+  je code13
+  mov dx,025
+  mov byte ptr [wDOT],01
+  jmp code13
+waterDragonGrab:
+ {cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CD03],05//RYU SUBMERGED
+ je waterDragonSpikeGrab}
+ cmp byte ptr [animp],#45
+ jle code13
+ mov dx,r8w
+ jmp code13
+waterDragonSplash:
+ cmp byte ptr [animp],#25
+ jle code13
+ mov dx,r8w
+ jmp code13
+waterDragonSwim:
+ cmp byte ptr [animp],#20
+ jle code13
+ mov dx,r8w
+ jmp code13
+waterDragonSpikeGrab:
+ mov dx,01A
+ jmp code13
+pRas:
+ cmp rdx,040//SLOW GRAB
+ mov rdx,03F//NG2 Grab
+ je code13
+ mov rdx,r8
+ cmp rdx,01A//Jump Back
+ je pRasGrab
+ jmp code13
+pRasGrab:
+ cmp byte ptr [animp],#45
+ jle code13
+ mov rdx,042//Jump Back Grab
+ jmp code13
+fiendGenshin:
+ cmp rdx,03F
+ mov rdx,03E
+ je code13
+ mov rdx,r8
+ jmp code13
+liz:
+ cmp rdx,043//Tail Grab S2
+ mov rdx,042//Tail Grab NG2
+ je code13
+ mov rdx,r8
+ jmp code13
+fiendisp:
+ cmp rdx,0A0
+ mov rdx,09F
+ je code13
+ mov rdx,r8
+ cmp rdx,09D
+ mov rdx,09C
+ je code13
+ mov rdx,r8
+ cmp rdx,0A6
+ mov rdx,0A5
+ je code13
+ mov rdx,r8
+ {cmp rdx,08B
+ je doubleIS
+ cmp rdx,035
+ je doubleISGo
+ cmp rdx,08
+ je idleIS
+ cmp rdx,0A
+ je idleIS
+ cmp rdx,0B
+ je idleIS
+ cmp rdx,0C
+ je idleIS
+ cmp rdx,0D
+ je idleIS}
+ jmp code13
+fiendgreyp:
+ cmp rdx,9E
+ mov r8,rdx
+ mov rdx,A9
+ je code13
+ mov rdx,r8
+ cmp rdx,99
+ mov r8,rdx
+ mov rdx,98
+ je code13
+ mov rdx,r8
+ cmp rdx,9C
+ mov r8,rdx
+ mov rdx,9B
+ je code13
+ mov rdx,r8
+ jmp code13
+zed:
+  cmp rdx,025
+  mov r8,rdx
+  mov rdx,024
+  je code13
+  mov rdx,r8
+  {cmp rdx,021
+  mov r8,rdx
+  mov rdx,01C
+  je code13
+  mov rdx,r8}
+  jmp code13
+volf:
+  cmp rdx,01C
+  je volfNG2Run
+  {cmp rdx,014
+  je volfHeadButt}
+  cmp rdx,029
+  je volfHeadButt
+  cmp rdx,01D
+  mov r8,rdx
+  je volfGroundSmash
+  mov rdx,r8
+  jmp code13
+volfGroundSmash:
+  mov rdx,028
+  cmp byte ptr [animp],#30
+  je code13
+  mov rdx,025
+  cmp byte ptr [animp],#50
+  jle code13
+  mov rdx,r8
+  jmp code13
+volfNG2Run:
+  cmp byte ptr [animp],#50
+  jae code13
+  mov rdx,022
+  jmp code13
+volfHeadButt:
+  cmp byte ptr [animp],#50
+  jae code13
+  mov rdx,024
+  jmp code13
+alexi:
+  cmp byte ptr [weakAlexi],01
+  je kAlexiCheck
+  cmp rdx,050
+  mov r8,rdx
+  mov rdx,04F
+  je code13
+  mov rdx,r8
+  cmp rdx,3A
+  mov r8,rdx
+  mov rdx,04E
+  je alexiAirCombo
+  mov rdx,r8
+  cmp rdx,030
+  je alexiSpin
+  cmp rdx,033
+  je alexiSpin
+  cmp rdx,01E
+  mov r8,rdx
+  mov rdx,04F
+  je alexiPunchComboEnder
+  mov rdx,r8
+  cmp rdx,012
+  mov r8,rdx
+  mov rdx,060
+  je alexiAirComboGround
+  mov rdx,r8
+  jmp code13
+alexiAirCombo:
+  cmp byte ptr [animp],#50
+  jle code13
+  mov rdx,r8
+  jmp code13
+alexiPunchComboEnder:
+  cmp byte ptr [animp],#05
+  jle code13
+  mov rdx,r8
+  jmp code13
+alexiAirComboGround:
+  cmp byte ptr [animp],#30
+  jle code13
+  mov rdx,r8
+  jmp code13
+alexiSpin:
+  mov r8,rdx
+  mov rdx,04E
+  cmp byte ptr [animp],#25
+  jle resetanimpcounter
+  mov rdx,r8
+  {cmp [animpcounter],#95
+  jae resetanimpcounter}
+  cmp rdx,030
+  mov r8,rdx
+  mov rdx,034
+  je code13
+  mov rdx,r8
+  cmp rdx,033
+  mov r8,rdx
+  mov rdx,035
+  je alexiSpinAttack
+  mov rdx,r8
+  jmp code13
+alexiSpinAttack:
+  inc byte ptr [animpcounter]
+  jmp code13
+kAlexiCheck:
+  cmp dx,03
+  jne code13
+  mov dx,70
+  jmp code13
+greyNinja:
+  cmp rdx,4A9
+  mov r8,rdx
+  mov rdx,141
+  je greyDoubleKick
+  mov rdx,r8
+  cmp rdx,4A8
+  mov r8,rdx
+  mov rdx,170
+  je greyDoubleKick
+  mov rdx,r8
+  jmp code13
+greyDoubleKick:
+  cmp byte ptr [animp],#20
+  jae code13
+  mov rdx,140 //Double Kick From Tac Ninja
+  jmp code13
+isNinja:
+  cmp rdx,09E
+  mov rdx,09D
+  je code13
+  cmp r8,089
+  mov rdx,08B
+  je code13
+  mov rdx,r8
+  cmp byte ptr [animp],#75
+  jle code13
+  cmp rdx,086
+  mov rdx,085
+  je code13
+  mov rdx,r8
+  jmp code13
+tacNinja:
+  cmp rdx,79
+  mov r8,rdx
+  mov rdx,140
+  je tacDoubleKick
+  mov rdx,r8
+  cmp rdx,153
+  mov r8,rdx
+  mov rdx,140
+  je tacDoubleKick
+  mov rdx,r8
+  cmp rdx,13C
+  mov r8,rdx
+  mov rdx,170
+  je tacGrab
+  mov rdx,r8
+  cmp rdx,12A
+  mov r8,rdx
+  mov rdx,170
+  je tacGrab
+  mov rdx,r8
+  cmp rdx,4A8
+  mov r8,rdx
+  mov rdx,170
+  je code13
+  mov rdx,r8
+  jmp code13
+tacDoubleKick:
+  cmp byte ptr [animp],#65
+  jae code13
+  mov rdx,r8
+  jmp code13
+tacGrab:
+  cmp byte ptr [animp],#40
+  jae code13
+  mov rdx,r8
+  jmp code13
+tacRun:
+  mov rdx,68
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],02
+  jle code13
+  mov rdx,65
+  cmp byte ptr [animp],#35
+  jle code13
+  mov rdx,69
+  jmp code13
+resetanimpcounter:
+  mov byte ptr [animpcounter],#0
+  jmp code13
+isP:
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],001
+  je pDS
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],007
+  je pDS
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],00C
+  je pflail
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],018
+  je plunar
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],0CC
+  je pDualSwords
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],013
+  je pDualSwords
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],011
+  je pTonfa
+  jmp code13
+pTonfa:
+ cmp rdx,076B//->XX XX(X)
+ je pTonfaFXY
+ jmp code13
+pTonfaFXY:
+ mov rdx,0777
+ cmp byte ptr [TFXY],01
+ je code13
+ mov rdx,r8
+ jmp code13
+pDualSwords:
+  cmp rdx,07C1//XXYY
+  je pDualSwordsXXYY
+  cmp rdx,07DA//Underworld Drop Fail
+  je pDualSwordsUDropFail
+  jmp code13
+pDualSwordsXXYY:
+  mov rdx,07B4//->YY
+  cmp byte ptr [DualSXXYY],01
+  je code13
+  mov rdx,r8
+  jmp code13
+pDualSwordsUDropFail:
+  mov rdx,07CD //360Y
+  cmp byte ptr [DualSUDropFail360],01
+  je code13
+  mov rdx,07FD//UT Ender
+  cmp byte ptr [DualSUDropFailUT],01
+  je code13
+  mov rdx,r8
+  jmp code13
+pFang:
+  cmp rdx,692
+  je S1DabSike
+  cmp rdx,693
+  je S1DabSike
+  cmp rdx,6B1
+  je S1DabCap
+  jmp code13
+plunar:
+  cmp rdx,911
+  je LUNUTEnder
+  cmp rdx,0905//->XX(X)
+  je lunarFXXX
+  cmp rdx,0909//X->XX(X)X
+  je lunarXFY
+  mov rdx,r8
+  jmp code13
+lunarFXXX:
+  mov rdx,906 //X->XX
+  cmp byte ptr [LXFX],01
+  je code13
+  mov rdx,r8
+  jmp code13
+lunarXFY:
+ mov rdx,08DA
+ cmp byte ptr [LXFY],01
+ je code13
+ mov rdx,r8
+ jmp code13
+S1DabSike:
+  mov rdx,68E
+  cmp byte ptr [S1DSike],01
+  je code13
+  mov rdx,r8
+  jmp code13
+S1DabCap:
+  mov rdx,68D
+  cmp byte ptr [S1DSike],01
+  je code13
+  mov rdx,r8
+  jmp code13
+LUNUTEnder:
+  mov rdx,920
+  cmp byte ptr [LUNUT],01
+  je code13
+  mov rdx,r8
+  jmp code13
+S1L1Y:
+  mov rdx,43E
+  cmp byte ptr [L1Y],01
+  je code13
+  mov rdx,r8
+  jmp code13
+S1Kick:
+  mov rdx,41E
+  cmp byte ptr [SKick],01
+  je code13
+  mov rdx,r8
+  jmp code13
+S1UT:
+  mov rdx,45D
+  cmp byte ptr [SUT],01
+  je code13
+  mov rdx,r8
+  jmp code13
+S1UT2:
+  mov rdx,45F
+  cmp byte ptr [SUT2],01
+  je code13
+  mov rdx,r8
+  jmp code13
+FlailUTEnder:
+  {mov rdx,67A}
+  mov rdx,684
+  cmp byte ptr [FLUTEND],01
+  je code13
+  mov rdx,r8
+  jmp code13
+S1FlailUT:
+  mov rdx,64A
+  cmp byte ptr [S1FLUT],01
+  je code13
+  mov rdx,r8
+  jmp code13
+pDS:
+  cmp rax,43D
+  je S1L1Y
+  cmp rax,01D
+  je S1L1Y
+  cmp rax,46D
+  je S1UT
+  cmp rax,936
+  je S1Kick
+  cmp rax,93D
+  je S1UT2
+  {cmp rax,407
+  mov rdx,938
+  je code13
+  cmp rax,936
+  je S1Kick
+  {mov rdx,420}
+  {je code13
+  cmp rax,46D
+  mov rdx,45D
+  je code13
+  mov rdx,r8
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBE6],01 //DS - TOO OP FOR NON TDS
+  je code13
+  cmp rax,93D
+  mov rdx,45F
+  je code13
+  mov rdx,r8}
+  jmp code13
+NG1Counter2:
+  mov rdx,43F
+  cmp byte ptr [isNG1C],01
+  mov byte ptr [isNG1C],00
+  je code13
+  mov rdx,r8
+  je code13
+pflail:
+  cmp rax,62A
+  je FlailUTEnder
+  cmp rax,661
+  je S1FlailUT
+code13:
+  call "NINJA GAIDEN SIGMA2.exe"+F89F20
+  jmp return13
+pMove:
+  jmp newmem13
+return13:
+registersymbol(pMove)
+
+aobscanmodule(INJECTa,NINJA GAIDEN SIGMA2.exe,48 8B C4 53 55 56 57 41 54 41 56 41 57 48 83)
+alloc(newmema,$6000,INJECTa)
+
+label(codea)
+label(returna)
+alloc(maximumspawn,2)
+registersymbol(maximumspawn)
+alloc(spawnlimit,2)
+registersymbol(spawnlimit)
+alloc(spawncounter,2)
+registersymbol(spawncounter)
+alloc(canspawn,2)
+registersymbol(canspawn)
+alloc(minimumspawn,2)
+registersymbol(minimumspawn)
+alloc(rnum,4)
+registersymbol(rnum)
+alloc(chpstage,2)
+registersymbol(chpstage)
+alloc(flyingrobotamt,2)
+registersymbol(flyingrobotamt)
+alloc(turretrobotamt,2)
+registersymbol(turretrobotamt)
+alloc(currentlevel,2)
+registersymbol(currentlevel)
+alloc(ras,2)
+registersymbol(ras)
+alloc(chapter14tengu,2)
+registersymbol(chapter14tengu)
+alloc(counter,2)
+registersymbol(counter)
+alloc(ninpo,1)
+registersymbol(ninpo)
+alloc(ent1,8)
+registersymbol(ent1)
+alloc(ent2,8)
+registersymbol(ent2)
+alloc(bcounter,2)
+registersymbol(bcounter)
+alloc(scounter,2)
+registersymbol(scounter)
+
+
+
+
+newmema:
+ push rsp
+ push rbp
+ cmp byte ptr [disablespawns],01
+ jae codea
+ //Check what level being played
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#06
+ je chapter1
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#07
+ je chapter2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#08
+ je chapter3
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#09
+ je chapter4
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#55
+ je chapter5
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#10
+ je chapter6
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#11
+ je chapter7
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#53
+ je chapter8
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#12
+ je chapter9
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#13
+ je chapter10
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#54
+ je chapter11
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#14
+ je chapter12
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#15
+ je chapter13
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#16
+ je chapter14
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#17
+ je chapter15
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#18
+ je chapter16
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#19
+ je chapter17
+ //NINJA RACE
+  //RACHEL SKIP BECAUSE CBA I HATE THIS LEVEL LOL SORRY :(
+ cmp ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#136
+ je codea
+ cmp ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#131
+ je course5
+ cmp ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#123
+ jae ninjarace
+ jmp codea
+chapter1:
+  cmp bx,FEA8
+  je codea
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+  je resetscounter
+  mov byte ptr [minimumspawn],#1
+  mov byte ptr [maximumspawn],#2
+  mov byte ptr [chpstage],00
+  //1
+  cmp bx,D708
+  je setenemychp0101
+  //2
+  cmp bx,FE68
+  je setenemychp0102
+  //3
+  cmp bx,23D0
+  je setenemychp0103
+  //After First Save
+  mov byte ptr [chpstage],05
+  cmp bx,4D28
+  je spawn
+  mov byte ptr [chpstage],06
+  cmp bx,FC20
+  je spawn
+  mov byte ptr [chpstage],00
+  //After first live of a thousand gods
+  cmp bx,7680
+  je greyninja
+  cmp bx,8640
+  je greyninja
+  //Chest with IS
+  cmp bx,B388
+  je setenemychp0105
+  cmp bx,C348
+  je setenemychp0105
+  //First Ledge Run
+  cmp bx,3928
+  je setenemychp0106
+  //Second Ledge Run
+  cmp bx,7630
+  je setenemychp0107
+  cmp bx,85F0
+  je greyninjabow
+  //Delimbed Greys Before Save
+  mov byte ptr [chpstage],07
+  cmp bx,F090
+  je spawn
+  cmp bx,0C20
+  je spawn
+  cmp bx,27B0
+  je mage
+  mov byte ptr [chpstage],00
+  //Wall Jump First Battle After Save
+  cmp bx,13D0
+  je setenemychp0109
+  //Water Battle
+  cmp bx,5108
+  je setenemychp01010
+  //Before Buddah Cutscene
+  cmp bx,7670
+  je setenemychp01018
+  //After Cutscene (2 melee grey)
+  mov byte ptr [chpstage],05
+  cmp bx,52D0
+  je spawn
+  mov byte ptr [chpstage],00
+  //Archer
+  cmp bx,8FD8
+  je greyninjabow
+  mov byte ptr [chpstage],06
+  //First Ledge Jump
+  cmp bx,BD10
+  je spawn
+  //Second Ledge Jump
+  cmp bx,E278
+  je spawn
+  mov byte ptr [chpstage],00
+  //Drop Down
+  cmp bx,D2C8
+  je isninja{setenemychp01011}
+  //BUDDAH FIGHTER ARENA
+  cmp bx,0DF8
+  je setenemychp01020
+  cmp bx,1DB8
+  je setenemychp01019
+  cmp bx,2988
+  je codea
+  cmp bx,3948
+  je codea
+  //BRIDGE
+  mov byte ptr [chpstage],05
+  cmp bx,9BD8
+  je spawn
+  //TEMPLE
+  cmp bx,8DF0
+  je spawn
+  cmp bx,A980
+  je mage
+  {cmp bx,9DB0
+  je greyninja}
+  cmp bx,D6C8
+  je spawn
+  cmp bx,E688
+  je spawn
+  mov byte ptr [chpstage],00
+  //Muramasa
+  cmp bx,52F0
+  je isninja
+  cmp bx,62B0
+  je isninja
+  {//Bats
+  cmp bx,13F0
+  je setenemychp01012}
+  mov byte ptr [chpstage],05
+  //Billboard Run
+  cmp bx,7C48
+  je setenemychp0106
+  //Before Liz Cutscene
+  cmp bx,B560//Grey
+  je spawn
+  mov byte ptr [minimumspawn],#2
+  mov byte ptr [maximumspawn],#3
+  mov byte ptr [chpstage],07
+  cmp bx,D0F0//IS
+  je setenemychp0109
+  mov byte ptr [chpstage],00
+  mov byte ptr [minimumspawn],#1
+  mov byte ptr [maximumspawn],#2
+  cmp bx,C520//Grey
+  je spawn
+  mov byte ptr [minimumspawn],#2
+  mov byte ptr [maximumspawn],#3
+  mov byte ptr [chpstage],07
+  cmp bx,E0B0//IS
+  je spawn
+  cmp bx,1B90
+  je spawn
+   mov byte ptr [chpstage],00
+  mov byte ptr [minimumspawn],#1
+  mov byte ptr [maximumspawn],#2
+  //After Cutscene
+  {cmp bx,1B90
+  je spawn}
+  //Stair Climb
+  cmp bx,44E8
+  je setenemychp01022
+  cmp bx,54A8
+  je setenemychp0109
+  //Wall jump
+  cmp bx,83E8
+  je setenemychp01015
+  //Last Battle
+  cmp bx,C2E8
+  je setenemychp01016
+  cmp bx,D2A8
+  je setenemychp01016
+  cmp bx,E460
+  je setenemychp01017
+  cmp bx,FFF0
+  je setenemychp01021
+  cmp byte ptr [rdx+04],0A1
+  je spawn
+  cmp byte ptr [rdx+04],09D
+  je spawn
+  cmp byte ptr [rdx+04],09C
+  je spawn
+  mov byte ptr [chpstage],00
+  jmp codea
+chapter2:
+ mov ["NINJA GAIDEN SIGMA2.EXE"+6BED024],(float)-0.015
+ mov ["NINJA GAIDEN SIGMA2.EXE"+6BED028],(float)1.10
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+ je resetscounter
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ cmp bx,F2B8
+ je codea
+ cmp bx,6AC0
+ je setenemychp201
+ cmp bx,A3D8
+ je setenemychp202
+ cmp bx,B398
+ je setenemychp203
+ {mov byte ptr [chpstage],04
+ cmp bx,19F8
+ je spawn
+ cmp bx,3588
+ je spawn
+ mov byte ptr [chpstage],05
+ cmp bx,29B8
+ je mage
+ cmp bx,4548
+ je spawn}
+ cmp bx,E0E0
+ je setenemychp217
+ cmp bx,64C8
+ je setenemychp206
+ cmp bx,8A30
+ je setenemychp207
+ mov byte ptr [chpstage],09
+ {cmp bx,8C18
+ je spawn
+ cmp bx,9BD8
+ je setenemychp210}
+ cmp bx,8C18
+ je setenemychp219
+ cmp bx,9BD8
+ je isninja
+ {cmp bx,E0C0
+ je setenemychp212}
+ cmp bx,C920
+ je setenemychp208
+ cmp bx,2F80
+ je setenemychp212
+ cmp bx,CB08
+ je setenemychp216
+ cmp bx,E698
+ je setenemychp216
+ cmp bx,6498
+ je setenemychp211
+ cmp bx,9DB0
+ je isninja
+ cmp bx,B940
+ je mage
+ cmp bx,AD70
+ je isninjam
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ cmp bx,3B30
+ je setenemychp216
+ cmp bx,6290
+ je setenemychp213
+ cmp bx,7250
+ je setenemychp213
+ cmp bx,8BE8
+ je setenemychp213
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ cmp bx,4AE0
+ je setenemychp213
+ cmp bx,7048
+ je setenemychp213
+ cmp bx,A960
+ je setenemychp215
+ cmp bx,B920
+ je setenemychp215
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ mov byte ptr [chpstage],09
+ cmp bx,54E8
+ je spawn
+ cmp bx,8E00
+ je spawn
+ mov byte ptr [chpstage],00
+ //BRIDGE BATTLE
+ cmp bx,19F8
+ je isninja
+ cmp bx,3588
+ je setenemychp218
+ cmp bx,29B8
+ je isninja
+ cmp bx,4548
+ je setenemychp220
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ cmp byte ptr [rdx+04],07F
+ je spawn
+ cmp byte ptr [rdx+04],09D
+ je spawn
+ cmp byte ptr [rdx+04],09C
+ je spawn
+ cmp byte ptr [rdx+04],0A1
+ je spawn
+ cmp byte ptr [rdx+04],089
+ je setenemychp211
+ cmp byte ptr [rdx+04],0B2
+ je mage
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+chapter3:
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+  je resetscounter
+  mov byte ptr [minimumspawn],#2
+  mov byte ptr [maximumspawn],#3
+  mov byte ptr [chpstage],#00
+  cmp byte ptr [rdx+04],030 //GIGADEATH
+  je increasetimer
+  //1 - Dog Trash Bin
+  cmp bx,29D8
+  je setenemychp301
+  //2 - After Dog Trash Bin (still outside)
+  cmp bx,5918
+  je setenemychp302
+  //3 - Gate IS
+  cmp bx,9818
+  je setenemychp303
+  //3 - Gate Tac Rocket
+  cmp bx,CF38
+  je mage //Spawn point 8F80
+  //3 - Gate Tac Melee (sword out)
+  cmp bx,B3A8 //Spawn Point 7E60
+  je spawn
+  //3 - Gate Tac Melee (gun out)
+  mov byte ptr [chpstage],#05
+  cmp bx,C368 //Spawn Point 7EE0
+  je spawn
+  //4 - Stair Climb Tac Rocket
+  cmp bx,0C40 //Can Call Melee IS
+  je setenemychp304
+  mov byte ptr [chpstage],#00
+  //5 - Before Save
+  cmp bx,4558 //TAC
+  je spawn
+  cmp bx,7458 //Mage
+  je spawn
+  cmp bx,5CF8 //IS
+  je spawn
+  //6 - First Save Wall Jump Mage
+  cmp bx,ADB0
+  je setenemychp305
+  //7 - Dragons
+  cmp bx,E6C8
+  je setenemychp306
+  cmp bx,F688
+  je mage
+  //Drop Down
+  cmp bx,23D0 //IS
+  je setenemychp305
+  {cmp bx,3F60 //TAC Rocket}
+  //Ropedrop
+  cmp bx,97F8 //TAC M High Area
+  je spawn
+  cmp bx,7C68//TAC Rocket
+  je spawn
+  cmp bx,8C28
+  je mage
+  mov byte ptr [minimumspawn],#3
+  mov byte ptr [maximumspawn],#4
+  //Drop Down after 2nd save
+  cmp bx,D500//TAC
+  je spawn
+  cmp bx,F090//IS
+  je spawn
+  cmp bx,0050//IS
+  je spawn
+  cmp bx,E4C0//TAC
+  je spawn
+  mov byte ptr [minimumspawn],#2
+  mov byte ptr [maximumspawn],#3
+  //DOG HATERS MADE ME DO IT :(
+  {//Drop Down after 2nd save
+  cmp bx,D500//TAC
+  je spawn
+  mov byte ptr [chpstage],#07
+  cmp bx,F090//IS
+  je spawn
+  cmp bx,0050//IS
+  je spawn
+  mov byte ptr [chpstage],#00
+  cmp bx,E4C0//TAC
+  je spawn}
+  //Cutscene Before Sewers (Dogs)
+  mov byte ptr [chpstage],#08
+  cmp bx,19E8
+  je spawn
+  cmp bx,29A8
+  je taconerocket
+  //Sewer Drop Down Save
+  cmp bx,9200
+  je vangelfgold
+  cmp bx,A1C0
+  je setenemychp305
+  //First Wall Run
+  cmp bx,BB58
+  je vangelfgold
+  {//Second Wall Run
+  cmp bx,E0C0}
+  //Drop Down
+  cmp bx,0628
+  je setenemychp310
+  //Vangelf Surprise
+  cmp bx,4330
+  je setenemychp309
+  //Blue Muramasa
+  cmp bx,8038
+  je vangelfgold
+  cmp bx,9BC8
+  je taconerocket
+  mov byte ptr [chpstage],#00
+  mov byte ptr [minimumspawn],#3
+  mov byte ptr [maximumspawn],#4
+  //Big Battle Before Train Save
+  mov byte ptr [chpstage],#08
+  cmp bx,F460
+  je spawn
+  cmp bx,0420
+  je spawn
+  mov byte ptr [chpstage],#00
+  cmp bx,D8D0
+  je spawn
+  cmp bx,E890
+  je spawn
+  mov byte ptr [minimumspawn],#2
+  mov byte ptr [maximumspawn],#3
+  //Before Train Save
+  {cmp bx,3168}
+  cmp bx,4908
+  je vangelfgold
+  cmp bx,3168
+  je vangelfgold
+  //Subway Jump
+  cmp bx,8610
+  je setenemychp305
+  {cmp bx,9DB0}
+  mov byte ptr [chpstage],#00
+  {cmp byte ptr [rdx+04],07F
+  je spawn
+  cmp byte ptr [rdx+04],0A7
+  je spawn
+  cmp byte ptr [rdx+04],09C
+  je spawn
+  cmp byte ptr [rdx+04],0A1
+  je spawn
+  cmp byte ptr [rdx+04],038
+  je spawn}
+  jmp codea
+chapter4:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+ je resetscounter
+ cmp byte ptr [rdx+04],FF
+ je codea
+ mov byte ptr [chpstage],00
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ {mov byte ptr [weakAlexi],01}
+ cmp bx,E268
+ je setCHP4WeakAlexi
+ cmp bx,BD00
+ je setCHP4WeakAlexi
+ {mov byte ptr [weakAlexi],00}
+ cmp byte ptr [rdx+04],020
+ je increasetimer
+ //1
+ cmp bx,9FF8
+ je setenemychp401
+ //2
+ cmp bx,0070
+ je setenemychp402
+ //3
+ cmp bx,29C8
+ je setenemychp403
+ cmp bx,3988
+ je setenemychp403
+ mov byte ptr [minimumspawn],#3
+ mov byte ptr [maximumspawn],#4
+ //4
+ cmp bx,5320
+ je spawn
+ //5 Train Big Vangelf Battle
+ {cmp bx,8C38
+ je spawn
+ cmp bx,9BF8
+ je spawn
+ cmp bx,B590
+ je spawn}
+ {cmp bx,C550
+ je setenemychp404}
+ //6 First Big Battle After Save
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ cmp bx,F490 //9D
+ je spawn
+ cmp bx,0450 //9D
+ je spawn
+ cmp bx,1020 //A1
+ je spawn
+ cmp bx,1FE0 //A1
+ je setenemychp403
+ cmp bx,2BB0 //9C
+ je setenemychp405
+ cmp bx,3B70 //9C
+ je setenemychp405
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ cmp bx,6AB0//9D Archer when opening chest before venturing outside
+ je setenemychp406
+ mov byte ptr [chpstage],#09
+ cmp bx,9018//9D Barrel explosion
+ je spawn
+ cmp bx,9FD8//9D Barrel explosion
+ je spawn
+ mov byte ptr [chpstage],#00
+ //Outside Stairs
+ cmp bx,CF18//7F
+ je setenemychp402
+ cmp bx,0C20//A1
+ je spawn
+ mov byte ptr [chpstage],#09
+ cmp bx,8E10//Alleyway
+ je spawn
+ mov byte ptr [chpstage],#00
+ cmp bx,3578//Fence near save
+ je spawn
+ //Stair Climb
+ cmp bx,8038//Dragon
+ je setenemychp407
+ cmp bx,64A8//Vangelf Spawn Point 8AC0
+ je spawn
+ cmp bx,7486//Vangelf SPawn Point 8B40
+ je spawn
+ cmp bx,8FF8//Dragon
+ je setenemychp407
+ //Muramasa
+ cmp bx,AB88
+ je setenemychp408
+ //Vangelf Before RE Mini Boss
+ {cmp bx,D8D0
+ je spawn
+ cmp bx,FE38
+ je spawn}
+ //After Mini Boss Outside Liberty
+ cmp bx,BD30 //Vangelf Spawn Point 3FA0
+ je setenemychp409
+ cmp bx,D8C0//Dragon
+ je codea
+ cmp bx,F450//Vangelf Spawn Point 6380
+ je setenemychp409
+ cmp bx,CCF0//Vangelf
+ je setenemychp409
+ cmp bx,E880//Dragon
+ je codea
+ cmp bx,19B8//Archer Corider After Emma Fang
+ je setenemychp410
+ //Library
+ cmp bx,52D0//9D
+ je spawn
+ cmp bx,6E60//9D
+ je spawn
+ cmp bx,7E20//9D
+ je spawn
+ cmp bx,89F0//9C
+ je setenemychp405
+ cmp bx,99B0//9C
+ je setenemychp405
+ cmp bx,6290//9D
+ je spawn
+ {cmp bx,EC60//Stairs Vangelf
+ cmp bx,0400//Stairs Vangelf}
+ cmp bx,3D18//Dragon correct entrance
+ je vangelf
+ cmp bx,4CD8//Dragon
+ je vangelf
+ //Entrance
+ cmp bx,A378//9D
+ je spawn
+ cmp bx,C8E0//9C IS last battle spawn point 70E0
+ je spawn
+ cmp bx,D8A0//9C IS last
+ je spawn
+ {cmp bx,07E0//Dragon Outside
+ je setenemychp412}
+ {cmp bx,B348
+ je setenemychp414}
+ {cmp bx,FFF0//TRAP BAT BOX
+ je setCHP4Trap}
+ mov byte ptr [chpstage],00
+ cmp byte ptr [rdx+04],0A1
+ je spawn
+ cmp byte ptr [rdx+04],09D
+ je spawn
+ cmp byte ptr [rdx+04],09C
+ je spawn
+ cmp byte ptr [rdx+04],003
+ je spawn
+ cmp byte ptr [rdx+04],0A7
+ je spawn
+ cmp byte ptr [rdx+04],07F
+ je spawn
+ jmp codea
+setCHP4WeakAlexi:
+ mov byte ptr [weakAlexi],01
+ jmp codea
+chapter5:
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],08
+ ja codea
+ cmp byte ptr [rdx+04],0A1
+ je spawn
+ cmp byte ptr [rdx+04],09D
+ je spawn
+ cmp byte ptr [rdx+04],09C
+ je spawn
+ cmp byte ptr [rdx+04],003
+ je spawn
+ cmp byte ptr [rdx+04],0A7
+ je spawn
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+chapter6:
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+ je resetscounter
+ //WATER BOSS - REMOVE CLIPPING (KINDA HACKY WAY BUT W.E)
+ cmp bx,A3A8
+ je setCHP6BossClip
+ mov byte ptr [chpstage],01
+ //1
+ cmp bx,21E8
+ je setenemychp610
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ mov byte ptr [chpstage],02
+ //2 5CF8 BRIDGE 1
+ cmp bx,7888
+ je setenemychp602
+ //3 6CB8
+ //4 9FE8 // ITALY
+ //AFter Save
+ cmp bx,E0E0
+ je spawn
+ cmp bx,FC70
+ je spawn
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ mov byte ptr [chpstage],02
+ //Mini Bridge
+ cmp bx,25C8
+ je spawn
+ cmp bx,3588
+ je spawn
+ mov byte ptr [minimumspawn],#3
+ mov byte ptr [maximumspawn],#4
+ //Before Water Fall
+ mov byte ptr [chpstage],02
+ cmp bx,5118
+ je spawn
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ mov byte ptr [chpstage],00
+ //Water Fall
+ cmp bx,7A70
+ je setenemychp603
+ //Muramasa
+ cmp bx,A3C8
+ je setenemychp603
+ //BRIDGE
+ cmp bx,DCE0
+ je setenemychp605
+ cmp bx,F870
+ je setenemychp605
+ cmp bx,0830
+ je setenemychp605
+ cmp bx,25B8
+ je setenemychp606
+ mov byte ptr [chpstage],02
+ cmp bx,64B8
+ je spawn
+ cmp bx,8048
+ je spawn
+ cmp bx,AB98
+ je setenemychp607
+ cmp bx,BB58
+ je setenemychp608
+ mov byte ptr [chpstage],03
+ cmp bx,D4F0
+ je spawn
+ cmp bx,E4B0
+ je spawn
+ cmp bx,23B0
+ je setenemychp609
+ cmp bx,3370
+ je setenemychp609
+ cmp bx,4D08
+ je setenemychp609
+ cmp bx,5CC8
+ je setenemychp609
+ cmp bx,A3A8
+ je setWaterBoss
+ mov byte ptr [chpstage],00
+ cmp byte ptr [rdx+04],006
+ je spawn
+ cmp byte ptr [rdx+04],09E
+ je spawn
+ cmp byte ptr [rdx+04],0B2
+ je spawn
+ cmp byte ptr [rdx+04],009
+ je spawn
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+setCHP6BossClip:
+  cmp byte ptr [rdx+04],039
+  jne codea
+  mov byte ptr [rdx+08],02D
+  mov byte ptr [canClip],01
+  jmp codea
+chapter7:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+ je resetscounter
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ //1 - Muramasa Ghost Fish
+ {cmp bx,F288
+ je setenemychp701}
+ mov byte ptr [chpstage],01
+ cmp bx,AD90
+ je spawn
+ cmp bx,23B0
+ je gajam
+ cmp bx,4918
+ je gajam
+ cmp bx,6E80
+ je gajam
+ mov byte ptr [chpstage],02
+ //Outer Castle Start
+ cmp bx,93E8//IMPS
+ je spawn
+ cmp bx,CD00//IMPS
+ je spawn
+ cmp bx,E4A0//IMPS
+ je spawn
+ //0A08 3360 - Stairs
+ //CASTLE WATER SECTION
+ mov byte ptr [chpstage],03
+ cmp bx,8808//IMPS
+ je spawn
+ cmp bx,7068//DRAGON
+ je setenemychp701//MOVE BATTLE POINT TO WATER AREA SO NON FLYING ENT DOESNT FALL
+ //AFTER SAVE
+ mov byte ptr [chpstage],02
+ cmp bx,B748
+ je spawn
+ cmp bx,5AB0
+ je spawn
+ cmp bx,8018
+ je spawn
+ //CHURCH
+ mov byte ptr [chpstage],03
+ cmp bx,B930//B1
+ je spawn
+ cmp bx,D4C0//F1
+ je spawn
+ cmp bx,C8F0//B1
+ je spawn
+ cmp bx,E480//F1
+ je spawn
+ //CHIM DROP
+ //cmp bx,FE18 - 5EE0
+ cmp bx,2380
+ je setenemychp702
+ //AFTER SAVE
+ mov byte ptr [chpstage],04
+ cmp bx,48E8
+ je spawn
+ //R1
+ cmp bx,6E50
+ je spawn
+ //R2
+ cmp bx,A768
+ je spawn
+ mov byte ptr [chpstage],02
+ cmp bx,BF08
+ je spawn
+ //R3
+ mov byte ptr [chpstage],03
+ cmp bx,13B0
+ je spawn
+ cmp bx,2B50
+ je spawn
+ cmp bx,F820
+ je spawn
+ cmp bx,07E0
+ je spawn
+ {//Stairs 6468 - 06 7C08 - B1}
+ mov byte ptr [chpstage],04
+ cmp bx,B520
+ je spawn
+ cmp bx,44D8
+ je spawn
+ cmp bx,1B70
+ je spawn
+ mov byte ptr [chpstage],00
+ //cmp bx,CCC0
+ {cmp bx,40D8
+ je setenemychp703}
+ mov byte ptr [chpstage],00
+ cmp byte ptr [rdx+04],09E
+ je spawn
+ cmp byte ptr [rdx+04],0B2
+ je spawn
+ cmp byte ptr [rdx+04],006
+ je spawn
+ cmp byte ptr [rdx+04],0B1
+ je spawn
+ cmp byte ptr [rdx+04],0F1
+ je spawn
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+chapter8:
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ cmp byte ptr [rdx+04],0F1
+ je spawn
+ cmp byte ptr [rdx+04],02F
+ je spawn
+ cmp byte ptr [rdx+04],003
+ je spawn
+ cmp byte ptr [rdx+04],0A7
+ je spawn
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+chapter9:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+ je resetscounter
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ mov byte ptr [chpstage],01
+ //1
+ cmp bx,B788
+ je setenemychp901
+ //2 - LEFT
+ cmp bx,9018
+ je spawn
+ cmp bx,B778
+ je spawn
+ cmp bx,C738
+ je spawn
+//2 - RIGHT
+ cmp bx,4B30
+ je spawn
+ cmp bx,F490
+ je spawn
+ cmp bx,1020
+ je spawn
+ //3 - AFTER SAVE (1C00/2CE0)
+ cmp bx,1DD8
+ je spawn
+ mov byte ptr [chpstage],00
+ cmp bx,3968
+ je spawn
+ //4 - Elevator Upstair
+ cmp bx,62C0
+ je setenemychp902
+ //5 - Elevator Downstair
+ cmp bx,BB58
+ je setenemychp904
+ //6 - SAVE ROOM
+ cmp bx,0C10
+ je codea
+ //7 - AFTER SAVE ROBOT BATTLE
+ cmp bx,4918//TURRET
+ je setenemychp903
+ cmp bx,64A8//TAC
+ je setenemychp903
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ //FIRST CONTROL ROOM
+ cmp bx,4908
+ je tacredm
+ //CONTROL ROOM EXIT
+ mov byte ptr [chpstage],01
+ cmp bx,A1A0
+ je spawn
+ //BEFORE TIMER ROOM
+ cmp bx,D6A8
+ je codea
+ cmp bx,F238
+ je codea
+ //TIMER ROOM
+ cmp bx,2F40
+ je codea
+ cmp bx,4AD0
+ je codea
+ cmp bx,6260
+ je setenemychp910
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ mov byte ptr [chpstage],00
+ cmp byte ptr [rdx+04],038
+ je spawn
+ mov byte ptr [spawnlimit],0
+ mov byte ptr [spawncounter],0
+ mov byte ptr [canspawn],00
+ jmp codea
+chapter10:
+ mov byte ptr [chpstage],0
+ mov byte ptr [minimumspawn],#3
+ mov byte ptr [maximumspawn],#4
+ cmp bx,9A00
+ je setenemychp102
+ cmp bx,7E70
+ je greyninja
+ cmp bx,A9C0
+ je greyninja
+ cmp bx,D708
+ je greyninja
+ mov byte ptr [chpstage],01
+ cmp bx,A3C8
+ je spawn
+ cmp bx,8838
+ je greyninjam
+ mov byte ptr [chpstage],0
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ cmp bx,F298
+ je setenemychp102
+ cmp bx,0258
+ je setenemychp102
+ mov byte ptr [minimumspawn],#3
+ mov byte ptr [maximumspawn],#4
+ mov byte ptr [chpstage],05
+ cmp bx,2FA0
+ je spawn
+ mov byte ptr [chpstage],00
+ cmp bx,4B30
+ je isninjam
+ cmp bx,F480
+ je setenemychp106
+ //TURRET ROBOT
+ cmp bx,E4B0
+ je codea
+ {cmp bx,4D08
+ je setenemychp109}
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ cmp bx,97A8
+ je spawn
+ //FIRST HALL BEFORE CHURCH
+ mov byte ptr [chpstage],06
+ cmp bx,4D18
+ je spawn
+ cmp bx,3188
+ je spawn
+ cmp bx,5CD8
+ je spawn
+ cmp bx,5ED0
+ je spawn
+ mov byte ptr [chpstage],00
+ //MINE SECTION
+ cmp bx,8E10
+ je setenemychp1012
+ cmp bx,9DD0
+ je setenemychp1012
+ cmp bx,D480
+ je spawn
+ cmp bx,F040
+ je spawn
+ //TURRET BEFORE SAVE CHURCH
+ mov byte ptr [chpstage],08
+ {cmp bx,CD10
+ je spawn}
+ mov byte ptr [chpstage],00
+ mov byte ptr [minimumspawn],#3
+ mov byte ptr [maximumspawn],#4
+ cmp bx,8E10
+ je codea
+ cmp bx,9DD0
+ je codea
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ //Church
+ mov byte ptr [chpstage],#01
+ cmp bx,21B8
+ je spawn
+ cmp bx,3D48
+ je spawn
+ cmp bx,3178
+ je spawn
+ cmp bx,4D08
+ je spawn
+ mov byte ptr [chpstage],06
+ //CHURCH ROCK
+ cmp bx,7A50
+ je spawn
+ cmp bx,9FB8
+ je greyninjam
+ //TRAIN
+ cmp bx,54D8
+ je tacmeleered
+ cmp bx,8BF8
+ je tacmeleered
+ cmp bx,7068
+ je tacmeleered
+ cmp bx,6498
+ je tacmeleered
+ cmp bx,9BB8
+ je tacmeleered
+ cmp bx,8028
+ je tacmeleered
+ //FISH
+ cmp bx,1BB0
+ je tacredm
+ {cmp bx,2B70
+ je tacredm}
+ cmp bx,58B8
+ je tacredm
+ {cmp bx,6878
+ je tacredm}
+ mov byte ptr [chpstage],#13
+ cmp bx,95C0
+ je spawn
+ cmp bx,AD60
+ je spawn
+ mov byte ptr [minimumspawn],#3
+ mov byte ptr [maximumspawn],#4
+ mov byte ptr [chpstage],00
+ cmp byte ptr [rdx+04],07F
+ je spawn
+ cmp byte ptr [rdx+04],038
+ je spawn
+ cmp byte ptr [rdx+04],01D
+ je spawn
+ cmp byte ptr [rdx+04],083
+ je spawn
+ mov byte ptr [flyingrobotamt],0
+ mov byte ptr [turretrobotamt],0
+ mov byte ptr [spawnlimit],0
+ mov byte ptr [spawncounter],0
+ mov byte ptr [canspawn],00
+ jmp codea
+chapter11:
+ {//Water Area
+A5E0 - 2F
+C170 - 7C
+DD00 - 70
+B5A0 - 2F
+ECC0 - 70
+D130 - 7C
+//Market
+1A08 - 2F
+3598 - 7C
+29C8 - 2F
+4558 - 7C
+5EF0 - 70
+//VAN SEC
+8848
+B1A0 - Fiend Mage
+//LAST
+0A38 - 7C
+FE68 - 2F
+19F8 - 7C
+4740 - 2F - just fiendis swap
+62D0 - 70
+7E60 - 7C
+7290 - 70}
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+ je resetscounter
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ //1 9240 - 2F A3F8 - 2F/70
+ //2 - Hall
+ cmp bx,D338
+ je spawn
+ cmp bx,EEC8
+ je spawn
+ //3 - Chest
+ cmp bx,23F0
+ je fiendmage
+ cmp bx,3F80
+ je fiendmage
+ cmp bx,33B0
+ je fiendmage
+ mov byte ptr [chpstage],01
+ //4 - Gate
+ cmp bx,68D8
+ je spawn
+ cmp bx,3598
+ je codea
+ cmp bx,4558
+ je codea
+ cmp bx,B1A0
+ je fiendmage
+ cmp bx,0A38
+ je spawn
+ cmp bx,19F8
+ je spawn
+ cmp bx,4740
+ je fiendis
+ mov byte ptr [chpstage],00
+ cmp byte ptr [rdx+04],02F
+ je spawn
+ cmp byte ptr [rdx+04],070
+ je spawn
+ cmp byte ptr [rdx+04],003
+ je spawn
+ cmp byte ptr [rdx+04],0A7
+ je spawn
+ cmp byte ptr [rdx+04],006
+ je spawn
+ cmp byte ptr [rdx+04],0B1
+ je spawn
+ cmp byte ptr [rdx+04],07C
+ je spawn
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+chapter12:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+ je resetscounter
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ //1 - White Bug 7D28 E6E8
+ cmp bx,E6E8
+ je codea
+ mov byte ptr [chpstage],01
+ //2 Water Sec #1
+ cmp bx,1430
+ je spawn
+ cmp bx,4D48
+ je spawn
+ cmp bx,68D8
+ je spawn
+ //BIG WATER BATTLE
+ cmp bx,FA88
+ je spawn
+ cmp bx,0A48
+ je spawn
+ cmp bx,BD80
+ je spawn
+ //6 First Tree Jump
+ cmp bx,23E0
+ je setenemychp122
+ //7 Bugs 4D38 5CF8
+ //8 Rope Climb
+ cmp bx,7888
+ je setenemychp122
+ //9 Forest Before Save
+ cmp bx,8E30
+ je zombie
+ cmp bx,9808
+ je zombie
+ cmp bx,B590
+ je zombie
+ //10 - After Save Bug Battle FE68
+ cmp bx,EEA8
+ je zombie
+ //11 - After Save //4740 zomb
+ mov byte ptr [chpstage],01
+ cmp bx,2BB0
+ je spawn
+ cmp bx,3B70
+ je spawn
+ cmp bx,5700
+ je setenemychp123
+ //After Cutscene Zombie 7A60 bug
+ cmp bx,5ED0
+ je setenemychp123
+ //12 - Forest 7098 zombie
+ //13 - Water ADA0 zombie / C930 shark
+ //14 Save - 0638 zombie 21C8 bugs 3188 bugs
+ cmp bx,ADA0
+ je fiendmage
+ cmp bx,0638
+ je setenemychp123
+ cmp bx,7A60
+ je fiendmage
+ cmp bx,8A20//Bugs
+ je fiendmage
+ cmp bx,D2F8
+ je zombie
+ mov byte ptr [chpstage],00
+ cmp byte ptr [rdx+04],0A6
+ je fiendmage
+ cmp byte ptr [rdx+04],00C
+ je spawn
+ {cmp bx,D728
+ je setenemychp121
+ cmp bx,E6E8
+ je deletent
+ cmp bx,1430
+ je tacmanyrocket
+ cmp bx,4D48
+ je tacmanyrocket
+ cmp bx,68D8
+ je tacmanyrocket
+ cmp bx,BD80
+ je zombie
+ cmp bx,4D38
+ je codea
+ cmp bx,5CF8
+ je codea
+ cmp bx,23E0
+ je zombie
+ cmp bx,7888
+ je zombie
+ cmp bx,EEA8
+ je tac
+ mov byte ptr [chpstage],01
+ cmp bx,4740
+ je spawn
+ cmp bx,5700
+ je spawn
+ cmp bx,2BB0
+ je zombie
+ cmp bx,3B70
+ je zombie
+ cmp bx,21C8
+ je tac
+ mov byte ptr [chpstage],00
+ cmp byte ptr [rdx+04],02E
+ je deletent}
+ jmp codea
+deletent:
+ jmp codea
+deleteme:
+ mov byte ptr [rdx+01],00
+ jmp codea
+chapter13:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+ je resetscounter
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ cmp bx,3998//1
+ je setenemychp132
+ cmp bx,5138//2
+ je setenemychp131
+ cmp bx,6CC8
+ je spawn
+ cmp bx,72A0
+ je rasetsu
+ cmp bx,F490
+ je setenemychp133
+ cmp bx,A3B8
+ je fiendmage
+ cmp bx,BF48
+ je fiendmage
+ cmp bx,8828
+ je fiendmage
+ cmp bx,4320
+ je fiendmage
+ cmp bx,52E0
+ je fiendmage
+ cmp bx,EA88
+ je fiendmage
+ cmp bx,C120
+ je vangelf
+ cmp bx,F8A0
+ je vangelf
+ cmp bx,EA78
+ je vangelf
+ cmp bx,2780
+ je vangelf
+ cmp bx,4310
+ je isninja
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ //PHASE 1
+ cmp bx,C308
+ je setenemychp137
+ cmp bx,D2C8
+ je setenemychp136
+ //PHASE 2
+ cmp bx,EC60
+ je setenemychp137
+ cmp bx,FC20
+ je setenemychp136
+ //PHASE 3
+ cmp bx,15B8
+ je setenemychp137
+ cmp bx,2578
+ je setenemychp138
+ cmp bx,54B8
+ je codea
+ cmp bx,7048
+ je codea
+ mov byte ptr [chpstage],00
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ {cmp byte ptr [rdx+04],09D
+ je spawn}
+ cmp byte ptr [rdx+04],00C
+ je gaja
+ cmp byte ptr [rdx+04],09E
+ je spawn
+ cmp byte ptr [rdx+04],0F1
+ je spawn
+ cmp byte ptr [rdx+04],0A7
+ je spawn
+ cmp byte ptr [rdx+04],003
+ je spawn
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ cmp byte ptr [rdx+04],07C
+ je spawn
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ {cmp byte ptr [rdx+04],079
+ je spawn
+ cmp byte ptr [rdx+04],07A
+ je fiendmage}
+ mov byte ptr [chpstage],00
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+chapter14:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+ je resetscounter
+ mov byte ptr [ninpo],00
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ cmp bx,8A50
+ je fiendis
+ {cmp cx,F8C0
+ je dontshutdoor
+ cmp cx,FEA8
+ je dontshutdoor}
+ mov byte ptr [chpstage],01
+ cmp bx,27E0
+ je setenemychp1429
+ {je spawn //1}
+ mov byte ptr [chpstage],02
+ cmp bx,5138
+ je setenemychp141
+ {je spawn //Before Save}
+ cmp bx,60F8
+ je spawn //Before Save
+ cmp bx,7A90
+ je setenemychp141
+ cmp bx,8A50
+ je spawn
+ mov byte ptr [chpstage],00
+ cmp bx,7A90
+ je setenemychp143
+ cmp bx,B798
+ je setenemychp144
+ {cmp bx,CF38
+ je depleteninpo
+ cmp bx,FCB0
+ je enableninpo}
+ mov byte ptr [ninpo],00
+ mov byte ptr [chpstage],00
+ cmp bx,0E38
+ je fiendis
+ cmp bx,29C8
+ je fiendis
+ cmp bx,1DF8
+ je spawn
+ cmp bx,3988
+ je setenemychp141
+ cmp bx,6CA8//BUSH START
+ je fiendis
+ cmp bx,8838
+ je fiendis
+ cmp bx,5320
+ je setenemychp149
+ cmp bx,7E70
+ je setenemychp1410//AFTER RAS
+ cmp bx,48E8
+ mov byte ptr [chpstage],01
+ je setenemychp1411
+ cmp bx,BB78
+ je spawn
+ cmp bx,D708
+ je spawn
+ mov byte ptr [chpstage],00
+ cmp bx,1410//THIRD SAVE WATER
+ je fiendmage
+ cmp bx,2FA0
+ je setenemychp1427 //THIRD SAVE WATER
+ cmp bx,B190
+ je fiendmage
+ mov byte ptr [chpstage],01
+ cmp bx,EE98
+ je spawn
+ mov byte ptr [chpstage],00
+ cmp bx,0A28
+ je fiendmage
+ cmp bx,E4B0
+ je setenemychp1417
+ cmp bx,4108
+ je setenemychp14chestTroll
+ cmp bx,7468
+ je spawn
+ cmp bx,8FF8
+ je spawn
+ cmp bx,A1A0
+ je spawn
+ cmp bx,B160
+ je spawn
+ cmp bx,BD30
+ je codea
+ cmp bx,CCF0
+ je codea
+ cmp bx,3760
+ je setenemychp1428
+ cmp bx,B950
+ je setenemychp1417
+ cmp bx,E2A8
+ je setenemychp1410
+ {cmp bx,A1A0
+ je setenemychp1420
+ cmp bx,BD30
+ je setenemychp1420
+ {cmp bx,B160
+ je setenemychp1420}
+ cmp bx,C970
+ je depleteninpo
+ //BIG BATTLE BEFORE GENSHIN 1
+ cmp bx,FA38
+ je setenemychp1421
+ cmp bx,15C8
+ je setenemychp1422
+ cmp bx,3158
+ je setenemychp1423
+ cmp bx,09F8
+ je setenemychp1424
+ cmp bx,2588
+ je setenemychp1422
+ cmp bx,4188
+ je setenemychp1422
+ //SECOND BATTLE BEFORE GENSHIN 2
+ cmp bx,6E60
+ je setenemychp1423
+ cmp bx,89F0
+ je setenemychp1422
+ cmp bx,A580
+ je setenemychp1421
+ cmp bx,99B0
+ je setenemychp1424
+ //LAST BATTLE BEFORE GENSHIN WHICH HAS TENGU
+ cmp bx,FE18
+ je setenemychp1425
+ mov byte ptr [ninpo],00
+ mov byte ptr [nindance],00
+ //GENSHIN
+ cmp bx,2770
+ je setenemychp1426
+ mov byte ptr [chpstage],#0
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#4
+ cmp byte ptr [rdx+04],02F
+ je spawn
+ cmp byte ptr [rdx+04],070
+ je spawn
+ cmp byte ptr [rdx+04],07F
+ je fiendgrey
+ cmp byte ptr [rdx+04],0A5
+ je spawn
+ cmp byte ptr [rdx+04],0EA
+ je spawn
+ cmp byte ptr [rdx+04],07C
+ je spawn
+ cmp byte ptr [rdx+04],09D
+ je spawn
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+isgenshin:
+ jmp enableninpo
+ jmp codea
+depleteninpo:
+  mov ["NINJA GAIDEN SIGMA2.EXE"+319CBDA],0000
+  jmp codea
+chapter15:
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ mov byte ptr [chpstage],00
+ cmp bx,1830//1
+ je setenemychp1506
+ cmp bx,27F0//1
+ je deleteme
+ cmp bx,5538//2 - 03
+ je spawn
+ cmp bx,64F8//2 - 03
+ je spawn
+ cmp bx,70C8
+ je vangelfgold
+ cmp bx,8088
+ je vangelfgold
+ cmp bx,C960
+ je setenemychp1502
+ cmp bx,E4E0
+ je vangelfgold
+ cmp bx,7A80
+ je vangelf
+ cmp bx,DCE0
+ je setenemychp1504
+ cmp bx,ECA0
+ je setenemychp1504
+ cmp bx,0830
+ je setenemychp1505
+ cmp byte ptr [rdx+04],003
+ je spawn
+ cmp byte ptr [rdx+04],01C
+ je spawn
+ cmp byte ptr [rdx+04],0A7
+ je spawn
+ cmp byte ptr [rdx+04],072
+ je spawn
+ mov byte ptr [chpstage],00
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+chapter16:
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ mov byte ptr [chpstage],00
+ //R1
+ cmp bx,2400
+ je greyninja
+ cmp bx,1830
+ je greyninja
+ cmp bx,33C0
+ je greyninja
+ //R2
+ {cmp bx,6108
+ je setenemychp1601
+ cmp bx,7C98
+ je setenemychp1601
+ cmp bx,70C8
+ je setenemychp1601
+ cmp bx,8C58
+ je setenemychp1601}
+ cmp bx,B9A0
+ je fiendis
+ cmp bx,C960
+ je fiendis
+ mov byte ptr [chpstage],02
+ cmp bx,72A0
+ je spawn
+ cmp bx,B980
+ je spawn
+ mov byte ptr [chpstage],00
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ cmp bx,F0A0
+ je spawn
+ cmp bx,0840
+ je spawn
+ cmp bx,3F60
+ je spawn
+ cmp bx,5700
+ je spawn
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ cmp bx,7A70
+ je setenemychp1603
+ mov byte ptr [chpstage],00
+ cmp byte ptr [rdx+04],09D
+ je spawn
+ {cmp byte ptr [rdx+04],00C
+ je spawn}
+ cmp byte ptr [rdx+04],070
+ je spawn
+ cmp byte ptr [rdx+04],02F
+ je spawn
+ mov byte ptr [chpstage],01
+ cmp byte ptr [rdx+04],01C
+ je spawn
+ cmp byte ptr [rdx+04],0F1
+ je spawn
+ {cmp byte ptr [rdx+04],07C
+ je spawn}
+ cmp byte ptr [rdx+04],083
+ je fiendmage
+ mov byte ptr [chpstage],00
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+chapter17:
+ cmp byte ptr [chpstage],02
+ je ischp17stg2
+ cmp bx,8E40
+ je ischp17stg2
+ cmp bx,F8A0
+ je fiendmage
+ cmp bx,0860
+ je fiendmage
+ cmp bx,1060
+ je setenemychp1701
+ cmp bx,2020
+ je enableninpo
+ mov byte ptr [nindance],00
+ mov byte ptr [counter],0
+ mov byte ptr [minimumspawn],#4
+ mov byte ptr [maximumspawn],#6
+ cmp byte ptr [rdx+04],01C
+ je spawn
+ cmp byte ptr [rdx+04],00C
+ je spawn
+ cmp byte ptr [rdx+04],0A7
+ je spawn
+ cmp byte ptr [rdx+04],0F1
+ je spawn
+ cmp byte ptr [rdx+04],09E
+ je spawn
+ cmp byte ptr [rdx+04],072
+ je spawn
+ cmp byte ptr [rdx+04],070
+ je spawn
+ cmp byte ptr [rdx+04],02F
+ je spawn
+ cmp byte ptr [rdx+04],0A5
+ je spawn
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+ischp17stg1:
+ mov byte ptr [chpstage],0
+ cmp bx,BF98
+ je codea
+ mov byte ptr [chpstage],01
+ mov byte ptr [minimumspawn],#3
+ mov byte ptr [maximumspawn],#4
+ jmp spawn
+ischp17stg2:
+ mov byte ptr [chpstage],0
+ cmp bx,BF98
+ je codea
+ cmp bx,2020
+ je codea
+ mov byte ptr [chpstage],02
+ mov byte ptr [minimumspawn],#6
+ mov byte ptr [maximumspawn],#7
+ jmp spawn
+setenemychp1701:
+ {mov byte ptr [nindance],01
+ mov byte ptr [ninpo],-01}
+ mov byte ptr [ninpo],00
+ jmp codea
+noghostfish:
+ cmp byte ptr [r10],01C
+ jne codea
+ mov byte ptr [r10],00
+ jmp codea
+dontshutdoor:
+ mov byte ptr [rdx+04],8B
+ mov byte ptr [nindance],01
+ {mov byte ptr [ninpo],-01}
+ cmp bx,F8C0
+ je codea
+ mov byte ptr [ninpo],00
+ mov byte ptr [nindance],00
+ jmp codea
+enableninpo:
+  push r8
+  xor r8,r8
+  mov byte ptr [ninpo],00
+  mov r8,["NINJA GAIDEN SIGMA2.EXE"+319CBD8]
+  mov ["NINJA GAIDEN SIGMA2.EXE"+319CBDA],r8w
+  pop r8
+  jmp codea
+//NINJA RACE
+ninjarace:
+ cmp byte ptr [rdx+04],8B
+ je codea
+ cmp byte ptr [rdx+04],A0
+ je codea
+ cmp byte ptr [rdx+04],4E
+ je codea
+ cmp byte ptr [rdx+04],4D
+ je codea
+ cmp byte ptr [rdx+04],14A
+ je codea
+ cmp byte ptr [rdx+04],168
+ je codea
+ cmp byte ptr [rdx+04],148
+ je codea
+ cmp byte ptr [rdx+04],147
+ je codea
+ cmp byte ptr [rdx+04],02
+ je codea
+ cmp byte ptr [rdx+04],9A
+ je codea
+ cmp byte ptr [rdx+04],2F
+ je codea
+ cmp byte ptr [rdx+04],1B
+ je codea
+ cmp byte ptr [rdx+04],35
+ je codea
+ cmp byte ptr [rdx+04],1F
+ je codea
+ cmp byte ptr [rdx+04],1B
+ je codea
+ cmp byte ptr [rdx+04],20
+ je codea
+ cmp byte ptr [rdx+04],3B
+ je codea
+ cmp byte ptr [rdx+04],3A
+ je codea
+ cmp [rdx+04],FFFF
+ je codea
+ cmp ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#123
+ je course1
+ cmp ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#138
+ je course2
+ jmp setninjarace
+course1:
+ mov byte ptr [minimumspawn],#3
+ mov byte ptr [maximumspawn],#4
+ cmp bx,0DE8
+ je setenemyc1s1
+ cmp bx,46F0
+ je setenemyc1s5
+ cmp bx,8A10
+ je mageeasy
+ mov byte ptr [chpstage],#3
+ cmp bx,4CE8
+ je spawn
+ cmp bx,7250
+ je spawn
+ cmp bx,95C0
+ je spawn
+ cmp bx,F440
+ je spawn
+ cmp bx,0400
+ je spawn
+ mov byte ptr [chpstage],#4
+ cmp bx,1D98
+ je spawn
+ cmp bx,2D58
+ je spawn
+ mov byte ptr [chpstage],#0
+ jmp spawn
+course2:
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#3
+ mov byte ptr [chpstage],#1
+ cmp bx,BDA0
+ je spawn
+ cmp bx,FAA8
+ je spawn
+ cmp bx,1638
+ je spawn
+ mov byte ptr [chpstage],#2
+ cmp bx,5340
+ je spawn
+ cmp bx,6ED0
+ je spawn
+ cmp bx,6300
+ je spawn
+ cmp bx,7E90
+ je spawn
+ cmp bx,ABD8
+ je spawn
+ cmp bx,C768
+ je spawn
+ cmp bx,BB98
+ je spawn
+ cmp bx,D728
+ je spawn
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#2
+ mov byte ptr [chpstage],#03
+ cmp bx,E318
+ je spawn
+ cmp bx,6AD0
+ je spawn
+ mov byte ptr [chpstage],#04
+ cmp bx,7A90
+ je spawn
+ mov byte ptr [minimumspawn],#3
+ mov byte ptr [maximumspawn],#4
+ mov byte ptr [chpstage],#05
+ cmp bx,9FF8
+ je spawn
+ mov byte ptr [chpstage],#06
+ cmp bx,BB88
+ je spawn
+ mov byte ptr [chpstage],#05
+ cmp bx,F890
+ je spawn
+ cmp bx,1420
+ je spawn
+ mov byte ptr [chpstage],#06
+ cmp bx,0850
+ je spawn
+ cmp bx,23E0
+ je spawn
+ cmp bx,3D78
+ je spawn
+ cmp bx,66D0
+ je spawn
+ mov byte ptr [minimumspawn],#2
+ mov byte ptr [maximumspawn],#3
+ mov byte ptr [chpstage],#07
+ cmp bx,F880
+ je spawn
+ cmp bx,1410
+ je spawn
+ cmp bx,5118
+ je spawn
+ mov byte ptr [chpstage],#08
+ cmp bx,6CA8
+ je spawn
+ cmp bx,A9B0
+ je spawn
+ cmp bx,C540
+ je spawn
+ mov byte ptr [chpstage],#0
+ mov byte ptr [minimumspawn],#1
+ mov byte ptr [maximumspawn],#3
+ cmp byte ptr [rdx+04],A1
+ je spawn
+ cmp byte ptr [rdx+04],38
+ je spawn
+ cmp byte ptr [rdx+04],A3
+ je spawn
+ cmp byte ptr [rdx+04],9C
+ je spawn
+ cmp byte ptr [rdx+04],9D
+ je spawn
+ cmp byte ptr [rdx+04],A7
+ je spawn
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+setenemycourse1:
+ cmp byte ptr [chpstage],#2
+ je setenemyc1s2
+ cmp byte ptr [chpstage],#3
+ je setenemyc1s3
+ cmp byte ptr [chpstage],#4
+ je greyninjabow
+ cmp byte ptr [chpstage],#6
+ je setenemyc1s6
+ cmp byte ptr [rnum],#15
+ jle dogeasy
+ cmp byte ptr [rnum],#25
+ jle mageeasy
+ cmp byte ptr [rnum],#40
+ jle greyninja
+ jmp isninja
+setenemyc1s1:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ mov rdx,[ent1]
+ mov r10,[ent2]
+ cmp byte ptr [scounter],#08
+ jle greyninja
+ cmp byte ptr [scounter],#09
+ jle rasetsu
+ mov byte ptr [canspawn],0
+ jmp codea
+setenemyc1s2:
+ mov byte ptr [scounter],0
+ jmp entityselected
+setenemyc1s3:
+ mov byte ptr [scounter],0
+ mov byte ptr [rnum],#25
+ jle mageeasy
+ jmp entityselected
+setenemyc1s6:
+ mov byte ptr [scounter],0
+ mov byte ptr [rnum],#45
+ jle mageeasy
+ jmp greyninja
+setenemyc1s5:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ mov rdx,[ent1]
+ mov r10,[ent2]
+ cmp byte ptr [scounter],#03
+ jle greyninja
+ cmp byte ptr [scounter],#04
+ jle genshin
+ mov byte ptr [canspawn],0
+ jmp codea
+setenemycourse2:
+ cmp byte ptr [chpstage],#1
+ je setenemyc2stg1
+ cmp byte ptr [chpstage],#2
+ je setenemyc2stg2
+ cmp byte ptr [chpstage],#3
+ je setenemyc2stg3
+ cmp byte ptr [chpstage],#4
+ je setenemyc2stg4
+ cmp byte ptr [chpstage],#5
+ je setenemyc2stg5
+ cmp byte ptr [chpstage],#6
+ je setenemyc2stg6
+ cmp byte ptr [chpstage],#7
+ je setenemyc2stg7
+ cmp byte ptr [chpstage],#8
+ je setenemyc2stg8
+ jmp entityselected
+setenemyc2stg1:
+ mov [rdx+64],1600
+ jmp tac
+setenemyc2stg2:
+ mov [rdx+64],BE20
+ cmp byte ptr [rnum],#30
+ jle mage
+ jmp tac
+setenemyc2stg3:
+ cmp byte ptr [rnum],#25
+ jle isninja
+ jmp vangelf
+setenemyc2stg4:
+ cmp byte ptr [rnum],#35
+ jle isninja
+ jmp vangelf
+setenemyc2stg5:
+ cmp byte ptr [rnum],#25
+ jle mage
+ cmp byte ptr [rnum],#45
+ jle isninja
+ jmp tac
+setenemyc2stg6:
+ cmp byte ptr [rnum],#25
+ jle mage
+ cmp byte ptr [rnum],#30
+ jle tac
+ jmp isninja
+setenemyc2stg7:
+ cmp byte ptr [rnum],#25
+ jle mage
+ cmp byte ptr [rnum],#35
+ jle vangelf
+ jmp tac
+setenemyc2stg8:
+ cmp byte ptr [rnum],#25
+ jle tac
+ cmp byte ptr [rnum],#35
+ jle mage
+ jmp vangelf
+setninjarace:
+ mov byte ptr [spawnlimit],#02
+ movzx rbp, byte ptr [spawnlimit]
+ cmp [spawncounter],bp
+ mov byte ptr [canspawn],0
+ jle setrace
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+setrace:
+ inc byte ptr [spawncounter]
+ mov byte ptr [canspawn],01
+ jmp entityselected
+course5:
+ mov byte ptr [chpstage],#01
+ cmp byte ptr [rdx+04],2F
+ je setenemycourse5
+ cmp byte ptr [rdx+04],70
+ je setenemycourse5
+ cmp byte ptr [rdx+04],9D
+ je setenemycourse5
+ cmp byte ptr [rdx+04],38
+ je setenemycourse5
+ mov byte ptr [chpstage],00
+ mov byte ptr [spawnlimit],#1
+ cmp byte ptr [rdx+04],75
+ je setenemycourse5
+ cmp byte ptr [rdx+04],F1
+ je setenemycourse5
+ cmp byte ptr [rdx+04],9E
+ je setenemycourse5
+ cmp byte ptr [rdx+04],03
+ je setenemycourse5
+ cmp byte ptr [rdx+04],0C
+ je setenemycourse5
+ cmp byte ptr [rdx+04],23
+ je setenemycourse5
+ mov byte ptr [spawnlimit],00
+ mov byte ptr [spawncounter],00
+ mov byte ptr [canspawn],00
+ jmp codea
+increasetimer:
+ mov byte ptr [canincreasetimer],01
+ je codea
+spawn:
+ cmp byte ptr [spawnlimit],0
+ je setspawnlimit
+ mov bp,[minimumspawn]
+ cmp [spawnlimit],bp
+ jl setspawnlimit
+ movzx rbp,byte ptr[spawnlimit]
+ push r9
+ movzx r9, byte ptr[spawncounter]
+ cmp r9,rbp
+ ja resetspawn
+ pop r9
+ mov byte ptr [canspawn],01
+ inc byte ptr [spawncounter]
+ cmp byte ptr [rnum],0
+ je generatenum
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#06
+ je setenemychp1
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#07
+ je setenemychp200
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#08
+ je setenemychp300
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#09
+ je setenemychp400
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#55
+ je setenemychp500
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#10
+ je setenemychp6
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#11
+ je setenemychp700
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#53
+ je setenemychp800
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#12
+ je setenemychp9
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#13
+ je setenemychp100
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#14
+ je setenemychp120
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#54
+ je setenemychp1100
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#15
+ je setenemychp130
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#16
+ je setenemychp140
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#17
+ je setenemychp150
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#18
+ je setenemychp160
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#19
+ je setenemychp170
+ cmp ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#123
+ je setenemycourse1
+ cmp ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#138
+ je setenemycourse2
+ mov byte ptr [rnum],0
+ pop rbp
+ pop rsp
+ mov rax,rsp
+ push rbx
+ push rbp
+ jmp returna
+resetspawn:
+ pop r9
+ mov byte ptr [spawnlimit],0
+ mov byte ptr [spawncounter],0
+ jmp codea
+{disablespawns:
+ cmp byte ptr [rdx+01],FF
+ jne codea
+ //mov byte ptr [rdx+01],0}
+codea:
+  mov byte ptr [canspawn],0
+  mov byte ptr [flyingrobotamt],0
+  mov byte ptr [counter],0
+  pop rbp
+  pop rsp
+  mov rax,rsp
+  push rbx
+  push rbp
+  jmp returna
+
+setspawnlimit:
+ push rax
+ push rbx
+ push rcx
+ push rdx
+ push rsi
+ push rdi
+ push rbp
+ push r8
+ push r9
+ push r10
+ push r11
+ push r12
+ push r13
+ push r14
+ push r15
+ call rand
+ xor edx,edx
+ movzx ecx, byte ptr [maximumspawn]
+ div ecx
+ mov [spawnlimit],dx
+ pop r15
+ pop r14
+ pop r13
+ pop r12
+ pop r11
+ pop r10
+ pop r9
+ pop r8
+ pop rbp
+ pop rdi
+ pop rsi
+ pop rdx
+ pop rcx
+ pop rbx
+ pop rax
+ jmp spawn
+
+generatenum:
+ push rax
+ push rbx
+ push rcx
+ push rdx
+ push rsi
+ push rdi
+ push rbp
+ push r8
+ push r9
+ push r10
+ push r11
+ push r12
+ push r13
+ push r14
+ push r15
+ call rand
+ xor edx,edx
+ mov ecx, #100
+ div ecx
+ mov [rnum],dx
+ pop r15
+ pop r14
+ pop r13
+ pop r12
+ pop r11
+ pop r10
+ pop r9
+ pop r8
+ pop rbp
+ pop rdi
+ pop rsi
+ pop rdx
+ pop rcx
+ pop rbx
+ pop rax
+ jmp spawn
+entityselected:
+ mov byte ptr [rnum],0
+ pop rbp
+ pop rsp
+ mov rax,rsp
+ push rbx
+ push rbp
+ jmp returna
+greyninjabow:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov byte ptr [rdx+04],09D
+ mov byte ptr [rdx+2C],03
+ mov byte ptr [rdx+30],28
+ mov byte ptr [rdx+31],00
+ mov byte ptr [rdx+38],04
+ mov byte ptr [rdx+3C],29
+ mov byte ptr [rdx+3D],00
+ jmp entityselected
+greyninja:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov byte ptr [rdx+04],09D
+ mov byte ptr [rdx+2C],FF
+ mov byte ptr [rdx+30],FF
+ mov byte ptr [rdx+31],FF
+ mov byte ptr [rdx+38],FF
+ mov byte ptr [rdx+3C],FF
+ mov byte ptr [rdx+3D],FF
+ jmp entityselected
+greyninjam:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov byte ptr [rdx+04],09D
+ mov byte ptr [rdx+1C],003
+ jmp entityselected
+tacredm:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov byte ptr [rdx+04],038
+ mov byte ptr [rdx+24],02
+ mov byte ptr [rdx+1C],003
+ jmp entityselected
+isninja:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov [rdx+04],09C
+ jmp entityselected
+isninjam:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov [rdx+04],09C
+ mov [rdx+1C],003
+ jmp entityselected
+genshinent:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov [rdx+04],026
+ jmp entityselected
+mage:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov [rdx+04],0A1
+ jmp entityselected
+mageeasy:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov [rdx+04],28
+ jmp entityselected
+bats:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],089
+ jmp entityselected
+vangelf:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],003
+ jmp entityselected
+vangelfgold:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],0A7
+ jmp entityselected
+flyingredragon:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],00B
+ jmp entityselected
+wolf:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],006
+ jmp entityselected
+wolfr:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],0B1
+ jmp entityselected
+gaja:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],09E
+ jmp entityselected
+gajam:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],09E
+ mov byte ptr [rdx+1C],03
+ jmp entityselected
+gajapm:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],032
+ mov byte ptr [rdx+1C],03
+ jmp entityselected
+ghostfish:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],0B2
+ jmp entityselected
+fiendis:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov [rdx+04],070
+ jmp entityselected
+fiendgrey:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov [rdx+04],02F
+ jmp entityselected
+imps:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],0F1
+ jmp entityselected
+dragon:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],02D
+ jmp entityselected
+flyingrobot:
+ cmp byte ptr [rdx],0
+ jne codea
+ inc byte ptr [flyingrobotamt]
+ cmp byte ptr [flyingrobotamt],02
+ jae tac
+ mov [rdx+04],01D
+ jmp entityselected
+flyingrobotair:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],0A3
+ jmp entityselected
+flyingrobot2:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov byte ptr [rdx+04],01D
+ jmp entityselected
+tengu:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],EA
+ jmp entityselected
+tac:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov [rdx+04],038
+ jmp entityselected
+tacmelee:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov byte ptr [rdx+04],038
+ mov byte ptr [rdx+2C],FF
+ mov byte ptr [rdx+30],FF
+ mov byte ptr [rdx+31],FF
+ mov byte ptr [rdx+38],FF
+ mov byte ptr [rdx+3C],FF
+ mov byte ptr [rdx+3D],FF
+ jmp entityselected
+tacmeleered:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov byte ptr [rdx+04],038
+ mov byte ptr [rdx+2C],FF
+ mov byte ptr [rdx+24],02
+ mov byte ptr [rdx+30],FF
+ mov byte ptr [rdx+31],FF
+ mov byte ptr [rdx+38],FF
+ mov byte ptr [rdx+3C],FF
+ mov byte ptr [rdx+3D],FF
+ jmp entityselected
+tacred:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov byte ptr [rdx+04],038
+ mov byte ptr [rdx+24],02
+ jmp entityselected
+taconerocket:
+ cmp byte ptr [rdx],0
+ jne code
+ mov byte ptr [rdx+04],038
+ mov byte ptr [rdx+2C],01
+ mov byte ptr [rdx+30],3D
+ mov byte ptr [rdx+31],00
+ mov byte ptr [rdx+38],02
+ mov byte ptr [rdx+3C],3E
+ mov byte ptr [rdx+3D],00
+ jmp entityselected
+tacmanyrocket:
+ cmp byte ptr [rdx],0
+ jne code
+ mov byte ptr [rdx+04],038
+ mov byte ptr [rdx+2C],01
+ mov byte ptr [rdx+30],8B
+ mov byte ptr [rdx+31],00
+ mov byte ptr [rdx+38],02
+ mov byte ptr [rdx+3C],8C
+ mov byte ptr [rdx+3D],00
+ jmp entityselected
+rockcrabsilver:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],07A
+ jmp entityselected
+redrobot:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],01C
+ jmp entityselected
+zombie:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],00C
+ jmp entityselected
+fiendmage:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],07C
+ jmp entityselected
+turretrobot:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],0A2
+ jmp entityselected
+dog:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov [rdx+04],07F
+ jmp entityselected
+dogeasy:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [ent1],rdx
+ mov [ent2],r10
+ mov [rdx+04],05
+ jmp entityselected
+rasetsu:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],0A5
+ jmp entityselected
+rasetsublue:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],023
+ jmp entityselected
+genshin:
+ cmp byte ptr [rdx],0
+ jne codea
+ mov [rdx+04],26
+ jmp entityselected
+setenemychp1:
+ cmp byte ptr [chpstage],01
+ je setenemychp0101
+ cmp byte ptr [chpstage],02
+ je setenemychp0102
+ cmp byte ptr [chpstage],03
+ je setenemychp0103
+ cmp byte ptr [chpstage],04
+ je setenemychp0104
+ cmp byte ptr [chpstage],05
+ je greyninja
+ cmp byte ptr [chpstage],06
+ je greyninjabow
+ cmp byte ptr [chpstage],07
+ je isninja
+ jmp entityselected
+setenemychp0101:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle isninja
+ {jle greyninja}
+ jmp codea
+setenemychp0102:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ {cmp byte ptr [scounter],#05
+ jle isninja}
+ cmp byte ptr [scounter],#02
+ jle greyninja
+ jmp codea
+setenemychp0103:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle greyninjabow
+ cmp byte ptr [scounter],#02
+ jle greyninja
+ mov word ptr [rdx+64],31C0
+ cmp byte ptr [scounter],#04
+ jle greyninja
+ cmp byte ptr [scounter],#05
+ jle isninja
+ jmp codea
+setenemychp0104:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle greyninjabow
+ cmp byte ptr [counter],#04
+ jle greyninja
+ jmp codea
+setenemychp0105:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle mage
+ cmp byte ptr [counter],#02
+ jle greyninja
+ jmp codea
+setenemychp0106:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle greyninjabow
+ cmp byte ptr [scounter],#03
+ jle greyninja
+ jmp codea
+setenemychp0107:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle greyninja
+ jmp codea
+setenemychp0108:
+ mov byte ptr [scounter],00
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle mage
+ jmp codea
+setenemychp0109:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle mage
+ cmp byte ptr [scounter],#02
+ jle isninja
+ jmp codea
+setenemychp01010:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle isninja
+ jmp codea
+setenemychp01011:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle mage
+ cmp byte ptr [scounter],#03
+ jle isninja
+ cmp byte ptr [scounter],#05
+ jle greyninja
+ jmp codea
+setenemychp01012:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle mage
+ mov byte ptr [rdx+04],09
+ jmp codea
+setenemychp01013:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle mage
+ cmp byte ptr [scounter],#03
+ jle isninja
+ cmp byte ptr [scounter],#04
+ jle greyninja
+ jmp codea
+setenemychp01014:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle greyninja
+ cmp byte ptr [counter],#03
+ jle isninja
+ jmp codea
+setenemychp01015:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle greyninjabow
+ cmp byte ptr [scounter],#03
+ jle isninja
+ cmp byte ptr [scounter],#04
+ jle greyninja
+ jmp codea
+setenemychp01016:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle mage
+ cmp byte ptr [counter],#02
+ jle isninja
+ jmp codea
+setenemychp01017:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ je setenemychp01017
+ mov byte ptr [canspawn],01
+ lea rdx,[rdx-1220]
+ lea r10,[r10-1220]
+ cmp byte ptr [scounter],#01
+ jle rasetsublue
+ lea rdx,[rdx+1220]
+ lea r10,[r10+1220]
+ mov byte ptr [rdx+04],023
+ jmp codea
+setenemychp01018:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#03
+ jle greyninja
+ cmp byte ptr [scounter],#04
+ jle isninja
+ jmp codea
+setenemychp01019:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle greyninja
+ cmp byte ptr [counter],#02
+ jle isninja
+ jmp codea
+setenemychp01020:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle greyninja
+ cmp byte ptr [scounter],#02
+ jle isninja
+ jmp codea
+setenemychp01021:
+ mov word ptr [rdx+64],4C80
+ mov byte ptr [rdx+04],026
+ jmp codea
+setenemychp01022:
+ mov [triggerAddress],rcx
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp01022
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle isninja
+ cmp byte ptr [scounter],#03
+ jle greyninja
+ mov byte ptr [canDelay],01
+ mov byte ptr [sWave],00
+ mov byte ptr [scounter],00
+ mov byte ptr [delayThreshold],01
+ jmp codea
+setenemychp200:
+ cmp byte ptr [chpstage],04
+ je setenemychp204
+ cmp byte ptr [chpstage],05
+ je setenemychp205
+ cmp byte ptr [chpstage],09
+ je setenemychp209
+ jmp entityselected
+setenemychp201:
+ mov [triggerAddress],rcx
+ cmp byte ptr [sWave],01
+ je setenemychp201a
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle isninja
+ mov byte ptr [canDelay],01
+ mov byte ptr [sWave],01
+ {cmp byte ptr [scounter],#04
+ jle greyninjabow
+ cmp byte ptr [scounter],#05
+ jle greyninja}
+ jmp codea
+setenemychp201a:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp201a
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle isninja
+ mov byte ptr [canDelay],00
+ mov byte ptr [sWave],00
+ jmp codea
+setenemychp202:
+ inc byte ptr [counter]
+ cmp byte ptr [scounter],00
+ jz setenemychp202
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle mage
+ cmp byte ptr [counter],#03
+ jle isninja
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp203:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ {cmp byte ptr [counter],#02
+ jle greyninja}
+ cmp byte ptr [counter],#03
+ jle isninja
+ cmp byte ptr [counter],#04
+ jle greyninjabow
+ mov byte ptr [rdx+01],00
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp204:
+ cmp byte ptr [rnum],#25
+ jle mage
+ jmp isninja
+setenemychp205:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle greyninja
+ cmp byte ptr [counter],#03
+ jle mage
+ cmp byte ptr [counter],#06
+ jle isninja
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp206:
+ inc byte ptr [counter]
+ cmp byte ptr [scounter],00
+ jz setenemychp206
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#03
+ jle mage
+ cmp byte ptr [counter],#05
+ jle greyninjabow
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp207:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#03
+ jle isninja
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp208:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle greyninja
+ cmp byte ptr [counter],#02
+ jle isninja
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp209:
+ jmp isninja
+{setenemychp210:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle dog
+ cmp byte ptr [counter],#04
+ jle greyninja
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea}
+setenemychp210:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle greyninja
+ {cmp byte ptr [counter],#02
+ jle dog
+ cmp byte ptr [counter],#04
+ jle greyninja}
+ jmp codea
+setenemychp211:
+ jmp mage
+ mov byte ptr [counter],0
+setenemychp212:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle greyninjabow
+ mov word ptr [rdx+64],9580
+ cmp byte ptr [counter],#03
+ jle mage
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp213:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle greyninjabow
+ cmp byte ptr [counter],#02
+ jle mage
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp214:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle greyninjabow
+ cmp byte ptr [counter],#04
+ jle isninja
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp215:
+ mov word ptr [rdx+64],AFC0
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle mage
+ cmp byte ptr [counter],#03
+ jle greyninja
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp216:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle greyninjabow
+ cmp byte ptr [counter],#02
+ jle greyninja
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp217:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp217
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle mage
+ cmp byte ptr [scounter],#02
+ jle isninja
+ jmp codea
+setenemychp218:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp218
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle mage
+ cmp byte ptr [scounter],#03
+ jle greyninja
+ jmp codea
+setenemychp219:
+ mov [triggerAddress],rcx
+ cmp byte ptr [sWave],01
+ je setenemychp219a
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#04
+ jle isninja
+ mov byte ptr [canDelay],01
+ mov byte ptr [sWave],01
+ mov byte ptr [delayThreshold],00
+ {cmp byte ptr [scounter],#04
+ jle greyninjabow
+ cmp byte ptr [scounter],#05
+ jle greyninja}
+ jmp codea
+setenemychp219a:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp219a
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle isninja
+ mov byte ptr [canDelay],00
+ mov byte ptr [sWave],00
+ jmp codea
+setenemychp220:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp220
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle mage
+ cmp byte ptr [scounter],#04
+ jle isninja
+ cmp byte ptr [scounter],#05
+ jle greyninja
+ jmp codea
+setenemychp221:
+ mov [triggerAddress],rcx
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp221
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle mage
+ cmp byte ptr [scounter],#03
+ jle isninja
+ cmp byte ptr [scounter],#03
+ jle greyninja
+ mov byte ptr [canDelay],01
+ mov byte ptr [sWave],00
+ mov byte ptr [delayThreshold],00
+ jmp codea
+setenemychp300:
+ cmp bx,D8D0
+ je tac
+ cmp bx,E890
+ je tacmeleered
+ cmp byte ptr [chpstage],#05
+ je greyninja
+ cmp byte ptr [chpstage],#07
+ je greyninja
+ cmp byte ptr [chpstage],#08
+ je isninja
+ cmp byte ptr [rdx+04],038
+ je greyninja
+ jmp entityselected
+setenemychp301:
+ mov byte ptr [onstart],FF
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#03
+ jle greyninja
+ cmp byte ptr [scounter],#06
+ jle tacmeleered
+ cmp byte ptr [scounter],#10
+ jle isninja
+ {cmp byte ptr [scounter],#10
+ jle tacmeleered}
+ mov byte ptr [scounter],#00
+ jmp codea
+setenemychp302:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],#05
+ jae setenemychp3022
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle mage
+ cmp byte ptr [scounter],#05
+ jle isninja
+ cmp byte ptr [scounter],#09
+ jle tacmeleered
+ jmp codea
+setenemychp3022:
+ cmp byte ptr [rdx],00
+ jne codea
+ jmp greyninja
+ {mov byte ptr [rdx+04],09C
+ jmp codea}
+setenemychp303:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle isninja
+ cmp byte ptr [scounter],#03
+ mov word ptr [rdx+64],7EE0
+ jle isninja
+ jmp codea
+setenemychp304:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle taconerocket
+ jmp codea
+setenemychp305:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#04
+ jle isninja
+ cmp byte ptr [scounter],#08
+ jle tacmeleered
+ jmp codea
+setenemychp306:
+ mov word ptr [rdx+64],0D60
+ cmp byte ptr [rdx],00
+ jne codea
+ mov byte ptr [rdx+04],0A1
+ jmp codea
+setenemychp309:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle vangelfgold
+ cmp byte ptr [scounter],#06
+ jle isninja
+ jmp codea
+setenemychp310:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#04
+ jle tac
+ cmp byte ptr [scounter],#08
+ jle tacmeleered
+ jmp codea
+setenemychp400:
+ cmp byte ptr [chpstage],#09
+ je isninja
+ jmp entityselected
+{setenemychp401:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle greyninjabow
+ cmp byte ptr [scounter],#03
+ jle flyingredragon
+ {cmp byte ptr [scounter],#05
+ jle vangelf
+ cmp byte ptr [scounter],#07
+ jle mage}
+ {mov byte ptr [rdx+01],00
+ mov byte ptr [scounter],00
+ jmp codea}
+setenemychp401:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle greyninjabow
+ cmp byte ptr [scounter],#05
+ jle vangelf
+ {cmp byte ptr [scounter],#07
+ jle mage}
+ mov byte ptr [rdx+01],00
+ mov byte ptr [scounter],00
+ jmp codea
+setenemychp402:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#03
+ jle greyninja
+ cmp byte ptr [scounter],#06
+ jle isninja
+ cmp byte ptr [scounter],#08
+ jle mage
+ mov byte ptr [rdx+01],00
+ mov byte ptr [scounter],00
+ jmp codea
+setenemychp403:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle greyninjabow
+ cmp byte ptr [counter],#02
+ jle mage
+ cmp byte ptr [counter],#03
+ jle vangelf
+ mov byte ptr [scounter],00
+ jmp codea
+setenemychp404:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#03
+ jle vangelf
+ mov word ptr [rdx+64],C340
+ cmp byte ptr [scounter],#06
+ jle greyninja
+ cmp byte ptr [scounter],#09
+ jle isninja
+ jmp codea
+setenemychp405:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#07
+ jle isninja
+ mov byte ptr [scounter],00
+ jmp codea
+setenemychp406:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle mage
+ cmp byte ptr [counter],#04
+ jle greyninjabow
+ jmp codea
+setenemychp407:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ mov word ptr [rdx+64],8B40
+ cmp byte ptr [counter],#02
+ jle greyninjabow
+ mov word ptr [rdx+64],8AC0
+ cmp byte ptr [counter],#04
+ jle vangelf
+ jmp codea
+setenemychp408:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#03
+ jle vangelf
+ cmp byte ptr [scounter],#07
+ jle greyninja
+ cmp byte ptr [scounter],#08
+ jle greyninjabow
+ jmp codea
+setenemychp409:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#03
+ jle greyninjabow
+ cmp byte ptr [counter],#05
+ jle vangelf
+ jmp codea
+setenemychp410:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle vangelf
+ cmp byte ptr [counter],#02
+ jle greyninjabow
+ jmp codea
+setenemychp411:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#04
+ jle greyninja
+ cmp byte ptr [scounter],#08
+ jle isninja
+ cmp byte ptr [scounter],#09
+ jle vangelf
+ jmp codea
+setenemychp412:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ mov word ptr [rdx+64],70E0
+ cmp byte ptr [scounter],#03
+ jle greyninja
+ cmp byte ptr [scounter],#06
+ jle isninja
+ jmp codea
+setenemychp413:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#04
+ jle greyninja
+ cmp byte ptr [scounter],#08
+ jle isninja
+ jmp codea
+setenemychp414:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#08
+ jle isninja
+ cmp byte ptr [scounter],#09
+ jle vangelf
+ jmp codea
+setCHP4Trap:
+ cmp byte ptr [rdx+01],089
+ jne code
+ mov byte ptr [rdx+04],09D
+ mov byte ptr [rdx+01],00
+ jmp code
+setenemychp500:
+ jmp entityselected
+setenemychp6:
+ mov byte ptr [rdx+08],02D
+ cmp byte ptr [chpstage],01
+ je setenemychp601
+ cmp byte ptr [chpstage],02
+ je wolf
+ cmp byte ptr [chpstage],03
+ je gaja
+ cmp byte ptr [chpstage],04
+ je mage {isninja}
+ cmp byte ptr [chpstage],05
+ je mage
+ jmp entityselected
+setenemychp601:
+ mov byte ptr [rdx+08],02D
+ jmp mage
+setenemychp602:
+ mov byte ptr [rdx+08],02D
+ mov word ptr [rdx+64],3400
+ mov byte ptr [rdx+04],006
+ jmp codea
+setenemychp603:
+ mov byte ptr [rdx+08],02D
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],02
+ jle vangelfgold
+ cmp byte ptr [scounter],06
+ jle gaja
+ jmp codea
+setenemychp604:
+ mov byte ptr [rdx+08],02D
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],01
+ jle vangelfgold
+ cmp byte ptr [counter],02
+ jle gaja
+ jmp codea
+setenemychp605:
+ mov byte ptr [rdx+08],02D
+ mov word ptr [rdx+64],1480
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ {cmp byte ptr [counter],01
+ jle mage isninjam}
+ cmp byte ptr [counter],01
+ jle mage
+ jmp codea
+setenemychp606:
+ mov byte ptr [rdx+08],02D
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ je setenemychp606
+ mov byte ptr [canspawn],01
+ {cmp byte ptr [scounter],02
+ jle mage}
+ cmp byte ptr [scounter],05
+ jle wolf
+ jmp codea
+setenemychp607:
+ mov byte ptr [rdx+08],02D
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],01
+ jle vangelfgold
+ cmp byte ptr [scounter],05
+ jle gaja
+ jmp codea
+setenemychp608:
+ mov byte ptr [rdx+08],02D
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#10
+ jle vangelfgold
+ cmp byte ptr [scounter],#14
+ jle gaja
+ jmp codea
+setenemychp609:
+ mov byte ptr [rdx+08],02D
+ mov byte ptr [rdx+04],09E
+ mov byte ptr [rdx+1C],03
+ jmp codea
+setenemychp610:
+ mov byte ptr [rdx+08],02D
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ mov byte ptr [rdx],FF
+ cmp byte ptr [scounter],01
+ jle mage
+ mov byte ptr [rdx],00
+ cmp byte ptr [scounter],05
+ jle mage
+setWaterBoss:
+  mov byte ptr [rdx+08],02D
+  jmp codea
+setenemychp700:
+ cmp byte ptr [chpstage],01
+ je gajam
+ cmp byte ptr [chpstage],02
+ je wolfr
+ cmp byte ptr [chpstage],03
+ je gaja
+ cmp byte ptr [chpstage],04
+ je wolf
+ jmp entityselected
+setenemychp701:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ mov [rdx+64],94A0
+ cmp byte ptr [scounter],#04
+ jle wolfr
+ jmp codea
+setenemychp702:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#04
+ jle wolf
+ {mov [rdx+64],5EE0
+ cmp byte ptr [scounter],#04
+ jle wolf}
+ jmp codea
+setenemychp703:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle wolfr
+ mov [rdx+04],025
+ jmp codea
+setenemychp800:
+ cmp bx,0668
+ je setenemychp801
+ cmp bx,B3A8
+ je setenemychp802
+ cmp bx,C368
+ je setenemychp802
+ jmp entityselected
+setenemychp801:
+ mov [rdx+64],F2C0
+ jmp vangelf
+setenemychp802:
+ mov [rdx+64],7060
+ jmp vangelf
+setenemychp9:
+ cmp byte ptr [chpstage],01
+ je tacredm
+ jmp entityselected
+setenemychp901:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp901
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#03
+ jle flyingrobotair
+ cmp byte ptr [scounter],#06
+ jle tacredm
+ jmp codea
+setenemychp902:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp902
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#03
+ jle turretrobot
+ cmp byte ptr [scounter],#06
+ jle tacredm
+ jmp codea
+setenemychp903:
+ mov [triggerAddress],rcx
+ inc byte ptr [scounter]
+ mov word ptr [rdx+64],D780
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle flyingrobot2
+ mov byte ptr [canDelay],01
+ mov byte ptr [sWave],00
+ mov byte ptr [scounter],00
+ mov byte ptr [delayThreshold],01
+ jmp codea
+setenemychp904:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp904
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle flyingrobot2
+ cmp byte ptr [scounter],#06
+ jle tacredm
+ jmp codea
+setenemychp910:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ je setenemychp910
+ mov byte ptr [canspawn],01
+ lea rdx,[rdx-436A0]
+ lea r10,[r10-436A0]
+ cmp byte ptr [scounter],#06
+ jle isninja
+ lea rdx,[rdx+436A0]
+ lea r10,[r10+436A0]
+ mov byte ptr [rdx+04],026
+ jmp codea
+setenemychp100:
+ cmp byte ptr [chpstage],07
+ je setenemychp107
+ cmp byte ptr [chpstage],#12
+ je tacmeleered
+ cmp byte ptr [chpstage],01
+ je greyninja
+ cmp byte ptr [chpstage],05
+ je setenemychp105
+ cmp byte ptr [chpstage],06
+ je greyninjam
+ cmp byte ptr [chpstage],08
+ je isninjam
+ cmp byte ptr [chpstage],09
+ je setenemychp1013
+ cmp byte ptr [chpstage],#13
+ je gajapm
+ jmp entityselected
+setenemychp101:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#05
+ jle greyninja
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp102:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ {cmp byte ptr [counter],#01
+ jle tacred}
+ cmp byte ptr [counter],#02
+ jle greyninja
+ jmp codea
+setenemychp103:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#03
+ jle tacmelee
+ cmp byte ptr [counter],#04
+ jle isninja
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp104:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#04
+ jle tac
+ cmp byte ptr [counter],#06
+ jle isninja
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp105:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#05
+ jle isninjam
+ jmp codea
+setenemychp106:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#01
+ jle isninja
+ jmp codea
+setenemychp107:
+ mov byte ptr [scounter],0
+ cmp byte ptr [rnum],#35
+ jle isninja
+ jmp tacmelee
+setenemychp108:
+ cmp byte ptr [rnum],#15
+ jle isninja
+ jmp tacmelee
+setenemychp109:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ {cmp byte ptr [counter],#01
+ jle flyingrobot}
+ cmp byte ptr [counter],#06
+ jle tacmeleered
+ jmp codea
+setenemychp1010:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#04
+ jle entityselected
+ jmp codea
+setenemychp1011:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#04
+ jle isninjam
+ {cmp byte ptr [counter],#07
+ jle flyingrobot}
+ jmp codea
+setenemychp1012:
+ mov [rdx+64],A180
+ jmp greyninjam
+setenemychp1013:
+ inc byte ptr [counter]
+ mov [rdx+64],9780
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle tacred
+ jmp codea
+setenemychp1100:
+ cmp byte ptr [chpstage],01
+ je fiendis
+ cmp byte ptr [chpstage],02
+ je fiendgrey
+ cmp byte ptr [chpstage],03
+ je fiendmage
+ cmp byte ptr [chpstage],04
+ je vangelfgold
+ jmp entityselected
+setenemychp120:
+ cmp byte ptr [chpstage],01
+ je fiendmage
+ cmp byte ptr [chpstage],02
+ je zombie
+ jmp entityselected
+setenemychp121:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],04
+ jle fiendmage
+ jmp codea
+setenemychp122:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],01
+ jle zombie
+ cmp byte ptr [scounter],03
+ jle fiendmage
+ jmp codea
+setenemychp123:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],01
+ jle zombie
+ cmp byte ptr [counter],02
+ jle fiendmage
+ jmp codea
+{setenemychp121:
+ cmp byte ptr [rnum],#45
+ jle tac
+ jmp zombie
+setenemychp122:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle tac
+ cmp byte ptr [scounter],#06
+ jle rockcrabsilver
+ cmp byte ptr [scounter],#09
+ jle zombie
+ jmp codea
+setenemychp123:
+ inc byte ptr [scounter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle zombie
+ cmp byte ptr [scounter],#04
+ jle tac
+ jmp codea}
+setenemychp130:
+ cmp byte ptr [chpstage],01
+ je fiendis
+ cmp byte ptr [chpstage],02
+ je fiendgrey
+ cmp byte ptr [chpstage],03
+ je fiendmage
+ cmp byte ptr [chpstage],04
+ je isninja
+ cmp byte ptr [chpstage],06
+ je setenemychp136
+ jmp entityselected
+setenemychp131:
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],#03
+ jle zombie {fiendis}
+ mov [rdx+64],3440
+ cmp byte ptr [scounter],#08
+ jle gaja
+ jmp codea
+setenemychp132:
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],#02
+ jle gaja
+ {cmp byte ptr [scounter],#05
+ jle fiendis
+ cmp byte ptr [scounter],#09
+ jle fiendgrey}
+ jmp codea
+setenemychp133:
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],#01
+ jle rasetsu
+ jmp codea
+setenemychp136:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle isninja
+ cmp byte ptr [counter],#02
+ jle greyninja
+ jmp codea
+setenemychp137:
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],#04
+ jle isninja
+ cmp byte ptr [scounter],#08
+ jle greyninja
+ jmp codea
+setenemychp138:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#01
+ jle greyninja
+ cmp byte ptr [counter],#02
+ jle isninja
+ jmp codea
+setenemychp140:
+ cmp byte ptr [chpstage],01
+ je fiendis
+ cmp byte ptr [chpstage],02
+ je fiendgrey
+ cmp byte ptr [chpstage],05
+ je setenemychp145
+ cmp byte ptr [chpstage],06
+ je setenemychp146
+ cmp byte ptr [chpstage],07
+ je setenemychp147
+ cmp byte ptr [chpstage],08
+ je setenemychp148
+ cmp byte ptr [chpstage],#14
+ je setenemychp1414
+ cmp byte ptr [chpstage],#15
+ je setenemychp1415
+ cmp byte ptr [chpstage],#16
+ je fiendis
+ jmp entityselected
+setenemychp141:
+  mov byte ptr [canspawn],01
+  inc byte ptr [scounter]
+  cmp byte ptr [scounter],#04
+  jle fiendis
+  cmp byte ptr [scounter],#05
+  jle fiendgrey
+  jmp codea
+setenemychp142:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle fiendgrey
+ cmp byte ptr [counter],#03
+ jle fiendis
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp143:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#02
+ jle fiendis
+ cmp byte ptr [counter],#03
+ jle fiendgrey
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+setenemychp144:
+ inc byte ptr [counter]
+ cmp byte ptr [counter],#06
+ jae codea
+ mov byte ptr [canspawn],01
+ lea rdx,[rdx-2584]
+ lea r10,[r10-2584]
+ mov byte ptr [rdx+04],02F
+ mov [rdx+64],8960
+ jmp entityselected
+{setenemychp144:
+ cmp byte ptr [sWave],02
+ je setenemychp144a
+ mov byte ptr [canDelay],01
+ mov byte ptr [sWave],02
+ jmp entityselected
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp144
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle tengu
+ lea rdx,[rdx-2584]
+ lea r10,[r10-2584]
+ cmp byte ptr [scounter],#06
+ jle fiendgrey
+ mov byte ptr [canDelay],01
+ mov byte ptr [sWave],02
+ jmp codea
+setenemychp144a:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp144a
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#05
+ jle fiendis
+ mov byte ptr [sWave],00
+ jmp codea}
+setchp14ras:
+ mov byte ptr [rdx+04],0A5
+ inc byte ptr [ras]
+ jmp entityselected
+setenemychp145:
+cmp byte ptr [rnum],#35
+ jle fiendgrey
+ jmp fiendis
+setenemychp146:
+ cmp byte ptr [rnum],#55
+ jle fiendgrey
+ jmp fiendis
+setenemychp147:
+  jmp fiendis
+setenemychp148:
+  jmp fiendgrey
+setenemychp149:
+  mov [triggerAddress],rcx
+  cmp byte ptr [sWave],01
+  je setenemychp149e
+  inc byte ptr [scounter]
+  cmp byte ptr [scounter],00
+  je setenemychp149
+  mov byte ptr [canspawn],01
+  cmp byte ptr [scounter],#03
+  jle rasetsu
+  cmp byte ptr [scounter],#08
+  jle fiendis
+  cmp byte ptr [scounter],#16
+  jle fiendgrey
+  mov byte ptr [canDelay],01
+  mov byte ptr [sWave],01
+  jmp codea
+setenemychp149d:
+  cmp byte ptr [sWave],02
+  je setenemychp149e
+  inc byte ptr [scounter]
+  cmp byte ptr [scounter],00
+  je setenemychp149d
+  mov byte ptr [canspawn],01
+  cmp byte ptr [scounter],#04
+  jle rasetsu
+  mov byte ptr [canDelay],01
+  mov byte ptr [sWave],02
+  jmp codea
+setenemychp149e:
+  inc byte ptr [scounter]
+  cmp byte ptr [scounter],00
+  je setenemychp149e
+  mov byte ptr [canspawn],01
+  cmp byte ptr [scounter],#02
+  jle rasetsu
+  cmp byte ptr [scounter],#12
+  jle fiendis
+  cmp byte ptr [scounter],#18
+  jle fiendgrey
+  jmp codea
+setenemychp1410:
+  mov byte ptr [canspawn],01
+  inc byte ptr [scounter]
+  mov [rdx+64],D480
+  cmp byte ptr [scounter],#05
+  jle fiendis
+  cmp byte ptr [scounter],#08
+  jle greyninjabow
+  jmp codea
+setenemychp1411:
+  inc byte ptr [counter]
+  cmp byte ptr [counter],#03
+  jl fiendmage
+  mov byte ptr [counter],0
+  jmp codea
+setenemychp1412:
+  mov byte ptr [canspawn],01
+  inc byte ptr [counter]
+  cmp byte ptr [counter],#01
+  jle greyninjabow
+  cmp byte ptr [counter],#02
+  jle fiendmage
+  cmp byte ptr [counter],#03
+  jle greyninja
+  cmp byte ptr [counter],#04
+  jle fiendis
+  mov byte ptr [counter],0
+  jmp codea
+setenemychp1413:
+  mov byte ptr [canspawn],01
+  inc byte ptr [counter]
+  cmp byte ptr [counter],#01
+  jle fiendmage
+  cmp byte ptr [counter],#02
+  jle greyninjabow
+  mov byte ptr [counter],#0
+  jmp codea
+setenemychp1414:
+  cmp byte ptr [rnum],#25
+  jle fiendis
+  jmp fiendgrey
+setenemychp1415:
+  mov byte ptr [canspawn],01
+  inc byte ptr [counter]
+  cmp byte ptr [counter],#02
+  jle fiendis
+  cmp byte ptr [counter],#04
+  jle fiendgrey
+  mov byte ptr [counter],#0
+  jmp codea
+setenemychp1416:
+  mov byte ptr [canspawn],01
+  inc byte ptr [counter]
+  cmp byte ptr [counter],#03
+  jle greyninjabow
+  mov byte ptr [counter],#0
+  jmp codea
+setenemychp1417:
+  mov byte ptr [scounter],0
+  mov byte ptr [canspawn],01
+  inc byte ptr [counter]
+  cmp byte ptr [counter],#02
+  jle greyninjabow
+  cmp byte ptr [counter],#04
+  jle fiendmage
+  jmp codea
+setenemychp14chestTroll:
+ mov byte ptr [canspawn],01
+ inc byte ptr [counter]
+ cmp byte ptr [counter],#02
+ jle greyninjabow
+ cmp byte ptr [counter],#03
+ jle fiendmage
+ jmp codea
+setenemychp1418:
+ mov byte ptr [canspawn],01
+ inc byte ptr [counter]
+ cmp byte ptr [counter],#02
+ jle fiendmage
+ cmp byte ptr [counter],#03
+ jle greyninjabow
+ jmp codea
+setenemychp1419:
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],#02
+ jle greyninja
+ cmp byte ptr [scounter],#04
+ jle fiendgrey
+ cmp byte ptr [scounter],#06
+ jle fiendis
+ jmp codea
+setenemychp1420:
+ mov byte ptr [canspawn],01
+ inc byte ptr [counter]
+ cmp byte ptr [counter],#01
+ jle fiendmage
+ cmp byte ptr [counter],#04
+ jle fiendgrey
+ jmp codea
+setenemychp1421:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],#12
+ ja codea
+ mov byte ptr [canspawn],01
+ inc byte ptr [counter]
+ cmp byte ptr [counter],#01
+ jle fiendgrey
+ cmp byte ptr [counter],#03
+ jle fiendis
+ mov byte ptr [counter],#0
+ jmp codea
+setenemychp1422:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],#12
+ ja codea
+ mov byte ptr [canspawn],01
+ inc byte ptr [counter]
+ cmp byte ptr [counter],#02
+ jle fiendis
+ cmp byte ptr [counter],#03
+ jle fiendgrey
+ mov byte ptr [counter],#0
+ jmp codea
+setenemychp1423:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],#12
+ ja codea
+ mov byte ptr [canspawn],01
+ inc byte ptr [counter]
+ cmp byte ptr [counter],#01
+ jle fiendmage
+ cmp byte ptr [counter],#02
+ jle fiendgrey
+ mov byte ptr [counter],#0
+ jmp codea
+setenemychp1424:
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],#12
+ ja codea
+ mov byte ptr [canspawn],01
+ inc byte ptr [counter]
+ cmp byte ptr [counter],#01
+ jle fiendgrey
+ cmp byte ptr [counter],#02
+ jle fiendis
+ mov byte ptr [counter],#0
+ jmp codea
+setenemychp1425:
+ mov byte ptr [ninpo],00
+ mov byte ptr [canspawn],01
+ inc byte ptr [counter]
+ cmp byte ptr [counter],#01
+ jle fiendmage
+ cmp byte ptr [counter],#03
+ jle fiendgrey
+ cmp byte ptr [counter],#04
+ jle fiendis
+ mov byte ptr [counter],#0
+ jmp codea
+setenemychp1426:
+ mov byte ptr [nindance],-01
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ lea rdx,[rdx-A8E4]
+ lea r10,[r10-A8E4]
+ cmp byte ptr [scounter],#04
+ jle fiendmage
+ lea rdx,[rdx+A8E4]
+ lea r10,[r10+A8E4]
+ mov byte ptr [rdx+04],026
+ jmp codea
+setenemychp1427:
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],#03
+ jle fiendgrey
+ cmp byte ptr [scounter],#06
+ jle greyninja
+ jmp codea
+setenemychp1428:
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],#03
+ jle fiendis
+ cmp byte ptr [scounter],#06
+ jle greyninja
+ jmp codea
+setenemychp1429:
+ mov [triggerAddress],rcx
+ cmp byte ptr [sWave],02
+ je setenemychp1429a
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp1429
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#05
+ jle fiendis
+ cmp byte ptr [scounter],#09
+ jle fiendgrey
+ inc byte ptr [sWave]
+ mov byte ptr [canDelay],01
+ mov byte ptr [scounter],00
+ mov byte ptr [delayThreshold],00
+ jmp codea
+setenemychp1429a:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ jz setenemychp1429a
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#05
+ jle fiendis
+ mov [rdx+64],3F40
+ cmp byte ptr [scounter],#10
+ jle fiendgrey
+ mov byte ptr [canDelay],00
+ mov byte ptr [sWave],00
+ mov byte ptr [scounter],00
+ jmp codea
+setenemychp150:
+ cmp byte ptr [chpstage],01
+ je vangelfgold
+ cmp byte ptr [chpstage],02
+ je vangelf
+ jmp entityselected
+setenemychp1501:
+ mov byte ptr [rdx+1C],03
+ mov byte ptr [rdx+04],07F
+ jmp codea
+setenemychp1502:
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],#02
+ jle flyingredragon
+ mov byte ptr [rdx+04],0F1//CHEESY DELETE LoL
+ jmp codea
+setenemychp1503:
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],#02
+ jle redrobot
+ cmp byte ptr [scounter],#03
+ jle vangelfgold
+ jmp codea
+setenemychp1504:
+ mov byte ptr [rdx+04],09E
+ mov byte ptr [rdx+1C],03
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],#05
+ jle entityselected
+ mov byte ptr [scounter],00
+ jmp deleteme
+setenemychp1505:
+ mov byte ptr [canspawn],01
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],#00
+ je setenemychp1505
+ mov byte ptr [rdx+04],025
+ cmp byte ptr [scounter],#01
+ jle entityselected
+ mov byte ptr [rdx+04],072
+ cmp byte ptr [scounter],#03
+ jle entityselected
+ jmp codea
+setenemychp1506:
+ mov byte ptr [rdx+04],0A5
+ jmp deleteme
+setenemychp160:
+ cmp byte ptr [chpstage],01
+ je setenemychp1602
+ cmp byte ptr [chpstage],02
+ je fiendis
+ jmp entityselected
+setenemychp1601:
+ mov byte ptr [canspawn],01
+ inc byte ptr [counter]
+ cmp byte ptr [counter],#01
+ jle zombie
+ cmp byte ptr [counter],#02
+ jle greyninja
+ cmp byte ptr [counter],#03
+ jle tacred
+ jmp codea
+setenemychp1602:
+ mov byte ptr [rdx+04],00C
+ jmp codea
+setenemychp1603:
+ inc byte ptr [scounter]
+ cmp byte ptr [scounter],00
+ je setenemychp1603
+ mov byte ptr [canspawn],01
+ cmp byte ptr [scounter],#02
+ jle rasetsu
+ cmp byte ptr [scounter],#08
+ jle fiendis
+ jmp codea
+setenemychp170:
+ cmp byte ptr [chpstage],01
+ je setenemychp171
+ cmp byte ptr [chpstage],02
+ je setenemychp172
+ jmp entityselected
+setenemychp171:
+ cmp byte ptr [rnum],#45
+ jle redrobot
+ cmp byte ptr [rnum],#100
+ jle fiendis
+ jmp entityselected
+setenemychp172:
+ cmp byte ptr [rnum],#15
+ jle fiendmage
+ cmp byte ptr [rnum],#45
+ jle fiendgrey
+ cmp byte ptr [rnum],#100
+ jle fiendis
+ jmp entityselected
+setenemycourse5:
+ cmp byte ptr[chpstage],01
+ je setenemycourse5stairs
+ movzx rbp, byte ptr [spawnlimit]
+ cmp [spawncounter],bp
+ mov byte ptr [canspawn],0
+ jae codea
+ inc byte ptr [spawncounter]
+ mov byte ptr [canspawn],01
+ jmp entityselected
+setenemycourse5stairs:
+ inc byte ptr [counter]
+ mov byte ptr [canspawn],01
+ cmp byte ptr [counter],#03
+ jle greyninja
+ cmp byte ptr [counter],#07
+ jle fiendgrey
+ cmp byte ptr [counter],#12
+ jle tacmelee
+ mov byte ptr [canspawn],0
+ mov byte ptr [counter],0
+ jmp codea
+resetscounter:
+ mov byte ptr [scounter],-01
+ mov byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],-01
+ //Check what level being played
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#06
+ je chapter1
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#07
+ je chapter2
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#08
+ je chapter3
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#09
+ je chapter4
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#55
+ je chapter5
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#10
+ je chapter6
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#11
+ je chapter7
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#53
+ je chapter8
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#12
+ je chapter9
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#13
+ je chapter10
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#54
+ je chapter11
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#14
+ je chapter12
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#15
+ je chapter13
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#16
+ je chapter14
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#17
+ je chapter15
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#18
+ je chapter16
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#19
+ je chapter17
+ //NINJA RACE
+ cmp ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#131
+ je course5
+ cmp ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#123
+ jae ninjarace
+ jmp codea
+resetras:
+ mov byte ptr [ras],0
+ mov [rdx+04],0A5
+ jmp spawn
+INJECTa:
+  jmp newmema
+returna:
+registersymbol(INJECTa)
+
+aobscanmodule(INJECTc,NINJA GAIDEN SIGMA2.exe,FF C0 83 F8 07)
+alloc(newmemc,$1000,INJECTc)
+
+label(codec)
+label(returnc)
+newmemc:
+  cmp byte ptr [disablespawns],01
+  jae codec
+  cmp byte ptr [canspawn],0
+  jle codec
+  cmp byte ptr [onstart],-01
+  jne clear
+  mov eax,02
+  jmp codec
+clear:
+ mov byte ptr [onstart],-01
+ jmp codec
+codec:
+  //0 Enemies Alive
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],00
+  je resetaggro
+  inc eax
+  cmp eax,07
+  jmp returnc
+resetaggro:
+  mov [aggrotimer],(float)0.00
+  mov byte ptr [canaggro],00
+  mov byte ptr [phitent],00
+  inc eax
+  cmp eax,07
+  jmp returnc
+INJECTc:
+  jmp newmemc
+returnc:
+registersymbol(INJECTc)
+
+aobscanmodule(isDead,NINJA GAIDEN SIGMA2.exe,66 83 BA B6 5A 00 00 00 74 1F)
+alloc(newmem41,$100,isDead)
+
+label(code41)
+label(return41)
+
+newmem41:
+  cmp word ptr [rdx+00005AB6],00
+  je pDead
+  jmp code41
+pDead:
+   mov byte ptr [ras],00
+   mov byte ptr [chapter14tengu],00
+   mov byte ptr [counter],00
+   mov byte ptr [canspawn],00
+   mov byte ptr [chpstage],00
+   mov byte ptr [ninpo],00
+   mov byte ptr [scounter],00
+   mov byte ptr [bcounter],00
+   mov byte ptr [canaggro],01
+   mov [aggrotimer],(float)0.00
+   mov [cBypassTime],(float)0.00
+   mov byte ptr [isUnlocked],00
+   mov byte ptr [phitent],00
+   mov qword ptr [enthitadd],FFFFFFFFFFFFFFFF
+   mov qword ptr [enthitadd2],FFFFFFFFFFFFFFFF
+   mov byte ptr [ent],FF
+   mov byte ptr [phitent],00
+   mov byte ptr [nindance],00
+   mov byte ptr [weakAlexi],00
+   mov byte ptr [canClip],00
+   mov byte ptr [wDOT],00
+   mov byte ptr [canDelay],00
+   mov byte ptr [sWave],00
+   mov byte ptr [delayThreshold],00
+   mov ["NINJA GAIDEN SIGMA2.EXE"+6BED024],(float)0.020
+   mov ["NINJA GAIDEN SIGMA2.EXE"+6BED028],(float)1.10
+   cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#06
+   jae resetspawnstage
+   jmp code41
+resetspawnstage:
+ mov byte ptr [chpstage],00
+code41:
+  cmp word ptr [rdx+00005AB6],00
+  jmp return41
+isDead:
+  jmp newmem41
+  nop 3
+return41:
+registersymbol(isDead)
+
+aobscanmodule(DESPAWN,NINJA GAIDEN SIGMA2.exe,40 88 3D 79 61 93 00)
+alloc(newmemd,$100,DESPAWN)
+
+label(coded)
+label(returnd)
+//god I got to clean this up and the entire script but im in too deep lol
+newmemd:
+ cmp byte ptr [disablespawns],01
+ jae coded
+ cmp r14w,0E4
+ je buddah
+ {cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#15
+ je chapter13checks
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#17
+ je chapter15checks}
+ jmp coded
+chapter13checks:
+ cmp byte ptr [chpstage],03
+ je rascheck
+ jmp coded
+chapter15checks:
+ cmp byte ptr [chpstage],02
+ je marbcheck
+ {cmp byte ptr [chpstage],03
+ je zedcheck}
+ cmp byte ptr [chpstage],04
+ je volfcheck
+ jmp coded
+rascheck:
+ mov r14w,0A5
+ jmp coded
+marbcheck:
+ mov r14w,003
+ cmp byte ptr [bcounter],02
+ jae coded
+ inc byte ptr [bcounter]
+ mov r14w,0E8
+ jmp coded
+zedcheck:
+ mov r14w,09E
+ cmp byte ptr [bcounter],1 //ZED REMOVED
+ jae coded
+ inc byte ptr [bcounter]
+ mov r14w,024
+ jmp coded
+volfcheck:
+ mov r14w,072
+ cmp byte ptr [bcounter],01
+ jae coded
+ inc byte ptr [bcounter]
+ mov r14w,025
+ jmp coded
+removeentity:
+ mov dil,01
+ mov byte ptr [ras],0
+ jmp coded
+buddah:
+ mov dil,01
+coded:
+  mov ["NINJA GAIDEN SIGMA2.exe"+1F5070A],dil
+  jmp returnd
+
+DESPAWN:
+  jmp newmemd
+  nop 2
+returnd:
+registersymbol(DESPAWN)
+
+aobscanmodule(RESET,NINJA GAIDEN SIGMA2.exe,49 8B C8 F3 AA)
+alloc(newmemb,$1000,RESET)
+
+label(codeb)
+label(returnb)
+
+newmemb:
+ push rax
+ xor rax,rax
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#123
+ jae codeb
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#6
+ jl resetcounters
+ cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBB4],#0
+ jle resetcounters
+ jmp codeb
+resetcounters:
+ mov [maximumspawn],al
+ mov [minimumspawn],al
+ mov [spawnlimit],al
+ mov [currentlevel],al
+ mov [chpstage],al
+ mov [ras],al
+ mov [counter],al
+ mov [ninpo],al
+ mov [isUnlocked],al
+ mov [canDelay],al
+ mov [sWave],al
+ mov [delayThreshold],al
+ mov [canaggro],al
+ mov [phitent],al
+ mov [scounter],al
+ mov [nindance],al
+ mov [weakAlexi],al
+ mov [canClip],al
+ mov [wDOT],al
+ mov ["NINJA GAIDEN SIGMA2.EXE"+6BED024],(float)0.020
+ mov ["NINJA GAIDEN SIGMA2.EXE"+6BED028],(float)1.10
+ mov [cBypassTime],(float)0.00
+ pop rax
+ mov rcx,r8
+ repe stosb
+ jmp returnb
+codeb:
+ movzx rax,byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A]
+ mov [currentlevel],al
+ pop rax
+ mov rcx,r8
+ repe stosb
+ jmp returnb
+
+RESET:
+  jmp newmemb
+returnb:
+registersymbol(RESET)
+
+
+aobscanmodule(NINJARACESTARTTIMER,NINJA GAIDEN SIGMA2.exe,F3 4C 0F 2C D8 0F 57)
+alloc(newmem15,$100,NINJARACESTARTTIMER)
+
+label(code15)
+label(return15)
+alloc(racemulp,02)
+registersymbol(racemulp)
+newmem15:
+  mov [racemulp],(float)3.00
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#11
+  je setninjainitialtimer
+  mov [racemulp],(float)1.50
+setninjainitialtimer:
+  xorps xmm1,xmm1
+  movss  xmm1,[racemulp]
+  mulps xmm0,xmm1
+  xorps xmm1,xmm1
+code15:
+  cvttss2si r11,xmm0
+  jmp return15
+
+NINJARACESTARTTIMER:
+  jmp newmem15
+return15:
+registersymbol(NINJARACESTARTTIMER)
+
+aobscanmodule(SAVEHEAL,NINJA GAIDEN SIGMA2.exe,5C C3 48 8B C4 55 41 56)
+alloc(newmem16,$1000,SAVEHEAL)
+
+label(code16)
+label(return16)
+
+
+newmem16:
+  mov byte ptr [canincreasetimer],01
+code16:
+  mov rax,rsp
+  push rbp
+  push r14
+  jmp return16
+
+SAVEHEAL+02:
+  jmp newmem16
+  nop
+return16:
+registersymbol(SAVEHEAL)
+
+aobscanmodule(NINJATIMER,NINJA GAIDEN SIGMA2.exe,44 89 5B 0C B8 89 88 88 88 44)
+alloc(newmem17,$1000,NINJATIMER)
+
+label(code17)
+label(return17)
+
+newmem17:
+ cmp byte ptr [canincreasetimer],01
+ jl code17
+ mov byte ptr [canincreasetimer],00
+ xorps xmm0,xmm0
+ xorps xmm5,xmm5
+ cvtsi2ss xmm0,r11
+ xor r11,r11
+ mov r11,354
+setninjatimer:
+ cvtsi2ss xmm5,r11
+ addss xmm0,xmm5
+ cvtss2si r11,xmm0
+code17:
+  mov [rbx+0C],r11d
+  mov eax,88888889
+  jmp return17
+
+NINJATIMER:
+  jmp newmem17
+  nop 4
+return17:
+registersymbol(NINJATIMER)
+
+aobscanmodule(INJECT40,NINJA GAIDEN SIGMA2.exe,66 45 89 16 66 41 89 03)
+alloc(newmem40,$1000,INJECT40)
+
+label(code40)
+label(return40)
+
+
+newmem40:
+ {cmp byte ptr [isUnlocked],01
+ je code40}
+ mov byte ptr [isUnlocked],00
+ cmp ax,093
+ jne code40
+ mov r10w,023
+ {mov byte ptr [isUnlocked],01}
+code40:
+  mov [r14],r10w
+  mov [r11],ax
+  jmp return40
+
+INJECT40:
+  jmp newmem40
+  nop 3
+return40:
+registersymbol(INJECT40)
+
+aobscanmodule(DISABLENINPO,NINJA GAIDEN SIGMA2.exe,66 3B 8F DA 5A 00 00)
+alloc(newmem42,$100,DISABLENINPO)
+
+label(code42)
+label(return42)
+
+newmem42:
+  cmp byte ptr [ninpo],-01
+  jne code42
+  mov word ptr [rdi+00005ADA],0000
+code42:
+  cmp cx,[rdi+00005ADA]
+  jmp return42
+
+DISABLENINPO:
+  jmp newmem42
+  nop 2
+return42:
+registersymbol(DISABLENINPO)
+
+aobscanmodule(iFrame,NINJA GAIDEN SIGMA2.exe,C6 80 58 5B 00 00 00 48)
+alloc(newmem50,$100,iFrame)
+
+label(code50)
+label(return50)
+alloc(iFrameTable,16)
+registersymbol(iFrameTable)
+
+iFrameTable:
+//KG
+dd 08C7
+dd 08C8
+dd 0894
+dd 0895
+
+newmem50:
+  push rbx
+  push rcx
+  push rdx
+  push rsi
+  mov byte ptr [rax+00005B58],00
+  cmp ax,7100//PLAYER
+  jne iFrameCleanUp
+  cmp word ptr ["NINJA GAIDEN SIGMA2.EXE"+319CBB4],00//DEAD
+  je iFrameCleanUp
+  lea rsi,[iFrameTable]
+  xor rcx,rcx
+iFrameStart:
+  mov rbx,["NINJA GAIDEN SIGMA2.EXE"+319CC30]
+  mov rdx,[rsi+rcx*4]
+  cmp bx,dx
+  mov byte ptr [rax+00005B58],01//SET IFRAME
+  je iFrameCleanUp
+  mov byte ptr [rax+00005B58],00
+  inc rcx
+  cmp [rsi+rcx*4],00
+  jnz iFrameStart
+iFrameCleanUp:
+  pop rsi
+  pop rdx
+  pop rcx
+  pop rbx
+code50:
+  jmp return50
+
+iFrame:
+  jmp newmem50
+  nop 2
+return50:
+registersymbol(iFrame)
+
+aobscanmodule(INJECT60,NINJA GAIDEN SIGMA2.exe,45 88 10 E9 B2 02 00 00)
+alloc(newmem60,$1000,INJECT60)
+
+label(code60)
+label(return60)
+
+
+newmem60:
+ push rbx
+ push rcx
+ push rdx
+ cmp byte ptr [disablespawns],01
+ jae code60
+ xor rbx,rbx
+ xor rcx,rcx
+ xor rdx,rdx
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#08
+ je setCHP3D
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#06
+ je setCHP1D
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#09
+ je setCHP4D
+ {cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#11
+ je setCHP7D}
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#10
+ je setCHP6D
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#12
+ je setCHP9D
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#13
+ je setCHP10D
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#53
+ je setCHP11D
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#14
+ je setCHP12D
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#15
+ je setCHP13D
+ {cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#16
+ je setCHP14D}
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#17
+ je setCHP15D
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#18
+ je setCHP16D
+ {cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#55
+ je setCHP5D}
+ jmp code60
+setCHP9D:
+ mov bx,A309
+ mov dl,0A3
+ mov cx,39FC
+ cmp ax,A209
+ je swapCheck
+ mov bx,A309
+ mov dl,0A3
+ mov cx,CAAC
+ cmp ax,A209
+ je swapCheck
+ {mov bx,A309
+ mov dl,0A3
+ mov cx,CABC
+ cmp ax,B201
+ je swapCheck
+ mov bx,A309
+ mov dl,0A3
+ mov cx,3A1A
+ cmp ax,B202
+ je swapCheck}
+ jmp code60
+setCHP3D:
+ mov bx,9D09
+ mov dl,09D
+ mov cx,3625
+ cmp ax,7F09
+ je swapCheck
+ jmp code60
+setCHP1D:
+ mov bx,9C01
+ mov dl,09C
+ mov cx,37B6
+ cmp ax,9D01
+ je swapCheck
+ mov bx,2609
+ mov dl,026
+ mov cx,AD1C
+ cmp ax,F909
+ je swapCheck
+ jmp code60
+setCHP4D:
+ {mov bx,0B09
+ mov dl,00B
+ mov cx,395C
+ cmp ax,8909
+ je swapCheck}
+ mov bx,2009
+ mov dl,020
+ mov cx,C175
+ cmp ax,E609
+ je swapCheck
+ jmp code60
+setCHP5D:
+ mov bx,3809
+ mov dl,038
+ mov cx,330F
+ cmp ax,9D09
+ jmp code60
+setCHP6D:
+ {mov bx,9C09
+ mov dl,09C
+ mov cx,33A7
+ cmp ax,2D01
+ je swapCheck}
+ mov bx,A109
+ mov dl,0A1
+ mov cx,32FF
+ cmp ax,B109
+ je swapCheck
+ jmp code60
+setCHP10D:
+  mov bx,3809
+  mov dl,038
+  mov cx,37BA
+  cmp ax,7F01
+  je swapCheck
+  mov bx,9C09
+  mov dl,09C
+  mov cx,37BE
+  cmp ax,1D09
+  je swapCheck
+  mov bx,9D09
+  mov dl,09D
+  mov cx,37A2
+  cmp ax,3809
+  je swapCheck
+  jmp code60
+setCHP11D:
+  mov bx,2F01
+  mov dl,02F
+  mov cx,337C
+  cmp ax,F101
+  je swapCheck
+  jmp code60
+setCHP12D:
+  mov bx,7C08
+  mov dl,07C
+  mov cx,33E3
+  cmp ax,3808
+  je swapCheck
+  {mov bx,9E01
+  mov dl,09E
+  mov cx,33FD
+  cmp ax,A601
+  je swapCheck}
+  jmp code60
+setCHP15D:
+  mov bx,A509
+  mov dl,0A5
+  mov cx,33E2
+  cmp ax,1C09
+  je swapCheck
+  mov bx,0B09
+  mov dl,00B
+  mov cx,33DC
+  cmp ax,F101
+  je swapCheck
+  mov bx,EE01
+  mov dl,0EE
+  mov cx,344C
+  cmp ax,E801
+  je swapCheck
+  jmp code60
+setCHP16D:
+  mov bx,9D02
+  mov dl,09D
+  mov cx,3382
+  cmp ax,F102
+  je swapCheck
+  {mov bx,3809
+  mov dl,038
+  mov cx,3378
+  cmp ax,1C09
+  je swapCheck}
+  jmp code60
+setCHP13D:
+  mov bx,9C08
+  mov dl,09C
+  mov cx,3B16
+  cmp ax,8208
+  je swapCheck
+  {mov bx,7001
+  mov dl,070
+  mov cx,3A06
+  cmp ax,F101
+  je swapCheck
+  mov bx,2F09
+  mov dl,02F
+  mov cx,3A0E
+  cmp ax,0C09
+  je swapCheck}
+  mov bx,7C01
+  mov dl,07C
+  mov cx,6512
+  cmp ax,A601
+  je swapCheck
+  jmp code60
+setCHP14D:
+ mov bx,9D01
+ mov dl,09D
+ mov cx,397C
+ cmp ax,7F01
+ je swapCheck
+ jmp code60
+swapCheck:
+ cmp cx,si
+ jne code60
+ mov ax,bx
+ mov r10l,dl
+code60:
+  pop rdx
+  pop rcx
+  pop rbx
+  mov [r8],r10l
+  jmp "NINJA GAIDEN SIGMA2.exe"+E4DDEB
+  jmp return60
+
+INJECT60:
+  jmp newmem60
+  nop 3
+return60:
+registersymbol(INJECT60)
+
+aobscanmodule(animload,NINJA GAIDEN SIGMA2.exe,41 0F B6 49 02 66)
+alloc(newmem61,$1000,animload)
+
+label(code61)
+label(return61)
+
+newmem61:
+  push rbx
+  xor rbx,rbx
+  lea rbx,["NINJA GAIDEN SIGMA2.EXE"+2F78B10]
+  cmp rbx,rsi
+  je code61
+  xor rbx,rbx
+  lea rbx,[rdx+38]
+  mov rbx, qword ptr [rbx]
+  cmp rbx,65535
+  jl code61
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],02
+  jle code61
+  {cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#12
+  je isSpam
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#15
+  je isSpam
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#16
+  je isSpam}
+  cmp byte ptr [enableIS],01
+  jne code61
+isSpam:
+  cmp byte ptr [rbx+18],09C
+  je animIS
+  cmp byte ptr [rbx+18],070
+  je animISP
+  jmp code61
+animIS:
+   xor rbx,rbx
+   mov bx,ax
+   cmp bx,024
+   mov ax,08B
+   je code61
+   mov ax,08A
+   cmp bx,026
+   je isCoolCheck
+   mov ax,bx
+   jmp code61
+animISP:
+   xor rbx,rbx
+   mov bx,ax
+   cmp bx,024
+   mov ax,08B
+   je code61
+   mov ax,08A
+   cmp bx,035
+   je isCoolCheck
+   mov ax,bx
+   jmp code61
+isCoolCheck:
+   cmp byte ptr [animp],#15
+   ja code61
+   mov ax,05
+code61:
+  pop rbx
+  movzx ecx,byte ptr [r9+02]
+  jmp return61
+
+animload:
+  jmp newmem61
+return61:
+registersymbol(animload)
+
+aobscanmodule(CLIP,NINJA GAIDEN SIGMA2.exe,48 83 F9 FF 75 04 32 C0 EB 07 49 8B 03)
+alloc(newmem81,$1000,CLIP)
+
+label(code81)
+label(return81)
+
+newmem81:
+  cmp byte ptr [canClip],01
+  jne code81
+  cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CD03],04//RYU SURFACE WATER
+  jae code81
+  mov byte ptr ["NINJA GAIDEN SIGMA2.EXE"+319CD97],0A
+code81:
+  cmp rcx,-01
+  jne "NINJA GAIDEN SIGMA2.exe"+134F538
+  jmp return81
+
+CLIP:
+  jmp newmem81
+  nop
+return81:
+registersymbol(CLIP)
+
+aobscanmodule(TRIGGERDELAY,NINJA GAIDEN SIGMA2.exe,E8 EC F8 FF FF 8B)
+alloc(newmem82,$1000,TRIGGERDELAY)
+
+label(code82)
+label(return82)
+alloc(triggerDelayAmt,4)
+registersymbol(triggerDelayAmt)
+alloc(tDec,1)
+registersymbol(tDec)
+alloc(darkTable,60)
+registersymbol(darkTable)
+
+darkTable:
+dd BDB0//START
+dd 5528//BRIDGE NEXT TO CLAW ROOM
+dd 4D48//CLAW ROOM
+dd ECF0//BEFORE FIRST SAVE (CORRIDOR)
+dd BFA8//FIRST SAVE
+dd 3D88//FIRST BRIDGE
+dd 4178//FIRST BRIDGE 8C48
+dd 9428//SAVE ONTOP OF BRIDGE
+dd 27E0//SAVE ONTOP OF BRIDGE
+{dd 35A8//JUMP UP FROM MINE - CAMERA ZOOM}
+dd 9C08//JUMP UP FROM MINE
+{dd 8C48}//MINE START - KEEP OFF
+dd ABC8//WOOD BRIDGE
+dd B3A8//WOOD BRIDGE
+dd AFB8//WOOD BRIDGE END
+dd 5D08//MAGE BATTLE ON ROOF BEFORE GENSHIN
+dd 74A8//ARCHER ROOM ENTER
+dd B798//WOOD BRIDGE
+
+newmem82:
+ push rax
+ push rbx
+ push rcx
+ push rdx
+ push rsi
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#07
+ jne triggerStart
+ //CHP2 LIGHT TRIGGERS
+ lea rdx,[darkTable]
+ xor rcx,rcx
+darkStart:
+ mov rsi,[rdx+rcx*4]
+ cmp si,bx
+ je setDark
+ inc rcx
+ cmp [rdx+rcx*4],00
+ jnz darkStart
+triggerStart:
+ cmp byte ptr [canDelay],01
+ je delayTrigger
+ cmp byte ptr [canDelay],00
+ je code82
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168],FF
+ je code82
+ movzx rax, byte ptr ["NINJA GAIDEN SIGMA2.EXE"+2FDA168]
+ cmp al,[delayThreshold]
+ jle delayFinish
+ mov rbx, [triggerAddress]
+ mov [rbx],03
+ nop
+ nop
+ nop
+ nop
+ nop
+ pop rsi
+ pop rdx
+ pop rcx
+ pop rbx
+ pop rax
+ jmp return82
+delayFinish:
+ mov byte ptr [canDelay],00
+ mov rbx, [triggerAddress]
+ cmp rbx,0000000000000000
+ je code82
+ xor rax,rax
+ mov [rbx],01
+ mov [triggerAddress],rax
+ jmp code82
+delayTrigger:
+ mov byte ptr [canDelay],02
+ cmp [triggerDelayAmt],(float)0.00
+ jle code82
+ mov byte ptr [canDelay],01
+ mov [tDec],(float)1.00
+ movss xmm0,[triggerDelayAmt]
+ movss xmm1,[tDec]
+ subss xmm0,xmm1
+ movss [triggerDelayAmt],xmm0
+ jmp code82
+setDark:
+ mov [rbx],02
+code82:
+  pop rsi
+  pop rdx
+  pop rcx
+  pop rbx
+  pop rax
+  call "NINJA GAIDEN SIGMA2.exe"+1607590
+  jmp return82
+
+TRIGGERDELAY:
+  jmp newmem82
+return82:
+registersymbol(TRIGGERDELAY)
+
+aobscanmodule(STRIGGER,NINJA GAIDEN SIGMA2.exe,48 89 91 0C 01 00 00 48 8D 0D * * * * 66 44)
+alloc(newmem83,$1000,STRIGGER)
+
+label(code83)
+label(return83)
+alloc(sTriggerTable,8)
+registersymbol(sTriggerTable)
+
+sTriggerTable:
+dd D160
+dd 1040
+
+
+newmem83:
+ push rax
+ push rbx
+ push rsi
+ lea rax,[sTriggerTable]
+ xor rbx,rbx
+ cmp byte ptr ["NINJA GAIDEN SIGMA2.EXE"+35C421A],#16
+ je sTriggerStart
+ jmp code83
+sTriggerStart:
+ mov rsi,[rax+rbx*4]
+ cmp si,cx
+ je triggerS
+ inc rbx
+ cmp rsi,[rax+rbx*4]
+ jnz sTriggerStart
+ jmp code83
+triggerS:
+ inc rdx
+code83:
+  pop rsi
+  pop rbx
+  pop rax
+  mov [rcx+0000010C],rdx
+  jmp return83
+
+STRIGGER:
+  jmp newmem83
+  nop 2
+return83:
+registersymbol(STRIGGER)
+
+
+[DISABLE]
+
+DELIMB1:
+  db 81 FA A0 00 00 00
+
+unregistersymbol(DELIMB1)
+dealloc(newmem)
+dealloc(enthitadd)
+dealloc(delimbp)
+dealloc(ent)
+unregistersymbol(ent)
+unregistersymbol(enthitadd)
+unregistersymbol(delimbp)
+dealloc(enthitadd2)
+unregistersymbol(enthitadd2)
+dealloc(disableai)
+dealloc(disabledelimb)
+dealloc(disablecustommoves)
+dealloc(disablehpreduction)
+dealloc(disabledamagereduction)
+dealloc(disablespawns)
+unregistersymbol(disabledeai)
+unregistersymbol(disabledelimb)
+unregistersymbol(disablecustommoves)
+unregistersymbol(disablehpreduction)
+unregistersymbol(disabledamagereduction)
+unregistersymbol(disablespawns)
+dealloc(nindance)
+unregistersymbol(nindance)
+dealloc(L1Y)
+unregistersymbol(L1Y)
+dealloc(SUT)
+unregistersymbol(SUT)
+dealloc(SKick)
+unregistersymbol(SKick)
+dealloc(SUT2)
+unregistersymbol(SUT2)
+dealloc(FLUTEND)
+unregistersymbol(FLUTEND)
+dealloc(S1FLUT)
+unregistersymbol(S1FLUT)
+dealloc(LUNUT)
+unregistersymbol(LUNUT)
+dealloc(S1DSike)
+unregistersymbol(S1DSike)
+dealloc(phitent)
+unregistersymbol(phitent)
+dealloc(canincreasetimer)
+unregistersymbol(canincreasetimer)
+dealloc(enableAIdodge)
+unregistersymbol(enableAIdodge)
+dealloc(isUnlocked)
+unregistersymbol(isUnlocked)
+dealloc(DualSXXYY)
+unregistersymbol(DualSXXYY)
+dealloc(DualSUDropFailUT)
+unregistersymbol(DualSUDropFailUT)
+dealloc(DualSUDropFail360)
+unregistersymbol(DualSUDropFail360)
+dealloc(LXFX)
+unregistersymbol(LXFX)
+dealloc(LXFY)
+unregistersymbol(LXFY)
+dealloc(TFXY)
+unregistersymbol(TFXY)
+dealloc(NG2AI)
+unregistersymbol(NG2AI)
+dealloc(weakAlexi)
+unregistersymbol(weakAlexi)
+dealloc(canClip)
+unregistersymbol(canClip)
+dealloc(wDOT)
+unregistersymbol(wDOT)
+dealloc(canDelay)
+unregistersymbol(canDelay)
+dealloc(delayThreshold)
+unregistersymbol(delayThreshold)
+dealloc(triggerAddress)
+unregistersymbol(triggerAddress)
+dealloc(sWave)
+unregistersymbol(sWave)
+
+DELIMB2:
+  db 66 89 3C 02 44 8B 1D 4B 6F 02 01
+
+unregistersymbol(DELIMB2)
+dealloc(newmem2)
+dealloc(state)
+dealloc(rightarm)
+dealloc(leftarm)
+dealloc(rightleg)
+dealloc(rightlegquick)
+dealloc(head)
+dealloc(limbc)
+dealloc(rightarmair)
+dealloc(leftarmair)
+dealloc(rightlegair)
+dealloc(headair)
+dealloc(eanim)
+dealloc(halfcut)
+dealloc(enothit)
+dealloc(legvariant)
+dealloc(dcounter)
+dealloc(cankill)
+dealloc(plranim)
+unregistersymbol(cankill)
+unregistersymbol(legvariant)
+unregistersymbol(rightlegquick)
+unregistersymbol(enothit)
+unregistersymbol(halfcut)
+unregistersymbol(eanim)
+unregistersymbol(limbc)
+unregistersymbol(state)
+unregistersymbol(rightarm)
+unregistersymbol(leftarm)
+unregistersymbol(rightleg)
+unregistersymbol(head)
+unregistersymbol(rightarmair)
+unregistersymbol(leftarmair)
+unregistersymbol(rightlegair)
+unregistersymbol(headair)
+dealloc(rightlegground)
+dealloc(entleghitadd)
+dealloc(entleggroundanim)
+dealloc(ryusuffered)
+unregistersymbol(ryusuffered)
+unregistersymbol(entleggroundanim)
+unregistersymbol(rightlegground)
+unregistersymbol(dcounter)
+dealloc(ninpodance)
+unregistersymbol(ninpodance)
+unregistersymbol(plranim)
+dealloc(floorcutcry)
+unregistersymbol(floorcutcry)
+dealloc(floorcutcryleg)
+unregistersymbol(floorcutcryleg)
+dealloc(isequipped)
+unregistersymbol(isequipped)
+dealloc(onstart)
+unregistersymbol(onstart)
+dealloc(isUnlocked)
+unregistersymbol(isUnlocked)
+
+AIDODGE:
+  db E9 27 02 00 00
+
+unregistersymbol(AIDODGE)
+dealloc(newmem3)
+dealloc(entDodgeTable)
+unregistersymbol(entDodgeTable)
+dealloc(canDodge)
+unregistersymbol(canDodge)
+
+
+AIGGRO2:
+  db 8B EB 0F 1F 40 00
+
+unregistersymbol(AIGGRO2)
+dealloc(newmem24)
+dealloc(aient)
+unregistersymbol(aient)
+
+AIGGRO3:
+  db B9 A0 00 00 00
+
+unregistersymbol(AIGGRO3)
+dealloc(newmem25)
+dealloc(aggrotimer)
+unregistersymbol(aggrotimer)
+dealloc(decv)
+unregistersymbol(decv)
+
+
+
+IDROP:
+  db 66 41 89 80 B6 5A 00 00
+
+unregistersymbol(IDROP)
+dealloc(newmem5)
+dealloc(izunaTable)
+unregistersymbol(izunaTable)
+
+HPMOD+03:
+  db 66 89 86 B6 5A 00 00
+
+unregistersymbol(HPMOD)
+dealloc(newmem6)
+dealloc(hpKillEntTable)
+unregistersymbol(hpKillEntTable)
+dealloc(hpKillMoveTable)
+unregistersymbol(hpKillMoveTable)
+
+REHP:
+  db B9 FF FF 00 00
+
+unregistersymbol(REHP)
+dealloc(newmem7)
+dealloc(hpmulp)
+unregistersymbol(hpmulp)
+dealloc(reHPEnt)
+unregistersymbol(reHPEnt)
+dealloc(reHPEntMulp)
+unregistersymbol(reHPEntMulp)
+
+
+EnemyDamageReduction:
+  db 66 0F 6E E0 41 0F B7 81 B4 5A 00 00
+
+unregistersymbol(EnemyDamageReduction)
+dealloc(newmem8)
+dealloc(damage)
+
+CORPSE:
+  db 48 8D 1D 6F C0 FD 04
+
+unregistersymbol(CORPSE)
+dealloc(newmem9)
+dealloc(corpsetimer)
+unregistersymbol(corpsetimer)
+dealloc(cBypassTime)
+unregistersymbol(cBypassTime)
+dealloc(cDecv)
+unregistersymbol(cDecv)
+
+OPENSHOP:
+  db E8 62 AA DE FF
+
+unregistersymbol(OPENSHOP)
+dealloc(newmem10)
+dealloc(canupgrade)
+unregistersymbol(canupgrade)
+dealloc(esscost)
+unregistersymbol(esscost)
+
+WEAPONUPGRADE:
+  db 0F 8E A5 01 00 00
+
+unregistersymbol(WEAPONUPGRADE)
+dealloc(newmem11)
+
+ESSREMOVAL:
+  db C7 05 2A 91 D8 00 05 00 00 00
+
+unregistersymbol(ESSREMOVAL)
+dealloc(newmem12)
+
+pMove:
+  db E8 7B E0 00 00
+
+unregistersymbol(pMove)
+dealloc(newmem13)
+dealloc(animp)
+unregistersymbol(animp)
+dealloc(animpcounter)
+unregistersymbol(animpcounter)
+dealloc(isNG1C)
+unregistersymbol(isNG1C)
+{dealloc(pAddr)
+unregistersymbol(pAddr)
+dealloc(pAddr1)
+unregistersymbol(pAddr1)}
+dealloc(enableIS)
+unregistersymbol(enableIS)
+INJECTa:
+  db 48 8B C4 53 55
+
+unregistersymbol(INJECTa)
+dealloc(newmema)
+dealloc(spawnlimit)
+unregistersymbol(spawnlimit)
+dealloc(spawncounter)
+unregistersymbol(spawncounter)
+dealloc(canspawn)
+unregistersymbol(canspawn)
+dealloc(minimumspawn)
+unregistersymbol(minimumspawn)
+dealloc(rnum)
+unregistersymbol(rnum)
+unregistersymbol(chpstage)
+dealloc(chpstage)
+unregistersymbol(maximumspawn)
+dealloc(maximumspawn)
+unregistersymbol(turretrobotamt)
+dealloc(turretrobotamt)
+dealloc(currentlevel)
+unregistersymbol(currentlevel)
+dealloc(ras)
+unregistersymbol(ras)
+dealloc(chapter14tengu)
+unregistersymbol(chapter14tengu)
+dealloc(counter)
+unregistersymbol(counter)
+dealloc(ninpo)
+unregistersymbol(ninpo)
+dealloc(scounter)
+unregistersymbol(scounter)
+dealloc(bcounter)
+unregistersymbol(bcounter)
+
+
+INJECTc:
+  db FF C0 83 F8 07
+
+unregistersymbol(INJECTc)
+dealloc(newmemc)
+
+isDead:
+  db 66 83 BA B6 5A 00 00 00
+
+unregistersymbol(isDead)
+dealloc(newmem41)
+
+DESPAWN:
+  db 40 88 3D 79 61 93 00
+
+unregistersymbol(DESPAWN)
+dealloc(newmemd)
+
+
+RESET:
+  db 49 8B C8 F3 AA
+
+unregistersymbol(RESET)
+dealloc(newmemb)
+
+
+NINJARACESTARTTIMER:
+  db F3 4C 0F 2C D8
+
+unregistersymbol(NINJARACESTARTTIMER)
+dealloc(newmem15)
+dealloc(racemulp)
+unregistersymbol(racemulp)
+
+SAVEHEAL+02:
+  db 48 8B C4 55 41 56
+
+unregistersymbol(SAVEHEAL)
+dealloc(newmem16)
+dealloc(canincreasetimer)
+unregistersymbol(canincreasetimer)
+
+NINJATIMER:
+  db 44 89 5B 0C B8 89 88 88 88
+
+unregistersymbol(NINJATIMER)
+dealloc(newmem17)
+
+INJECT40:
+  db 66 45 89 16 66 41 89 03
+
+unregistersymbol(INJECT40)
+dealloc(newmem40)
+
+DISABLENINPO:
+  db 66 3B 8F DA 5A 00 00
+
+unregistersymbol(DISABLENINPO)
+dealloc(newmem42)
+
+iFrame:
+  db C6 80 58 5B 00 00 00
+
+unregistersymbol(iFrame)
+dealloc(newmem50)
+dealloc(iFrameTable)
+unregistersymbol(iFrameTable)
+
+INJECT60:
+  db 45 88 10 E9 B2 02 00 00
+
+unregistersymbol(INJECT60)
+dealloc(newmem60)
+
+
+animload:
+  db 41 0F B6 49 02
+
+unregistersymbol(animload)
+dealloc(newmem61)
+
+CLIP:
+  db 48 83 F9 FF 75 04
+
+unregistersymbol(CLIP)
+dealloc(newmem81)
+
+TRIGGERDELAY:
+  db E8 EC F8 FF FF
+
+unregistersymbol(TRIGGERDELAY)
+dealloc(newmem82)
+dealloc(triggerDelayAmt)
+unregistersymbol(triggerDelayAmt)
+dealloc(tDec)
+unregistersymbol(tDec)
+dealloc(darkTable)
+unregistersymbol(darkTable)
+
+STRIGGER:
+  db 48 89 91 0C 01 00 00
+
+unregistersymbol(STRIGGER)
+dealloc(newmem83)
+dealloc(sTriggerTable)
+unregistersymbol(sTriggerTable)
+
+//FRAME FREEZE/JUDDER
+NINJA GAIDEN SIGMA2.exe+102A267:
+db 74 58
+{NINJA GAIDEN SIGMA2.exe+160B226:
+db C7 44 83 20 03 00 00 00}
+NINJA GAIDEN SIGMA2.exe+13B4AEB:
+db C6 40 38 01
+NINJA GAIDEN SIGMA2.exe+13B4AD0:
+db C6 40 38 02
+NINJA GAIDEN SIGMA2.exe+13B4AB5:
+db C6 40 38 03
+NINJA GAIDEN SIGMA2.exe+13B4B06:
+db C6 40 38 01
+NINJA GAIDEN SIGMA2.exe+13D0CC2:
+db 89 9C 24 B4 00 00 00
+{NINJA GAIDEN SIGMA2.exe+13F22F3:
+db B9 94 00 00 00 66 3B D9 0F 84 D6 02 00 00}
