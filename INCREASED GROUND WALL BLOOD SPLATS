@@ -1,0 +1,146 @@
+{ Game   : NINJA GAIDEN SIGMA2.exe
+  Version:
+  Date   : 2022-04-13
+  Author : g-gil
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,NINJA GAIDEN SIGMA2.exe,E8 FE 0A CB FF)
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+alloc(p,2)
+registersymbol(p)
+alloc(nocheck,1)
+registersymbol(nocheck)
+
+newmem:
+  mov byte ptr [nocheck],00
+  mov [p],(float)-1.56
+  comiss xmm7,[p]
+  jna bloodstart
+  mov [p],(float)-0.99
+  mov byte ptr [nocheck],00
+  comiss xmm5,[p]
+  jna bloodstart
+  comiss xmm8,[p]
+  jna bloodstart
+  jmp code
+bloodstart:
+  mov [p],(float)0.99
+  comiss xmm4,[p]
+  jna bloodstart1
+  jmp code
+bloodstart1:
+  movss xmm10,xmm1
+  shufps xmm1,xmm1,95
+  movss xmm9,xmm1
+  xorps xmm1,xmm1
+  mov [p],(float)0.95
+blood1:
+  cmp byte ptr [nocheck],00
+  je blood1a
+  comiss xmm9,[p]
+  jna blood1c
+  jmp blood1f
+blood1c:
+  mov [p],(float)-0.70
+  comiss xmm9,[p]
+  jl blood2
+blood1f:
+  mov [p],(float)0.95
+  comiss xmm9,[p]
+  mov [p],(float)-0.70
+  ja blood2
+blood1a:
+  addss xmm9,xmm9
+blood2:
+  cmp byte ptr [nocheck],00
+  je blood2a
+  comiss xmm10,[p]
+  jna blood2c
+  jmp blood2f
+blood2c:
+  mov [p],(float)-0.70
+  comiss xmm10,[p]
+  jl cleanup
+blood2f:
+  mov [p],(float)0.95
+  comiss xmm10,[p]
+  ja cleanup
+  mov [p],(float)-0.70
+blood2a:
+  addss xmm10,xmm10
+cleanup:
+  movss xmm1,xmm9
+  shufps xmm1,xmm1,63
+  movss xmm1,xmm10
+blood3:
+  xorps xmm9,xmm9
+  xorps xmm10,xmm10
+  movss xmm10,xmm0
+  shufps xmm0,xmm0,95
+  movss xmm9,xmm0
+  xorps xmm0,xmm0
+blood4:
+  cmp byte ptr [nocheck],00
+  je blood4a
+  comiss xmm9,[p]
+  jna blood4c
+  jmp blood4f
+blood4c:
+  mov [p],(float)-0.70
+  comiss xmm9,[p]
+  jl blood4f
+blood4f:
+  mov [p],(float)0.95
+  comiss xmm9,[p]
+  mov [p],(float)-0.70
+  ja blood5
+blood4a:
+  addss xmm9,xmm9
+blood5:
+  cmp byte ptr [nocheck],00
+  je blood5a
+  comiss xmm10,[p]
+  jna blood5c
+  jmp cleanup2
+blood5c:
+  mov [p],(float)-0.70
+  comiss xmm10,[p]
+  jl cleanup2
+blood5f:
+  mov [p],(float)0.95
+  comiss xmm10,[p]
+  mov [p],(float)-0.70
+  ja cleanup2
+blood5a:
+  addss xmm10,xmm10
+cleanup2:
+  movss xmm0,xmm9
+  shufps xmm0,xmm0,63
+  movss xmm0,xmm10
+code:
+  call "NINJA GAIDEN SIGMA2.exe"+6EDA0
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db E8 FE 0A CB FF
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(p)
+unregistersymbol(p)
+dealloc(nocheck)
+unregistersymbol(nocheck)
