@@ -1,0 +1,37 @@
+[ENABLE]
+
+aobscanmodule(INJECT,NINJA GAIDEN SIGMA2.exe,F3 44 0F 10 2D EF DE 45 00)
+alloc(newmem,$1000,INJECT)
+
+
+label(return)
+alloc(objL,4)
+registersymbol(objL)
+alloc(objS,1)
+registersymbol(objS)
+newmem:
+ cmp byte ptr [objS],00
+ jne start
+ mov [objL],(float)3.141592741
+ mov byte ptr [objS],01
+start:
+  movss xmm13,[objL]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 44 0F 10 2D EF DE 45 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(objL)
+unregistersymbol(objL)
+dealloc(objS)
+unregistersymbol(objS)
